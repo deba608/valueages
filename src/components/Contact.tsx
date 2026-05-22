@@ -127,7 +127,7 @@ export default function Contact() {
     const hasError = errors[fieldName] && touched[fieldName];
     const isValid = validFields[fieldName] && touched[fieldName];
     
-    return `w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 min-h-[44px] bg-white text-slate-900 placeholder:text-slate-400 shadow-none dark:bg-slate-950/60 dark:text-slate-100 dark:placeholder:text-slate-500 ${
+    return `w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 min-h-11 bg-white text-slate-900 placeholder:text-slate-400 shadow-none dark:bg-slate-950/60 dark:text-slate-100 dark:placeholder:text-slate-500 ${
       hasError
         ? "border-brand-rust focus:ring-brand-rust/20 focus:border-brand-rust"
         : isValid
@@ -162,7 +162,7 @@ export default function Contact() {
             <div className="space-y-4 mb-12 lg:mb-0">
               <a
                 href="mailto:manas.das@valueages.com"
-                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-11"
                 aria-label="Email manas.das@valueages.com"
               >
                 <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0 group-hover:scale-105 transition-transform">
@@ -175,7 +175,7 @@ export default function Contact() {
               </a>
 
               <div
-                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:shadow-md transition-all duration-300 min-h-[44px]"
+                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:shadow-md transition-all duration-300 min-h-11"
                 role="text"
                 aria-label="Located in Bhubaneswar, Odisha"
               >
@@ -193,7 +193,7 @@ export default function Contact() {
                 href="https://linkedin.com/company/valueages"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-11"
                 aria-label="Connect on LinkedIn (opens in new tab)"
               >
                 <div className="p-3 rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 shrink-0 group-hover:scale-105 transition-transform">

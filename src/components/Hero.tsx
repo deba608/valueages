@@ -33,7 +33,7 @@ export default function Hero() {
       aria-label="Introduction"
     >
       <div className="absolute inset-0 diagram-grid opacity-70" aria-hidden="true" />
-      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-white/90 to-transparent dark:from-[#060a13]/95" aria-hidden="true" />
+      <div className="absolute inset-x-0 top-0 h-36 bg-linear-to-b from-white/90 to-transparent dark:from-[#060a13]/95" aria-hidden="true" />
 
       <div className="container relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 sm:px-8 lg:grid-cols-12 lg:gap-10">
         <div className="flex flex-col items-start text-left lg:col-span-7">
