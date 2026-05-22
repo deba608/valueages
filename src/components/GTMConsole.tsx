@@ -68,7 +68,7 @@ export default function GTMConsole() {
       <div className="absolute left-1/3 bottom-10 w-96 h-96 bg-brand-teal/5 dark:bg-brand-teal/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
           
           {/* Left Column: Context and Value Proposition */}
           <div className="flex flex-col items-start text-left lg:col-span-6">

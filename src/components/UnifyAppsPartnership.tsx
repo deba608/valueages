@@ -9,7 +9,7 @@ export default function UnifyAppsPartnership() {
       <div className="absolute bottom-1/3 right-1/10 w-96 h-96 bg-brand-rust/10 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Block: Description of Partnership */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">

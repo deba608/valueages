@@ -7,11 +7,11 @@ export default function Footer() {
 
 
   return (
-    <footer className="theme-section-light py-16 border-t border-slate-200 dark:border-slate-800/60" role="contentinfo">
+    <footer className="theme-section-light footer-surface py-16" role="contentinfo">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
 
         {/* Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 mb-12">
 
           {/* Column 1: Brand Info */}
           <div className="md:col-span-5 flex flex-col items-start gap-5">
