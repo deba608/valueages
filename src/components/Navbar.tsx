@@ -131,7 +131,7 @@ export default function Navbar() {
             className={`w-auto shrink-0 transition-all duration-500 ease-in-out group-hover:scale-105 ${
               isScrolledDeep ? "h-7" : "h-10 sm:h-11"
             }`}
-            style={{ filter: 'none' }}
+            style={{ filter: 'none', width: 'auto' }}
             aria-hidden="true"
           />
 
@@ -147,6 +147,8 @@ export default function Navbar() {
             className={`h-10 w-auto sm:h-11 shrink-0 transition-all duration-500 ease-in-out group-hover:scale-105 dark-invert ${
               isScrolledDeep ? "max-w-0 opacity-0 pointer-events-none scale-0 select-none origin-left ml-[-6px]" : "max-w-[200px] opacity-100"
             }`}
+            loading="eager"
+            style={{ width: 'auto' }}
           />
         </a>
 
