@@ -55,12 +55,12 @@ export default function ClientWins() {
   };
 
   return (
-    <section id="clients" className="py-20 bg-slate-50 dark:bg-[#0b1221] relative overflow-hidden" aria-labelledby="clients-title">
+    <section id="clients" className="section-shell theme-section-muted" aria-labelledby="clients-title">
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="text-xs font-semibold uppercase tracking-wider text-brand-teal mb-3 bg-brand-teal/10 dark:bg-brand-teal/15 px-3 py-1 rounded-full border border-brand-teal/25 dark:border-brand-teal/30 inline-block">
+          <span className="section-eyebrow mx-auto mb-3">
             Market Success
           </span>
           <h2 id="clients-title" className="font-serif text-3xl sm:text-4xl font-semibold leading-tight text-slate-900 dark:text-white mb-4">
@@ -85,7 +85,7 @@ export default function ClientWins() {
               variants={itemVariants}
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700 hover:border-slate-200/80 dark:hover:border-slate-600 shadow-sm hover:shadow-lg dark:hover:shadow-brand-teal/5 transition-all duration-300 group"
+              className="surface-card interactive-card flex flex-col justify-between p-6 rounded-2xl group"
             >
               {/* Grayscale Styled Text Logo */}
               <div className="h-16 flex items-center justify-center mb-4">
@@ -108,7 +108,7 @@ export default function ClientWins() {
         </motion.div>
 
         {/* Bottom credibility note */}
-        <div className="p-4 rounded-xl border border-slate-200/80 dark:border-slate-700 bg-slate-100/50 dark:bg-slate-800/50 flex items-center justify-center gap-3 max-w-3xl mx-auto">
+        <div className="surface-card p-4 rounded-xl flex items-center justify-center gap-3 max-w-3xl mx-auto">
           <Award size={18} className="text-brand-teal shrink-0" />
           <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 text-center sm:text-left">
             Our strategic advisory focus strictly covers B2B Go-To-Market execution. No delivery liabilities exist.

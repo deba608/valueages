@@ -29,7 +29,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden hero-gradient bg-[radial-gradient(circle_at_top_left,rgba(16,155,130,0.08),transparent_32%),linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] pt-32 pb-16 dark:bg-[radial-gradient(circle_at_top_left,rgba(16,155,130,0.12),transparent_34%),linear-gradient(180deg,#050911_0%,#0b1221_100%)] md:pt-40 md:pb-24"
+      className="relative min-h-screen overflow-hidden hero-gradient bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] pt-28 pb-16 dark:bg-[linear-gradient(180deg,#050911_0%,#0b1221_100%)] md:pt-40 md:pb-24"
       aria-label="Introduction"
     >
       <div className="absolute inset-0 diagram-grid opacity-70" aria-hidden="true" />
@@ -41,7 +41,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-teal/20 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-teal shadow-sm dark:bg-slate-900/70 dark:border-brand-teal/30"
+            className="section-eyebrow mb-6"
           >
             <Sparkles size={13} />
             Enterprise GTM advisory for India
@@ -74,14 +74,14 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="group btn-premium inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-brand-teal px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand-teal/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-teal hover:shadow-brand-teal/30 active:scale-[0.98] active:translate-y-0"
+              className="primary-button group btn-premium px-7 py-3.5 text-base"
             >
               Discuss market entry
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#cxo"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-slate-200 bg-white/85 px-7 py-3.5 text-base font-semibold text-slate-800 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-teal/40 hover:text-brand-teal active:scale-[0.98] active:translate-y-0 dark:border-slate-700 dark:bg-slate-900/75 dark:text-slate-200"
+              className="secondary-button px-7 py-3.5 text-base"
             >
               View CXO network
             </a>
@@ -113,7 +113,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="relative lg:col-span-5"
         >
-          <div className="relative z-10 rounded-3xl border border-slate-200/60 bg-white/80 dark:border-slate-700/60 dark:bg-slate-900/80 p-6 sm:p-8 shadow-xl dark:shadow-2xl dark:shadow-slate-900/50 backdrop-blur-sm" aria-hidden="true">
+          <div className="surface-panel relative z-10 rounded-2xl p-5 backdrop-blur-sm sm:p-7" aria-hidden="true">
             {/* Decorative gradient blob */}
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-brand-teal/10 dark:bg-brand-teal/5 rounded-full blur-3xl" />
 
@@ -133,7 +133,7 @@ export default function Hero() {
                 return (
                   <div
                     key={node.label}
-                    className={`rounded-2xl border p-3 text-center transition-all card-interactive ${
+                    className={`rounded-xl border p-3 text-center transition-all ${
                       node.active
                         ? "border-brand-teal/30 bg-brand-teal/10 text-brand-teal shadow-sm shadow-brand-teal/10"
                         : "border-slate-200 bg-white/70 text-slate-600 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300"
@@ -147,7 +147,7 @@ export default function Hero() {
               })}
             </div>
 
-            <div className="relative z-10 my-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800/55">
+            <div className="surface-card relative z-10 my-6 rounded-2xl p-5">
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-white dark:bg-brand-teal">
@@ -184,12 +184,12 @@ export default function Hero() {
             </div>
 
             <div className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50 hover:border-slate-300 dark:hover:border-slate-600 transition-colors duration-300 card-interactive">
+              <div className="surface-card rounded-xl p-4 transition-colors duration-300">
                 <ShieldCheck size={18} className="mb-2 text-brand-teal" />
                 <p className="text-sm font-bold text-slate-900 dark:text-white">No delivery drag</p>
                 <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Focused on sales strategy, access, and commercial execution.</p>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50 hover:border-slate-300 dark:hover:border-slate-600 transition-colors duration-300 card-interactive">
+              <div className="surface-card rounded-xl p-4 transition-colors duration-300">
                 <CheckCircle2 size={18} className="mb-2 text-brand-teal" />
                 <p className="text-sm font-bold text-slate-900 dark:text-white">Boardroom clarity</p>
                 <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Clear market thesis, account map, and executive motion.</p>

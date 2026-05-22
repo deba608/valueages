@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-brand-teal: #109B82;
   --color-brand-teal-light: #5D9F9B;
@@ -41,6 +43,7 @@
   --foreground: #0f172a;
   --surface: #f7faf6;
   --surface-elevated: #ffffff;
+  --surface-panel: rgba(255, 255, 255, 0.86);
   --surface-hover: #eef6f3;
   --border-primary: #dfe8e5;
   --border-secondary: #c6d5d0;
@@ -62,6 +65,7 @@
   --foreground: #f1f5f9;
   --surface: #0b1221;
   --surface-elevated: #111d2e;
+  --surface-panel: rgba(17, 29, 46, 0.78);
   --surface-hover: #162536;
   --border-primary: #1e293b;
   --border-secondary: #0f172a;
@@ -95,6 +99,7 @@ html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
   scroll-padding-top: 92px;
+  overflow-x: clip;
 }
 
 body {
@@ -105,7 +110,7 @@ body {
   color: var(--foreground);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   text-rendering: optimizeLegibility;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: clip;
 }
 
 .dark body {
@@ -114,6 +119,24 @@ body {
     radial-gradient(circle at 88% 8%, rgba(184, 90, 58, 0.09), transparent 26rem),
     linear-gradient(180deg, #050911 0%, #0b1221 42rem, #050911 100%);
 }
+
+/* Smooth theme transition across core layout elements */
+body, section, nav, footer, button, input, textarea, a, .premium-card, .glass-effect, .navbar-glass, .card-interactive, .cta-glow, .trust-bar-glass, .glow-card-teal, .glow-card-rust, .surface-card, .surface-panel, .interactive-card, .primary-button, .secondary-button {
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Logo brightness invert in dark mode to avoid hydration lag */
+.dark-invert {
+  filter: none;
+}
+.dark .dark-invert {
+  filter: brightness(0) invert(1) !important;
+}
+
 
 /* Focus States - Accessibility CRITICAL */
 *:focus-visible {
@@ -179,18 +202,18 @@ select:focus-visible,
 
 /* Premium Navbar Glass */
 .navbar-glass {
-  background-color: rgba(255, 255, 255, 0.9);
-  background-image: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(251,252,248,0.84));
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border-bottom: 1px solid rgba(198, 213, 208, 0.78);
-  box-shadow: 0 18px 42px -30px rgba(15, 23, 42, 0.42), 0 1px 0 rgba(255,255,255,0.78) inset;
+  background-color: rgba(255, 255, 255, 0.65);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(251, 252, 248, 0.55) 100%);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.1), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
 }
 .dark .navbar-glass {
-  background-color: rgba(5, 9, 17, 0.88);
-  background-image: linear-gradient(180deg, rgba(11,18,33,0.92), rgba(5,9,17,0.82));
-  border-bottom: 1px solid rgba(30, 41, 59, 0.68);
-  box-shadow: 0 16px 38px -24px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255,255,255,0.04) inset;
+  background-color: rgba(11, 18, 33, 0.65);
+  background-image: linear-gradient(180deg, rgba(11, 18, 33, 0.75) 0%, rgba(5, 9, 17, 0.55) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.03) inset;
 }
 
 /* Gradient top border for navbar */
@@ -270,6 +293,146 @@ select:focus-visible,
   box-shadow: 0 24px 70px -48px rgba(0, 0, 0, 0.85);
 }
 
+.section-shell {
+  position: relative;
+  overflow: hidden;
+  padding-block: 5rem;
+}
+
+.theme-section-light {
+  background: #ffffff;
+  color: var(--text-primary);
+}
+
+.theme-section-muted {
+  background: #f8fafc;
+  color: var(--text-primary);
+}
+
+.dark .theme-section-light {
+  background: #050911;
+  color: var(--text-primary);
+}
+
+.dark .theme-section-muted {
+  background: #0b1221;
+  color: var(--text-primary);
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    padding-block: 7rem;
+  }
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 155, 130, 0.18);
+  background: rgba(255, 255, 255, 0.82);
+  color: #109B82;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+}
+
+.dark .section-eyebrow {
+  border-color: rgba(16, 155, 130, 0.3);
+  background: rgba(15, 23, 42, 0.68);
+}
+
+.surface-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.dark .surface-card {
+  background: rgba(17, 29, 46, 0.72);
+  border-color: rgba(51, 65, 85, 0.82);
+}
+
+.surface-panel {
+  background: var(--surface-panel);
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.dark .surface-panel {
+  border-color: rgba(51, 65, 85, 0.78);
+  box-shadow: 0 24px 70px -48px rgba(0, 0, 0, 0.85);
+}
+
+.interactive-card {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+}
+
+a[href],
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+.interactive-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(16, 155, 130, 0.34);
+  box-shadow: 0 18px 48px -38px rgba(15, 23, 42, 0.55);
+}
+
+.interactive-card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.primary-button,
+.secondary-button {
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+}
+
+.primary-button {
+  background: #109B82;
+  color: #ffffff;
+  box-shadow: 0 16px 34px -24px rgba(16, 155, 130, 0.75);
+}
+
+.primary-button:hover {
+  background: #0FA88A;
+  transform: translateY(-1px);
+  box-shadow: 0 20px 42px -24px rgba(16, 155, 130, 0.8);
+}
+
+.secondary-button {
+  border: 1px solid var(--border-primary);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text-primary);
+}
+
+.secondary-button:hover {
+  border-color: rgba(16, 155, 130, 0.4);
+  color: #109B82;
+  transform: translateY(-1px);
+}
+
+.dark .secondary-button {
+  background: rgba(15, 23, 42, 0.72);
+  color: var(--text-primary);
+  border-color: rgba(51, 65, 85, 0.78);
+}
+
 .diagram-grid {
   background-image:
     linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
@@ -299,12 +462,12 @@ select:focus-visible,
 
 /* Mobile glass panel */
 .mobile-glass {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
 }
 .dark .mobile-glass {
-  background: rgba(11, 18, 33, 0.95);
+  background: rgba(11, 18, 33, 0.75);
 }
 
 /* Mobile overlay */
@@ -618,7 +781,7 @@ a:focus-visible, button:focus-visible {
 
 /* Improved trust bar styling */
 .trust-bar-glass {
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,250,246,0.92));
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,246,0.94));
   backdrop-filter: blur(10px) saturate(140%);
   box-shadow: 0 18px 48px -42px rgba(15, 23, 42, 0.5);
 }
@@ -664,4 +827,14 @@ a:focus-visible, button:focus-visible {
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--color-brand-teal), transparent);
   border-radius: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive-card:hover,
+  .primary-button:hover,
+  .secondary-button:hover,
+  .card-interactive:hover,
+  .card-hover:hover {
+    transform: none !important;
+  }
 }

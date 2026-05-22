@@ -64,7 +64,7 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <section id="why-us" className="py-20 md:py-28 bg-white dark:bg-[#050911] relative overflow-hidden" aria-labelledby="why-title">
+    <section id="why-us" className="section-shell theme-section-light" aria-labelledby="why-title">
       {/* Background vector accents */}
       <div className="absolute right-0 bottom-1/4 w-80 h-80 bg-brand-tan/5 dark:bg-brand-tan/10 rounded-full blur-3xl" aria-hidden="true" />
 
@@ -72,7 +72,7 @@ export default function WhyChooseUs() {
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="text-xs font-semibold uppercase tracking-wider text-brand-teal mb-3 bg-brand-teal/5 dark:bg-brand-teal/10 px-3 py-1 rounded-full border border-brand-teal/15 dark:border-brand-teal/25 inline-block">
+          <span className="section-eyebrow mx-auto mb-3">
             VALUEAGES Advantage
           </span>
           <h2 id="why-title" className="font-serif text-3xl sm:text-4xl font-semibold leading-tight text-slate-900 dark:text-white mb-4">
@@ -100,7 +100,7 @@ export default function WhyChooseUs() {
                 variants={itemVariants}
                 whileHover={{ y: -4, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex flex-col bg-white dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700 rounded-2xl p-8 shadow-sm hover:shadow-lg dark:hover:shadow-brand-teal/5 hover:border-slate-200/80 dark:hover:border-slate-600 transition-all duration-300 group glow-card-teal"
+                className="surface-card interactive-card flex flex-col rounded-2xl p-8 group"
               >
                 {/* Icon box */}
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 border ${diff.color}`}>

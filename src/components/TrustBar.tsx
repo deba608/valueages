@@ -17,6 +17,10 @@ function CounterStat({ value, suffix, label, subLabel }: StatItemProps) {
 
   useEffect(() => {
     if (!isInView) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const frame = requestAnimationFrame(() => setCount(value));
+      return () => cancelAnimationFrame(frame);
+    }
 
     let start = 0;
     const duration = 1500;
@@ -41,7 +45,7 @@ function CounterStat({ value, suffix, label, subLabel }: StatItemProps) {
   }, [isInView, value]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center text-center p-6 sm:p-4 card-interactive">
+    <div ref={ref} className="flex flex-col items-center justify-center text-center p-6 sm:p-4">
       <div className="flex items-baseline justify-center">
         <span className="text-4xl sm:text-5xl font-extrabold text-brand-teal tracking-tight">
           {count}
@@ -50,7 +54,7 @@ function CounterStat({ value, suffix, label, subLabel }: StatItemProps) {
           {suffix}
         </span>
       </div>
-      <p className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-2 tracking-wide uppercase">{label}</p>
+      <p className="text-sm font-bold text-slate-800 dark:text-slate-100 mt-2 tracking-wide uppercase">{label}</p>
       {subLabel && (
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-[200px] leading-relaxed">{subLabel}</p>
       )}
@@ -67,9 +71,9 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="relative z-20 py-10 bg-white dark:bg-[#0b1221] border-y border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none trust-bar-glass" aria-label="Key metrics">
+    <section className="relative z-20 py-10 border-y border-slate-200/80 dark:border-slate-800 shadow-none trust-bar-glass" aria-label="Key metrics">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-slate-100 dark:divide-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
           {stats.map((stat, index) => (
             <CounterStat
               key={index}
