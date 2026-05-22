@@ -15,13 +15,13 @@ export default function Footer() {
 
           {/* Column 1: Brand Info */}
           <div className="md:col-span-5 flex flex-col items-start gap-5">
-            <a href="#hero" className="group flex items-center gap-3" aria-label="VALUEAGES Home">
+            <a href="#hero" className="group flex shrink-0 items-center gap-1.5" aria-label="VALUEAGES Home">
               <Image
                 src="/Nav_logo1.svg"
                 alt=""
-                width={56}
-                height={56}
-                className="shrink-0 group-hover:scale-105 transition-transform duration-300"
+                width={34}
+                height={44}
+                className="h-10 w-auto shrink-0 transition-all duration-300 group-hover:scale-105"
                 style={{ filter: 'none', width: 'auto' }}
                 aria-hidden="true"
               />
@@ -29,10 +29,9 @@ export default function Footer() {
               <Image
                 src="/Nav_logo2.svg"
                 alt="VALUEAGES"
-                width={180}
+                width={224}
                 height={44}
-                className="shrink-0 hidden sm:block transition-all duration-300 group-hover:scale-105 dark-invert"
-                loading="eager"
+                className="h-10 w-auto shrink-0 transition-all duration-300 group-hover:scale-105 dark-invert"
                 style={{ width: 'auto' }}
               />
             </a>
