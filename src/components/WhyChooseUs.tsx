@@ -39,7 +39,7 @@ export default function WhyChooseUs() {
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14 md:mb-18">
+        <div className="max-w-3xl mx-auto text-center mb-14 md:mb-16">
           <span className="section-eyebrow mx-auto mb-3">
             VALUEAGES Advantage
           </span>

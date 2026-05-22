@@ -966,24 +966,12 @@ html[data-theme="dark"] body {
 }
 
 html[data-theme="light"] .theme-section-light,
-html[data-theme="light"] footer.theme-section-light {
-  background: #ffffff !important;
-  color: #0f172a !important;
-}
-
 html[data-theme="light"] .theme-section-muted {
-  background: #f8fafc !important;
   color: #0f172a !important;
 }
 
 html[data-theme="dark"] .theme-section-light,
-html[data-theme="dark"] footer.theme-section-light {
-  background: #050911 !important;
-  color: #f8fafc !important;
-}
-
 html[data-theme="dark"] .theme-section-muted {
-  background: #0b1221 !important;
   color: #f8fafc !important;
 }
 
@@ -1082,6 +1070,17 @@ html[data-theme] .theme-section-muted,
 html[data-theme] footer.theme-section-light {
   background: transparent !important;
   color: var(--text-primary) !important;
+}
+
+/* Footer is the intentional anchor surface (exception to constant grid). */
+html[data-theme="light"] .footer-surface {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+html[data-theme="dark"] .footer-surface {
+  background: rgba(5, 9, 17, 0.96) !important;
+  border-top: 1px solid rgba(51, 65, 85, 0.55);
 }
 
 html[data-theme="light"] .surface-card {

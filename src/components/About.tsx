@@ -50,7 +50,7 @@ export default function About() {
       <div className="absolute right-0 top-1/4 w-72 h-72 bg-brand-tan/5 dark:bg-brand-tan/10 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
           {/* Left Block: Bio & Credibility */}
           <div className="lg:col-span-6 flex flex-col items-start">

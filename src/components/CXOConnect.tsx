@@ -69,7 +69,7 @@ export default function CXOConnect() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="order-2 flex flex-col gap-4 lg:order-1 lg:col-span-5">
             {networks.map((net, idx) => {
               const Icon = net.icon;
