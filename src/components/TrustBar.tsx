@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface StatItemProps {
   value: number;
@@ -10,53 +9,32 @@ interface StatItemProps {
   subLabel?: string;
 }
 
-function CounterStat({ value, suffix, label, subLabel }: StatItemProps) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    if (!isInView) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const frame = requestAnimationFrame(() => setCount(value));
-      return () => cancelAnimationFrame(frame);
-    }
-
-    let start = 0;
-    const duration = 1500;
-    const startTime = performance.now();
-    
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      
-      start = Math.floor(eased * value);
-      setCount(start);
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setCount(value);
-      }
-    };
-    
-    requestAnimationFrame(animate);
-  }, [isInView, value]);
-
+function StatCard({
+  value,
+  suffix,
+  label,
+  subLabel,
+}: StatItemProps) {
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center text-center p-6 sm:p-4">
-      <div className="flex items-baseline justify-center">
-        <span className="text-4xl sm:text-5xl font-extrabold text-brand-teal tracking-tight">
-          {count}
+    <div className="min-w-[220px] sm:min-w-[240px] rounded-2xl border border-slate-200/70 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl px-4 py-4 shadow-sm">
+      <div className="flex items-baseline gap-0.5">
+        <span className="text-3xl sm:text-4xl font-extrabold text-brand-teal tracking-tight">
+          {value}
         </span>
-        <span className="text-2xl sm:text-3xl font-extrabold text-brand-teal ml-0.5">
+
+        <span className="text-2xl sm:text-3xl font-extrabold text-brand-teal">
           {suffix}
         </span>
       </div>
-      <p className="text-sm font-bold text-slate-800 dark:text-slate-100 mt-2 tracking-wide uppercase">{label}</p>
+
+      <p className="text-sm font-bold text-slate-900 dark:text-slate-100 mt-2 leading-snug">
+        {label}
+      </p>
+
       {subLabel && (
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-[200px] leading-relaxed">{subLabel}</p>
+        <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+          {subLabel}
+        </p>
       )}
     </div>
   );
@@ -64,18 +42,54 @@ function CounterStat({ value, suffix, label, subLabel }: StatItemProps) {
 
 export default function TrustBar() {
   const stats = [
-    { value: 22, suffix: "+", label: "Enterprise Software", subLabel: "Technical & commercial track record" },
-    { value: 5, suffix: "+", label: "Top-Tier Sales Leadership", subLabel: "At ServiceNow, OutSystems, Salesforce" },
-    { value: 5, suffix: "+", label: "Enterprise Wins Closed", subLabel: "Through strategic partner deals" },
-    { value: 100, suffix: "%", label: "Pure Sales & GTM Focus", subLabel: "Zero delivery or implementation overhead" },
+    {
+      value: 22,
+      suffix: "+",
+      label: "Enterprise Software",
+      subLabel: "Technical & commercial track record",
+    },
+    {
+      value: 5,
+      suffix: "+",
+      label: "Top-Tier Sales Leadership",
+      subLabel: "At ServiceNow, OutSystems, Salesforce",
+    },
+    {
+      value: 5,
+      suffix: "+",
+      label: "Enterprise Wins Closed",
+      subLabel: "Through strategic partner deals",
+    },
+    {
+      value: 100,
+      suffix: "%",
+      label: "Pure Sales & GTM Focus",
+      subLabel: "Zero delivery or implementation overhead",
+    },
   ];
 
   return (
-    <section className="relative z-20 py-10 border-y border-slate-200/80 dark:border-slate-800 shadow-none trust-bar-glass" aria-label="Key metrics">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
-          {stats.map((stat, index) => (
-            <CounterStat
+    <section
+      className="relative z-20 py-8 overflow-hidden border-y border-slate-200/80 dark:border-slate-800 trust-bar-glass"
+      aria-label="Key metrics"
+    >
+      {/* Fade edges */}
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-white dark:from-[#020617] to-transparent" />
+
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-white dark:from-[#020617] to-transparent" />
+
+      <div className="max-w-7xl mx-auto relative">
+        <motion.div
+          className="flex gap-4 w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            repeat: Infinity,
+            duration: 24,
+            ease: "linear",
+          }}
+        >
+          {[...stats, ...stats].map((stat, index) => (
+            <StatCard
               key={index}
               value={stat.value}
               suffix={stat.suffix}
@@ -83,7 +97,7 @@ export default function TrustBar() {
               subLabel={stat.subLabel}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
