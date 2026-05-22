@@ -85,9 +85,9 @@ export default function WhyChooseUs() {
                 <div className="absolute top-4 left-[15%] right-[15%] h-[2px] bg-gradient-to-r from-brand-teal/40 via-brand-rust/20 to-brand-tan/40 pointer-events-none" />
                 
                 {[
-                  { year: "2002 - 2019", title: "Enterprise Tech", detail: "Presales Architecture Depth", accent: "border-brand-teal bg-[#ebf7f5] dark:bg-[#071916] text-brand-teal" },
-                  { year: "2019 - 2024", title: "Sales Leader", detail: "ServiceNow, OutSystems, SFDC", accent: "border-brand-rust bg-[#f9ebe6] dark:bg-[#20100a] text-brand-rust" },
-                  { year: "2024 - Pres.", title: "GTM Advisory", detail: "Accelerating Market Entry", accent: "border-brand-tan bg-[#fbf5eb] dark:bg-[#1a140b] text-brand-rust" }
+                  { year: "2002 - 2019", title: "Enterprise Tech", detail: "Presales Architecture Depth", accent: "border-brand-teal bg-brand-teal/15 dark:bg-[#071916] text-brand-teal" },
+                  { year: "2019 - 2024", title: "Sales Leader", detail: "ServiceNow, OutSystems, SFDC", accent: "border-brand-rust bg-brand-rust/15 dark:bg-[#20100a] text-brand-rust" },
+                  { year: "2024 - Pres.", title: "GTM Advisory", detail: "Accelerating Market Entry", accent: "border-brand-tan bg-brand-tan/15 dark:bg-[#1a140b] text-brand-rust" }
                 ].map((step, sIdx) => (
                   <div key={sIdx} className="flex flex-col items-center text-center relative z-10">
                     <span className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-[10px] font-black shadow-sm ${step.accent}`}>
@@ -220,7 +220,7 @@ export default function WhyChooseUs() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.3 }}
-                      className="text-xs font-mono text-slate-500 dark:text-slate-500 leading-relaxed"
+                      className="text-xs font-mono text-slate-600 dark:text-slate-500 leading-relaxed"
                     >
                       {translations[translatorIndex].tech}
                     </motion.p>
@@ -259,7 +259,7 @@ export default function WhyChooseUs() {
           {/* Card 5: Strong Enterprise Network */}
           <motion.div
             whileHover={{ y: -4 }}
-            className="glass-effect rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-slate-200/80 dark:border-slate-800 shadow-md group relative overflow-hidden bg-brand-teal/5 dark:bg-[#071916]"
+            className="glass-effect rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-slate-200/80 dark:border-slate-800 shadow-md group relative overflow-hidden bg-brand-teal/10 dark:bg-[#071916]"
           >
             <div>
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-green/10 text-brand-green border border-brand-green/10 dark:border-brand-green/20 mb-6">
