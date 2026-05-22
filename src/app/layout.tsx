@@ -44,7 +44,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/Nav_logo1.svg",
+    apple: "/Nav_logo1.svg",
+    shortcut: "/Nav_logo1.svg"
   }
 };
 
