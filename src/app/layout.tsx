@@ -22,7 +22,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "VALUEAGES | Enterprise GTM & Sales Leadership India",
+  title: "VALUEAGES",
   description: "Specialized sales & go-to-market (GTM) consulting firm helping global SaaS and product tech companies expand and win in the Indian enterprise market. Dedicated advisory with direct CXO, BFSI, GCC and GSI access.",
   keywords: [
     "Enterprise Sales Strategy",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Manas", url: "https://valueages.com" }],
   openGraph: {
-    title: "VALUEAGES | Enterprise GTM Strategy India",
+    title: "VALUEAGES",
     description: "Your strategic bridge to Indian enterprise buyers, BFSI organizations, GCCs, and global system integrators through proven fractional sales leadership.",
     type: "website",
     locale: "en_IN",
