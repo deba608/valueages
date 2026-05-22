@@ -86,11 +86,33 @@ export default function UnifyAppsPartnership() {
                   </div>
 
                   {/* Flow Vector Lines to Center */}
-                  <div className="flex items-center justify-center my-1 relative h-6">
-                    <svg className="w-full h-full stroke-slate-300 dark:stroke-slate-800" fill="none">
-                      <path d="M 50,0 Q 150,20 200,24" />
-                      <line x1="50%" y1="0" x2="50%" y2="100%" />
-                      <path d="M 300,0 Q 200,20 200,24" />
+                  <div className="flex items-center justify-center my-2 relative h-10">
+                    <svg className="w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+                      <defs>
+                        <linearGradient id="laser-active-unify" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="#109B82" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#109B82" stopOpacity="1" />
+                        </linearGradient>
+                        <filter id="laser-glow-unify" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="1" result="blur" />
+                          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                      </defs>
+
+                      {/* Inactive background curves */}
+                      <path d="M 16.67 0 C 16.67 50, 50 50, 50 100" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" />
+                      <path d="M 50 0 L 50 100" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" />
+                      <path d="M 83.33 0 C 83.33 50, 50 50, 50 100" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" />
+
+                      {/* Active glow curves */}
+                      <path d="M 16.67 0 C 16.67 50, 50 50, 50 100" stroke="rgba(16,155,130,0.18)" strokeWidth="4" filter="url(#laser-glow-unify)" />
+                      <path d="M 16.67 0 C 16.67 50, 50 50, 50 100" stroke="url(#laser-active-unify)" strokeWidth="1.8" strokeDasharray="6 6" className="animate-flow-dash-fast" />
+
+                      <path d="M 50 0 L 50 100" stroke="rgba(16,155,130,0.18)" strokeWidth="4" filter="url(#laser-glow-unify)" />
+                      <path d="M 50 0 L 50 100" stroke="url(#laser-active-unify)" strokeWidth="1.8" strokeDasharray="6 6" className="animate-flow-dash-fast" />
+
+                      <path d="M 83.33 0 C 83.33 50, 50 50, 50 100" stroke="rgba(16,155,130,0.18)" strokeWidth="4" filter="url(#laser-glow-unify)" />
+                      <path d="M 83.33 0 C 83.33 50, 50 50, 50 100" stroke="url(#laser-active-unify)" strokeWidth="1.8" strokeDasharray="6 6" className="animate-flow-dash-fast" />
                     </svg>
                   </div>
 
@@ -105,9 +127,18 @@ export default function UnifyAppsPartnership() {
                   </div>
 
                   {/* Flow Vector Lines to Output */}
-                  <div className="flex items-center justify-center my-1 relative h-6">
-                    <svg className="w-full h-full stroke-slate-300 dark:stroke-slate-800" fill="none">
-                      <line x1="50%" y1="0" x2="50%" y2="100%" strokeWidth={1.5} />
+                  <div className="flex items-center justify-center my-2 relative h-10">
+                    <svg className="w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+                      {/* Inactive background paths */}
+                      <path d="M 50 0 C 50 50, 25 50, 25 100" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" />
+                      <path d="M 50 0 C 50 50, 75 50, 75 100" stroke="rgba(148, 163, 184, 0.25)" strokeWidth="1" />
+
+                      {/* Active glow curves */}
+                      <path d="M 50 0 C 50 50, 25 50, 25 100" stroke="rgba(16,155,130,0.18)" strokeWidth="4" filter="url(#laser-glow-unify)" />
+                      <path d="M 50 0 C 50 50, 25 50, 25 100" stroke="url(#laser-active-unify)" strokeWidth="1.8" strokeDasharray="6 6" className="animate-flow-dash-fast" />
+
+                      <path d="M 50 0 C 50 50, 75 50, 75 100" stroke="rgba(16,155,130,0.18)" strokeWidth="4" filter="url(#laser-glow-unify)" />
+                      <path d="M 50 0 C 50 50, 75 50, 75 100" stroke="url(#laser-active-unify)" strokeWidth="1.8" strokeDasharray="6 6" className="animate-flow-dash-fast" />
                     </svg>
                   </div>
 

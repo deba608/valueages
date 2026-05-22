@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, Cpu, Landmark, Network, Sparkles, Zap } from "lucide-react";
 
+
 const networks = [
   {
     title: "BFSI Leaders",
@@ -51,7 +52,7 @@ export default function CXOConnect() {
       className="section-shell theme-section-muted"
       aria-labelledby="cxo-title"
     >
-      <div className="absolute inset-0 diagram-grid opacity-60" aria-hidden="true" />
+
       <div className="absolute left-0 top-1/3 h-72 w-72 rounded-full bg-brand-teal/8 blur-3xl dark:bg-brand-teal/12" aria-hidden="true" />
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
@@ -146,27 +147,27 @@ export default function CXOConnect() {
                   </defs>
 
                   {/* Left connection to Center Card (Always active) */}
-                  <path d="M 15 50 L 50 50" fill="none" stroke="rgba(16,155,130,0.18)" strokeWidth="6" vectorEffect="non-scaling-stroke" filter="url(#laser-glow)" />
-                  <path d="M 15 50 L 50 50" fill="none" stroke="url(#laser-active)" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeDasharray="6 6" className="animate-flow-dash" />
+                  <path d="M 13 50 L 50 50" fill="none" stroke="rgba(16,155,130,0.18)" strokeWidth="6" vectorEffect="non-scaling-stroke" filter="url(#laser-glow)" />
+                  <path d="M 13 50 L 50 50" fill="none" stroke="url(#laser-active)" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeDasharray="6 6" className="animate-flow-dash" />
 
                   {/* Center to Top Button (Path 1) */}
-                  <path d="M 50 50 C 58 50, 62 16.7, 70 16.7" fill="none" stroke={activeSegment === 0 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 0 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 0 ? "url(#laser-glow)" : undefined} />
-                  <path d="M 50 50 C 58 50, 62 16.7, 70 16.7" fill="none" stroke={activeSegment === 0 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 0 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 0 ? "8 8" : "4 4"} className={activeSegment === 0 ? "animate-flow-dash-fast" : ""} />
+                  <path d="M 50 50 C 58 50, 64 16.7, 72 16.7" fill="none" stroke={activeSegment === 0 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 0 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 0 ? "url(#laser-glow)" : undefined} />
+                  <path d="M 50 50 C 58 50, 64 16.7, 72 16.7" fill="none" stroke={activeSegment === 0 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 0 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 0 ? "8 8" : "4 4"} className={activeSegment === 0 ? "animate-flow-dash-fast" : ""} />
 
                   {/* Center to Middle Button (Path 2) */}
-                  <path d="M 50 50 L 70 50" fill="none" stroke={activeSegment === 1 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 1 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 1 ? "url(#laser-glow)" : undefined} />
-                  <path d="M 50 50 L 70 50" fill="none" stroke={activeSegment === 1 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 1 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 1 ? "8 8" : "4 4"} className={activeSegment === 1 ? "animate-flow-dash-fast" : ""} />
+                  <path d="M 50 50 L 72 50" fill="none" stroke={activeSegment === 1 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 1 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 1 ? "url(#laser-glow)" : undefined} />
+                  <path d="M 50 50 L 72 50" fill="none" stroke={activeSegment === 1 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 1 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 1 ? "8 8" : "4 4"} className={activeSegment === 1 ? "animate-flow-dash-fast" : ""} />
 
                   {/* Center to Bottom Button (Path 3) */}
-                  <path d="M 50 50 C 58 50, 62 83.3, 70 83.3" fill="none" stroke={activeSegment === 2 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 2 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 2 ? "url(#laser-glow)" : undefined} />
-                  <path d="M 50 50 C 58 50, 62 83.3, 70 83.3" fill="none" stroke={activeSegment === 2 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 2 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 2 ? "8 8" : "4 4"} className={activeSegment === 2 ? "animate-flow-dash-fast" : ""} />
+                  <path d="M 50 50 C 58 50, 64 83.3, 72 83.3" fill="none" stroke={activeSegment === 2 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 2 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 2 ? "url(#laser-glow)" : undefined} />
+                  <path d="M 50 50 C 58 50, 64 83.3, 72 83.3" fill="none" stroke={activeSegment === 2 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 2 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 2 ? "8 8" : "4 4"} className={activeSegment === 2 ? "animate-flow-dash-fast" : ""} />
                 </svg>
 
                 {/* Exact height bounding box to guarantee pixel perfect alignment */}
                 <div className="relative z-10 flex h-full items-center justify-between gap-4">
                   <motion.div
                     whileHover={{ y: -4 }}
-                    className="glass-effect w-[30%] min-w-0 rounded-2xl p-4 text-center border-slate-200/80 dark:border-slate-800"
+                    className="glass-effect w-[26%] min-w-0 rounded-2xl p-4 text-center border-slate-200/80 dark:border-slate-800"
                   >
                     <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-slate-800">
                       <Cpu size={22} />
@@ -180,7 +181,7 @@ export default function CXOConnect() {
                     initial={{ scale: 0.96, opacity: 0.82 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.25 }}
-                    className="relative w-[32%] min-w-0 rounded-2xl border-2 border-brand-teal bg-gradient-to-br from-white/95 to-brand-teal/[0.08] p-5 text-center shadow-xl shadow-brand-teal/10 backdrop-blur-md dark:from-[#071916]/95 dark:to-[#041513]/95 dark:shadow-brand-teal/20"
+                    className="relative w-[26%] min-w-0 rounded-2xl border-2 border-brand-teal bg-gradient-to-br from-white/95 to-brand-teal/[0.08] p-5 text-center shadow-xl shadow-brand-teal/10 backdrop-blur-md dark:from-[#071916]/95 dark:to-[#041513]/95 dark:shadow-brand-teal/20"
                   >
                     <span className="absolute -inset-2 rounded-2xl border border-brand-teal/30 animate-pulse-slow" aria-hidden="true" />
                     <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal shadow-inner shadow-brand-teal/25">
@@ -192,7 +193,7 @@ export default function CXOConnect() {
                   </motion.div>
 
                   {/* Highly responsive CSS Grid matching top, middle, and bottom paths */}
-                  <div className="grid w-[30%] min-w-0 h-full grid-rows-3 gap-4 py-2 self-stretch">
+                  <div className="grid w-[28%] min-w-0 h-full grid-rows-3 gap-4 py-2 self-stretch">
                     {networks.map((net, idx) => {
                       const Icon = net.icon;
                       const isActive = activeSegment === idx;
