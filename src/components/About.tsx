@@ -80,7 +80,7 @@ export default function About() {
 
             {/* Founder Card */}
             <div className="surface-card interactive-card p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-900 to-slate-700 dark:from-brand-teal/20 dark:to-brand-teal/5 text-white dark:text-brand-teal font-bold flex items-center justify-center text-xl shadow-lg shadow-slate-900/10 dark:shadow-brand-teal/10 shrink-0 border-2 border-transparent dark:border-brand-teal/20">
+              <div className="w-16 h-16 rounded-full bg-linear-to-br from-slate-900 to-slate-700 dark:from-brand-teal/20 dark:to-brand-teal/5 text-white dark:text-brand-teal font-bold flex items-center justify-center text-xl shadow-lg shadow-slate-900/10 dark:shadow-brand-teal/10 shrink-0 border-2 border-transparent dark:border-brand-teal/20">
                 M
               </div>
               <div className="text-left">
@@ -105,7 +105,7 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="space-y-6 relative before:absolute before:left-6 before:top-2 before:bottom-2 before:w-[2px] before:bg-gradient-to-b before:from-brand-teal/30 before:via-brand-rust/20 before:to-brand-tan/30 dark:before:from-brand-teal/40 dark:before:via-brand-rust/30 dark:before:to-brand-tan/40"
+              className="space-y-6 relative before:absolute before:left-6 before:top-2 before:bottom-2 before:w-[2px] before:bg-linear-to-b before:from-brand-teal/30 before:via-brand-rust/20 before:to-brand-tan/30 dark:before:from-brand-teal/40 dark:before:via-brand-rust/30 dark:before:to-brand-tan/40"
             >
               {timeline.map((item, index) => {
                 const IconComponent = item.icon;

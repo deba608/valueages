@@ -68,13 +68,13 @@ export default function Services() {
   ];
 
   // Dynamic Theme Palette Values
-  const glowColorBase = isDarkMode ? "16 185 129" : "15 23 42"; // Green vs Blackish RGB base
+  const glowColorBase = isDarkMode ? "16 185 129" : "16 155 130";
   const glowColorsArray = isDarkMode 
-    ? ["#064e3b", "#10b981", "#14b8a6"]  // High-fidelity executive greens for dark mode
-    : ["#0f172a", "#334155", "#64748b"]; // Premium deep charcoal & slate lines for light mode
+    ? ["#064e3b", "#10b981", "#14b8a6"]
+    : ["#0f766e", "#109B82", "#5D9F9B"];
 
   return (
-    <section id="services" className="section-shell theme-section-light py-20 sm:py-24 bg-slate-50/60 dark:bg-[#030712] transition-colors duration-500" aria-labelledby="services-title">
+    <section id="services" className="section-shell theme-section-light transition-colors duration-500" aria-labelledby="services-title">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}
@@ -82,7 +82,7 @@ export default function Services() {
           <h2 id="services-title" className="font-sans text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
             GTM Services
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 mt-3 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 mt-3 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Practical, board-ready go-to-market services tailored for global product companies entering India.
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function Services() {
                         {s.title}
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                       {s.description}
                     </p>
                   </div>

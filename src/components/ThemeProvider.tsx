@@ -19,15 +19,7 @@ export function useTheme() {
 }
 
 function getInitialTheme(): Theme {
-  if (typeof window === "undefined") {
-    return "light";
-  }
-
-  const stored = window.localStorage.getItem("valueages-theme") as Theme | null;
-  if (stored === "dark" || stored === "light") {
-    return stored;
-  }
-
+  // Always start in light mode, ignore stored preference
   return "light";
 }
 

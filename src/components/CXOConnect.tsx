@@ -83,8 +83,8 @@ export default function CXOConnect() {
                   onFocus={() => setActiveSegment(idx)}
                   onClick={() => setActiveSegment(idx)}
                   className={`surface-card interactive-card group rounded-2xl p-5 text-left transition-all duration-300 ${
-                    isActive
-                      ? "border-brand-teal bg-gradient-to-br from-white to-brand-teal/[0.03] dark:from-slate-900/90 dark:to-brand-teal/[0.05] shadow-xl shadow-brand-teal/5 dark:shadow-brand-teal/10"
+                      isActive
+                      ? "border-brand-teal bg-linear-to-br from-white to-brand-teal/3 dark:from-slate-900/90 dark:to-brand-teal/5 shadow-xl shadow-brand-teal/5 dark:shadow-brand-teal/10"
                       : "hover:border-slate-300 hover:bg-slate-50/50 dark:hover:border-slate-700 dark:hover:bg-slate-900/30"
                   }`}
                 >
@@ -107,7 +107,7 @@ export default function CXOConnect() {
                     {net.tags.map((tag) => (
                       <span key={tag} className={`rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
                         isActive
-                          ? "border-brand-teal/25 bg-brand-teal/[0.04] text-brand-teal dark:bg-brand-teal/10"
+                          ? "border-brand-teal/25 bg-brand-teal/4 text-brand-teal dark:bg-brand-teal/10"
                           : "border-slate-200 bg-slate-50 text-slate-500 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-400"
                       }`}>
                         {tag}
@@ -120,13 +120,13 @@ export default function CXOConnect() {
           </div>
 
           <div className="order-1 lg:order-2 lg:col-span-7">
-            <div className="premium-card relative min-h-[520px] overflow-hidden rounded-2xl p-4 sm:p-7">
+            <div className="premium-card relative min-h-130 overflow-hidden rounded-2xl p-4 sm:p-7">
               <div className="absolute inset-0 diagram-grid opacity-70" aria-hidden="true" />
               <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-teal/15 animate-pulse-slow" aria-hidden="true" />
               <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/80 dark:border-slate-700" aria-hidden="true" />
 
               {/* Dedicated relative diagram area to mathematically guarantee pixel-perfect connector lines */}
-              <div className="relative h-[466px] w-full">
+              <div className="relative h-116.5 w-full">
                 {/* Mathematically-locked percentage-based connector overlay */}
                 <svg 
                   className="absolute inset-0 w-full h-full pointer-events-none z-0" 
@@ -206,7 +206,7 @@ export default function CXOConnect() {
                             onMouseEnter={() => setActiveSegment(idx)}
                             className={`w-full interactive-card rounded-xl border p-3 text-left shadow-sm transition-all duration-300 relative overflow-hidden ${
                               isActive
-                                ? "border-brand-teal bg-gradient-to-r from-brand-teal/15 to-brand-teal/5 text-brand-teal shadow-md shadow-brand-teal/15 dark:from-brand-teal/25"
+                                ? "border-brand-teal bg-linear-to-r from-brand-teal/15 to-brand-teal/5 text-brand-teal shadow-md shadow-brand-teal/15 dark:from-brand-teal/25"
                                 : "border-slate-200/80 bg-white/95 text-slate-600 dark:border-slate-800/80 dark:bg-slate-900/70 dark:text-slate-300 hover:border-slate-300 hover:bg-white"
                             }`}
                           >
