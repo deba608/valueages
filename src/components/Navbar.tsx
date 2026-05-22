@@ -90,23 +90,27 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-        isScrolled
-          ? "navbar-glass navbar-top-border scrolled py-2.5"
-          : "navbar-glass py-3.5"
+      className={`fixed z-50 transition-all duration-500 ease-in-out ${
+        isScrolledDeep
+          ? "top-3 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-4xl rounded-full py-1.5 px-6 navbar-glass shadow-lg scale-[0.98]"
+          : isScrolled
+          ? "top-4 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl py-2 px-8 navbar-glass shadow-md"
+          : "top-0 left-0 right-0 w-full py-4 px-8 bg-transparent border-b border-transparent"
       }`}
       role="navigation"
       aria-label="Main navigation"
     >
       {/* Ambient glow */}
       <div
-        className={`navbar-glow transition-opacity duration-300 ${
+        className={`navbar-glow transition-opacity duration-500 ${
           isScrolled ? "visible" : ""
         }`}
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className={`mx-auto flex items-center justify-between transition-all duration-500 ${
+        isScrolledDeep ? "max-w-4xl px-2" : isScrolled ? "max-w-6xl px-4" : "max-w-7xl px-8"
+      }`}>
         {/* Logo */}
         <a
           href="#hero"
@@ -124,43 +128,42 @@ export default function Navbar() {
             alt=""
             width={34}
             height={44}
-            className="h-10 w-auto sm:h-11 shrink-0 transition-transform duration-300 group-hover:scale-105"
+            className={`w-auto shrink-0 transition-all duration-500 ease-in-out group-hover:scale-105 ${
+              isScrolledDeep ? "h-7" : "h-10 sm:h-11"
+            }`}
             style={{ filter: 'none' }}
             aria-hidden="true"
           />
 
           {/*
            * Nav_logo2 — Company name / text part
-           * Light mode : original dark colours – no filter applied.
-           * Dark  mode : brightness(0) turns all pixels black, then
-           *              invert(1) flips them to white so the text reads
-           *              clearly on the dark navbar background.
-           * The `transition-[filter]` gives a smooth 300 ms cross-fade
-           * when the user toggles the theme.
+           * Collapses dynamically on deep scroll for floating dock aesthetics.
            */}
           <Image
             src="/Nav_logo2.svg"
             alt="VALUEAGES"
             width={224}
             height={44}
-            className="h-10 w-auto sm:h-11 shrink-0 transition-all duration-300 group-hover:scale-105 dark-invert"
+            className={`h-10 w-auto sm:h-11 shrink-0 transition-all duration-500 ease-in-out group-hover:scale-105 dark-invert ${
+              isScrolledDeep ? "max-w-0 opacity-0 pointer-events-none scale-0 select-none origin-left ml-[-6px]" : "max-w-[200px] opacity-100"
+            }`}
           />
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-2">
-          <ul className="flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
+          <ul className={`flex items-center transition-all duration-500 ${isScrolledDeep ? "gap-0.5" : "gap-1"}`}>
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className={`nav-link-pill relative text-sm font-semibold transition-colors min-h-[44px] flex items-center ${
+                    className={`nav-link-pill relative text-sm font-semibold transition-colors flex items-center ${
                       isActive
                         ? "nav-link-active text-brand-teal font-semibold"
                         : "text-slate-600 dark:text-slate-300 hover:text-brand-teal"
-                    }`}
+                    } ${isScrolledDeep ? "py-1 px-2.5 text-xs min-h-[32px]" : "py-2 px-3.5 min-h-[44px]"}`}
                   >
                     {link.name}
                   </a>
@@ -169,29 +172,33 @@ export default function Navbar() {
             })}
           </ul>
 
-          <div className="w-px h-6 bg-slate-200/60 dark:bg-slate-700/60 mx-2" aria-hidden="true" />
+          <div className={`w-px bg-slate-200/60 dark:bg-slate-700/60 transition-all duration-500 ${isScrolledDeep ? "h-4 mx-1" : "h-6 mx-2"}`} aria-hidden="true" />
 
           <a
             href="#contact"
-            className="primary-button cta-glow px-5 py-2.5 text-sm"
+            className={`primary-button cta-glow text-sm transition-all duration-500 ease-in-out whitespace-nowrap overflow-hidden flex items-center justify-center ${
+              isScrolledDeep ? "px-3.5 py-1.5 text-xs rounded-full min-h-[32px]" : "px-5 py-2.5 min-h-[44px]"
+            }`}
           >
-            Investor Inquiry
+            {isScrolledDeep ? "Inquiry" : "Investor Inquiry"}
           </a>
 
-          <div className="w-px h-6 bg-slate-200/60 dark:bg-slate-700/60 mx-2" aria-hidden="true" />
+          <div className={`w-px bg-slate-200/60 dark:bg-slate-700/60 transition-all duration-500 ${isScrolledDeep ? "h-4 mx-1" : "h-6 mx-2"}`} aria-hidden="true" />
 
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:text-brand-teal dark:hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-200"
+            className={`relative flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:text-brand-teal dark:hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-500 ${
+              isScrolledDeep ? "p-1.5 min-w-[32px] min-h-[32px]" : "p-2.5 min-w-[44px] min-h-[44px]"
+            }`}
             aria-label="Toggle visual theme between light and dark"
             id="theme-toggle-desktop"
           >
             <span className="theme-icon-enter block dark:hidden">
-              <Moon size={18} />
+              <Moon size={isScrolledDeep ? 14 : 18} />
             </span>
             <span className="theme-icon-enter hidden dark:block">
-              <Sun size={18} />
+              <Sun size={isScrolledDeep ? 14 : 18} />
             </span>
           </button>
         </div>
@@ -201,15 +208,17 @@ export default function Navbar() {
           {/* Mobile Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-200"
+            className={`relative flex items-center justify-center rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-500 ${
+              isScrolledDeep ? "p-1.5 min-w-[32px] min-h-[32px]" : "p-2.5 min-w-[44px] min-h-[44px]"
+            }`}
             aria-label="Toggle visual theme between light and dark"
             id="theme-toggle-mobile"
           >
             <span className="theme-icon-enter block dark:hidden">
-              <Moon size={20} />
+              <Moon size={isScrolledDeep ? 14 : 20} />
             </span>
             <span className="theme-icon-enter hidden dark:block">
-              <Sun size={20} />
+              <Sun size={isScrolledDeep ? 14 : 20} />
             </span>
           </button>
 
@@ -217,13 +226,15 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-teal active:scale-95 transition-all duration-200 rounded-xl hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:bg-slate-100 dark:active:bg-slate-700"
+            className={`relative flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-teal active:scale-95 transition-all duration-500 rounded-xl hover:bg-slate-100/60 dark:hover:bg-slate-800/60 ${
+              isScrolledDeep ? "p-1.5 min-w-[32px] min-h-[32px]" : "p-2.5 min-w-[44px] min-h-[44px]"
+            }`}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-menu"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            <span className="transition-transform duration-300">
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            <span className="transition-transform duration-300 flex items-center justify-center">
+              {mobileMenuOpen ? <X size={isScrolledDeep ? 16 : 22} /> : <Menu size={isScrolledDeep ? 16 : 22} />}
             </span>
           </button>
         </div>

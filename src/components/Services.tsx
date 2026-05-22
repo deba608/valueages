@@ -59,7 +59,7 @@ export default function Services() {
           {services.map((s) => {
             const Icon = s.icon;
             return (
-              <div key={s.title} className="surface-card interactive-card rounded-2xl p-6 text-left">
+              <div key={s.title} className="glass-effect interactive-card rounded-2xl p-6 text-left">
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-teal/10 text-brand-teal">
                     <Icon size={18} />

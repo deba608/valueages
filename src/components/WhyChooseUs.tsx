@@ -100,7 +100,7 @@ export default function WhyChooseUs() {
                 variants={itemVariants}
                 whileHover={{ y: -4, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="surface-card interactive-card flex flex-col rounded-2xl p-8 group"
+                className="glass-effect interactive-card flex flex-col rounded-2xl p-8 group"
               >
                 {/* Icon box */}
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 border ${diff.color}`}>
