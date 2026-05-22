@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
 import About from "@/components/About";
 import CXOConnect from "@/components/CXOConnect";
+import GTMConsole from "@/components/GTMConsole";
 import Services from "@/components/Services";
 import UnifyAppsPartnership from "@/components/UnifyAppsPartnership";
 import ClientWins from "@/components/ClientWins";
@@ -29,6 +30,9 @@ export default function Home() {
 
         {/* Access networks segment */}
         <CXOConnect />
+
+        {/* Relocated India revenue entry map console */}
+        <GTMConsole />
 
         {/* 8 B2B GTM Services list catalog */}
         <Services />
