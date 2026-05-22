@@ -29,10 +29,9 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden hero-gradient bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] pt-28 pb-16 dark:bg-[linear-gradient(180deg,#050911_0%,#0b1221_100%)] md:pt-40 md:pb-24"
+      className="relative min-h-screen overflow-hidden hero-gradient pt-28 pb-16 md:pt-40 md:pb-24"
       aria-label="Introduction"
     >
-      <div className="absolute inset-0 diagram-grid opacity-70" aria-hidden="true" />
       <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-white/90 to-transparent dark:from-[#060a13]/95" aria-hidden="true" />
 
       <div className="container relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 sm:px-8 lg:grid-cols-12 lg:gap-10">
