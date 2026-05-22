@@ -11,23 +11,23 @@ export default function About() {
       company: "UnifyApps",
       description: "Driving enterprise AI orchestration and workflow automation adoption across India's largest conglomerates, BFSI institutions, and GCC networks.",
       icon: ShieldCheck,
-      color: "border-brand-teal text-brand-teal bg-brand-teal/5 dark:bg-brand-teal/10"
+      color: "border-brand-teal text-brand-teal bg-[#ebf7f5] dark:bg-[#08221e] dark:border-brand-teal/40"
     },
     {
       year: "2019 - 2024",
       role: "Enterprise Sales Leadership",
       company: "ServiceNow | OutSystems | Salesforce",
-      description: "Led high-value enterprise sales pipelines, established critical market entries, and closed multi-million dollar deals with strategic B2B customers in India.",
+      description: "Led high-value enterprise sales pipelines, established critical market entries, and closed B2B enterprise deals in India.",
       icon: Briefcase,
-      color: "border-brand-rust text-brand-rust bg-brand-rust/5 dark:bg-brand-rust/10"
+      color: "border-brand-rust text-brand-rust bg-[#f9ebe6] dark:bg-[#2c130b] dark:border-brand-rust/40"
     },
     {
       year: "2002 - 2019",
       role: "Presales Architecture & Product Technology",
       company: "Enterprise Software Tech",
-      description: "Spent 17 years as a core technologist, solution architect, and technical leader. Developed a rare product depth that enables executive-level, solution-first value selling.",
+      description: "Spent 17 years as a core technologist and solution architect. Developed a rare product depth that enables executive-level, solution-first value selling.",
       icon: GraduationCap,
-      color: "border-brand-tan text-brand-tan bg-brand-tan/5 dark:bg-brand-tan/10"
+      color: "border-brand-tan text-brand-tan bg-[#f8f1e6] dark:bg-[#281b0a] dark:border-brand-tan/40"
     }
   ];
 
@@ -45,7 +45,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-white dark:bg-[#050911] relative overflow-hidden" aria-labelledby="about-title">
+    <section id="about" className="section-shell theme-section-light" aria-labelledby="about-title">
       {/* Background accents */}
       <div className="absolute right-0 top-1/4 w-72 h-72 bg-brand-tan/5 dark:bg-brand-tan/10 rounded-full blur-3xl" aria-hidden="true" />
 
@@ -54,7 +54,7 @@ export default function About() {
           
           {/* Left Block: Bio & Credibility */}
           <div className="lg:col-span-6 flex flex-col items-start">
-            <span className="text-xs font-semibold uppercase tracking-wider text-brand-teal mb-3 bg-brand-teal/5 dark:bg-brand-teal/10 px-3 py-1 rounded-full border border-brand-teal/10 dark:border-brand-teal/20">
+            <span className="section-eyebrow mb-3">
               Executive Bio
             </span>
             <h2 id="about-title" className="font-serif text-3xl sm:text-4xl font-semibold leading-tight text-slate-900 dark:text-white mb-6">
@@ -79,7 +79,7 @@ export default function About() {
             </p>
 
             {/* Founder Card */}
-            <div className="p-6 rounded-2xl border border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full hover:shadow-lg dark:hover:shadow-brand-teal/5 hover:border-slate-200/80 dark:hover:border-slate-600 transition-all duration-300">
+            <div className="surface-card interactive-card p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-900 to-slate-700 dark:from-brand-teal/20 dark:to-brand-teal/5 text-white dark:text-brand-teal font-bold flex items-center justify-center text-xl shadow-lg shadow-slate-900/10 dark:shadow-brand-teal/10 shrink-0 border-2 border-transparent dark:border-brand-teal/20">
                 M
               </div>
@@ -116,12 +116,12 @@ export default function About() {
                     className="flex gap-6 relative group"
                   >
                     {/* Circle Node with Icon */}
-                    <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center shrink-0 z-10 bg-white dark:bg-slate-800 transition-transform duration-300 group-hover:scale-105 ${item.color}`}>
+                    <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center shrink-0 z-10 transition-transform duration-300 group-hover:scale-105 ${item.color}`}>
                       <IconComponent size={20} />
                     </div>
 
                     {/* Content Card */}
-                    <div className="flex-1 bg-white dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700 rounded-2xl p-6 shadow-sm hover:shadow-md dark:hover:shadow-slate-900/50 hover:border-slate-200/80 dark:hover:border-slate-600 transition-all duration-300">
+                    <div className="surface-card interactive-card flex-1 rounded-2xl p-6">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                         <span className="text-xs font-bold text-brand-teal tracking-wide uppercase">
                           {item.year}

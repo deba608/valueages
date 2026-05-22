@@ -48,7 +48,7 @@ export default function CXOConnect() {
   return (
     <section
       id="cxo"
-      className="relative overflow-hidden bg-slate-50 py-20 dark:bg-[#0b1221] md:py-28"
+      className="section-shell theme-section-muted"
       aria-labelledby="cxo-title"
     >
       <div className="absolute inset-0 diagram-grid opacity-60" aria-hidden="true" />
@@ -56,7 +56,7 @@ export default function CXOConnect() {
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <div className="mx-auto mb-14 max-w-3xl text-center md:mb-16">
-          <span className="mb-3 inline-flex rounded-full border border-brand-teal/20 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-teal shadow-sm dark:bg-slate-900/70 dark:border-brand-teal/30">
+          <span className="section-eyebrow mx-auto mb-3">
             CXO Connect
           </span>
           <h2 id="cxo-title" className="mb-4 font-serif text-3xl font-semibold leading-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
@@ -81,10 +81,10 @@ export default function CXOConnect() {
                   onMouseEnter={() => setActiveSegment(idx)}
                   onFocus={() => setActiveSegment(idx)}
                   onClick={() => setActiveSegment(idx)}
-                  className={`group rounded-2xl border bg-white p-5 text-left shadow-sm transition-all duration-300 dark:bg-slate-800/65 active:scale-[0.98] ${
+                  className={`surface-card interactive-card group rounded-2xl p-5 text-left ${
                     isActive
                       ? "border-brand-teal/35 shadow-xl shadow-brand-teal/10"
-                      : "border-slate-200 hover:border-slate-300 dark:border-slate-700 dark:hover:border-slate-600"
+                      : ""
                   }`}
                 >
                   <div className="mb-4 flex items-center justify-between gap-4">
@@ -111,7 +111,7 @@ export default function CXOConnect() {
           </div>
 
           <div className="order-1 lg:order-2 lg:col-span-7">
-              <div className="premium-card relative min-h-[520px] overflow-hidden rounded-[2rem] p-5 sm:p-7">
+              <div className="premium-card relative min-h-[520px] overflow-hidden rounded-2xl p-4 sm:p-7">
                 <div className="absolute inset-0 diagram-grid opacity-70" aria-hidden="true" />
                 <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-teal/15" aria-hidden="true" />
                 <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/80 dark:border-slate-700" aria-hidden="true" />
@@ -126,7 +126,7 @@ export default function CXOConnect() {
               <div className="relative z-10 flex min-h-[466px] items-center justify-between gap-4">
                 <motion.div
                   whileHover={{ y: -4 }}
-                  className="w-[31%] rounded-3xl border border-slate-200 bg-white/90 p-4 text-center shadow-lg dark:border-slate-700 dark:bg-slate-800/80"
+                  className="surface-card w-[31%] rounded-2xl p-4 text-center"
                 >
                   <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-slate-800">
                     <Cpu size={22} />
@@ -140,9 +140,9 @@ export default function CXOConnect() {
                   initial={{ scale: 0.96, opacity: 0.82 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.25 }}
-                  className="relative w-[30%] rounded-3xl border-2 border-brand-teal bg-slate-950 p-5 text-center text-white shadow-2xl shadow-brand-teal/20 dark:bg-brand-teal/15"
+                  className="relative w-[30%] rounded-2xl border-2 border-brand-teal bg-slate-950 p-5 text-center text-white shadow-2xl shadow-brand-teal/20 dark:bg-brand-teal/15"
                 >
-                  <span className="absolute -inset-2 rounded-[2rem] border border-brand-teal/25" aria-hidden="true" />
+                  <span className="absolute -inset-2 rounded-2xl border border-brand-teal/25" aria-hidden="true" />
                   <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-teal/20 text-brand-teal">
                     <Zap size={22} />
                   </span>
@@ -162,7 +162,7 @@ export default function CXOConnect() {
                         type="button"
                         onClick={() => setActiveSegment(idx)}
                         onMouseEnter={() => setActiveSegment(idx)}
-                        className={`rounded-2xl border p-3 text-left shadow-sm transition-all duration-300 ${
+                        className={`interactive-card rounded-2xl border p-3 text-left shadow-sm ${
                           isActive
                             ? "border-brand-teal/45 bg-brand-teal/10 text-brand-teal shadow-brand-teal/10"
                             : "border-slate-200 bg-white/90 text-slate-500 dark:border-slate-700 dark:bg-slate-800/75 dark:text-slate-400"
@@ -183,7 +183,7 @@ export default function CXOConnect() {
                 </div>
               </div>
 
-              <div className="relative z-20 mt-2 rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
+              <div className="surface-card relative z-20 mt-2 rounded-2xl p-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
                     <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${accentClasses[active.accent as keyof typeof accentClasses]}`}>

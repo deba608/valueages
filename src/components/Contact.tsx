@@ -127,18 +127,18 @@ export default function Contact() {
     const hasError = errors[fieldName] && touched[fieldName];
     const isValid = validFields[fieldName] && touched[fieldName];
     
-    return `w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 min-h-[44px] bg-white/95 dark:bg-slate-900/60 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-sm shadow-slate-100/70 dark:shadow-none ${
+    return `w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 min-h-[44px] bg-white text-slate-900 placeholder:text-slate-400 shadow-none dark:bg-slate-950/60 dark:text-slate-100 dark:placeholder:text-slate-500 ${
       hasError
         ? "border-brand-rust focus:ring-brand-rust/20 focus:border-brand-rust"
         : isValid
         ? "border-emerald-500 focus:ring-emerald-500/20 focus:border-emerald-500"
-        : "border-slate-200 dark:border-slate-700 focus:ring-brand-teal/20 focus:border-brand-teal"
+        : "border-slate-200 dark:border-slate-800 focus:ring-brand-teal/20 focus:border-brand-teal"
     }`;
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-[linear-gradient(180deg,#f7faf6_0%,#ffffff_100%)] dark:bg-[#0b1221] relative overflow-hidden" aria-labelledby="contact-title">
-      <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-brand-teal/5 dark:bg-brand-teal/10 rounded-full blur-3xl" aria-hidden="true" />
+    <section id="contact" className="section-shell theme-section-muted" aria-labelledby="contact-title">
+      <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
@@ -146,10 +146,10 @@ export default function Contact() {
           {/* Left Block: Direct channels */}
           <div className="lg:col-span-5 flex flex-col justify-between text-left">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-brand-teal mb-3 bg-brand-teal/10 dark:bg-brand-teal/15 px-3 py-1 rounded-full border border-brand-teal/25 dark:border-brand-teal/30 inline-block">
+              <span className="section-eyebrow mb-3 bg-brand-teal/15">
                 Get In Touch
               </span>
-              <h2 id="contact-title" className="font-serif text-3xl sm:text-4xl font-semibold leading-tight text-slate-900 dark:text-white mb-4">
+              <h2 id="contact-title" className="font-serif text-3xl sm:text-4xl font-semibold leading-tight text-slate-950 dark:text-white mb-4">
                 Expand Into India with Confidence
               </h2>
               <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-8">
@@ -162,29 +162,29 @@ export default function Contact() {
             <div className="space-y-4 mb-12 lg:mb-0">
               <a
                 href="mailto:manas.das@valueages.com"
-                className="flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-slate-700 bg-white/90 dark:bg-slate-800/60 shadow-sm shadow-slate-200/50 dark:shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
                 aria-label="Email manas.das@valueages.com"
               >
-                <div className="p-3 rounded-lg bg-brand-teal/5 dark:bg-brand-teal/10 text-brand-teal shrink-0 group-hover:scale-105 transition-transform">
+                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0 group-hover:scale-105 transition-transform">
                   <Mail size={20} />
                 </div>
                 <div className="text-left">
-                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Direct Email</p>
-                  <p className="text-base font-semibold text-slate-700 dark:text-slate-200 mt-0.5">manas.das@valueages.com</p>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Direct Email</p>
+                  <p className="text-base font-semibold text-slate-900 dark:text-slate-200 mt-0.5">manas.das@valueages.com</p>
                 </div>
               </a>
 
               <div
-                className="flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-slate-700 bg-white/90 dark:bg-slate-800/60 shadow-sm shadow-slate-200/50 dark:shadow-none hover:shadow-md transition-all duration-300 min-h-[44px]"
+                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:shadow-md transition-all duration-300 min-h-[44px]"
                 role="text"
                 aria-label="Located in Bhubaneswar, Odisha"
               >
-                <div className="p-3 rounded-lg bg-brand-rust/5 dark:bg-brand-rust/10 text-brand-rust shrink-0">
+                <div className="p-3 rounded-lg bg-brand-rust/10 text-brand-rust shrink-0">
                   <MapPin size={20} />
                 </div>
                 <div className="text-left">
-                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Corporate Hub</p>
-                  <p className="text-base font-semibold text-slate-700 dark:text-slate-200 mt-0.5">DLF Cyber City, Patia, Bhubaneswar</p>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Corporate Hub</p>
+                  <p className="text-base font-semibold text-slate-900 dark:text-slate-200 mt-0.5">DLF Cyber City, Patia, Bhubaneswar</p>
                   <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">+91 9654017778 • +91 6362025780 • www.valueages.com</p>
                 </div>
               </div>
@@ -193,17 +193,17 @@ export default function Contact() {
                 href="https://linkedin.com/company/valueages"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-slate-700 bg-white/90 dark:bg-slate-800/60 shadow-sm shadow-slate-200/50 dark:shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+                className="surface-card flex items-center gap-4 p-4 rounded-xl shadow-none hover:border-brand-teal/30 hover:shadow-md active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
                 aria-label="Connect on LinkedIn (opens in new tab)"
               >
-                <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 shrink-0 group-hover:scale-105 transition-transform">
+                <div className="p-3 rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 shrink-0 group-hover:scale-105 transition-transform">
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                   </svg>
                 </div>
                 <div className="text-left">
-                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Professional Channel</p>
-                  <p className="text-base font-semibold text-slate-700 dark:text-slate-200 mt-0.5">Connect on LinkedIn</p>
+                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Professional Channel</p>
+                  <p className="text-base font-semibold text-slate-900 dark:text-slate-200 mt-0.5">Connect on LinkedIn</p>
                 </div>
               </a>
             </div>
@@ -211,7 +211,7 @@ export default function Contact() {
 
           {/* Right Block: High-fidelity B2B validated form */}
           <div className="lg:col-span-7">
-            <div className="bg-white/95 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700 rounded-3xl p-8 shadow-2xl shadow-slate-200/70 dark:shadow-none dark:ring-1 dark:ring-slate-700/50">
+            <div className="surface-panel rounded-2xl p-5 shadow-none sm:p-8">
               
               <AnimatePresence mode="wait">
                 {!isSuccess ? (
@@ -226,7 +226,7 @@ export default function Contact() {
                     aria-label="Contact inquiry form"
                   >
                     <div className="text-left mb-6">
-                      <h3 className="text-xl font-bold text-slate-800 dark:text-white">Send an Inquiry</h3>
+                      <h3 className="text-xl font-bold text-slate-950 dark:text-white">Send an Inquiry</h3>
                       <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Fields marked with <span className="text-brand-rust font-bold">*</span> are required.</p>
                     </div>
 
@@ -361,8 +361,8 @@ export default function Contact() {
                         disabled={isSubmitting}
                       />
                       <div className="flex items-center justify-between w-full mt-1">
-                        <p id="message-help" className="text-xs text-slate-400 dark:text-slate-500">Describe your GTM requirements briefly.</p>
-                        <span className={`text-xs font-medium ${formData.message.length > 500 ? "text-brand-rust" : "text-slate-400 dark:text-slate-500"}`}>
+                        <p id="message-help" className="text-xs text-slate-500">Describe your GTM requirements briefly.</p>
+                        <span className={`text-xs font-medium ${formData.message.length > 500 ? "text-brand-rust" : "text-slate-500"}`}>
                           {formData.message.length}/500
                         </span>
                       </div>
@@ -379,7 +379,7 @@ export default function Contact() {
                       type="submit"
                       disabled={isSubmitting}
                       aria-busy={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl bg-brand-teal hover:bg-accent-teal active:scale-[0.98] text-white font-bold shadow-xl shadow-brand-teal/15 hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group min-h-[44px]"
+                      className="primary-button w-full rounded-xl py-4 text-white disabled:cursor-not-allowed disabled:opacity-50 group"
                     >
                       {isSubmitting ? (
                         <>
@@ -405,11 +405,11 @@ export default function Contact() {
                     role="status"
                     aria-live="polite"
                   >
-                    <div className="w-16 h-16 rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-500 border border-emerald-100 dark:border-emerald-500/20 flex items-center justify-center mb-6 shadow-sm">
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 flex items-center justify-center mb-6 shadow-sm">
                       <CheckCircle2 size={32} className="stroke-2" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">Inquiry Submitted Successfully</h3>
+                    <h3 className="text-2xl font-bold text-slate-950 dark:text-white mb-2">Inquiry Submitted Successfully</h3>
                     <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mb-8 leading-relaxed">
                       Thank you for connecting with VALUEAGES. We have received your inquiry and Manas will be in touch with you shortly.
                     </p>
@@ -422,7 +422,7 @@ export default function Contact() {
                           nameInputRef.current.focus();
                         }
                       }}
-                      className="px-6 py-3 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-[0.98] text-xs font-bold text-slate-600 dark:text-slate-300 transition-all duration-200 min-h-[44px]"
+                      className="secondary-button px-6 py-3 text-xs"
                     >
                       Send another message
                     </button>

@@ -41,6 +41,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     } else {
       root.classList.remove("dark");
     }
+    root.dataset.theme = theme;
     root.style.colorScheme = theme;
     localStorage.setItem("valueages-theme", theme);
   }, [theme]);

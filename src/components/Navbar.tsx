@@ -7,16 +7,19 @@ import Image from "next/image";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolledDeep, setIsScrolledDeep] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const firstFocusableRef = useRef<HTMLAnchorElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+      setIsScrolledDeep(scrollY > 180);
 
       const sections = ["about", "cxo", "services", "partnership", "clients", "why-us", "contact"];
       for (const id of [...sections].reverse()) {
@@ -140,15 +143,7 @@ export default function Navbar() {
             alt="VALUEAGES"
             width={224}
             height={44}
-            className={
-              `h-10 w-auto sm:h-11 shrink-0 transition-all duration-300 group-hover:scale-105
-               [transition-property:filter,transform]
-               ${
-                 theme === 'dark'
-                   ? '[filter:brightness(0)_invert(1)]'
-                   : '[filter:none]'
-               }`
-            }
+            className="h-10 w-auto sm:h-11 shrink-0 transition-all duration-300 group-hover:scale-105 dark-invert"
           />
         </a>
 
@@ -178,7 +173,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className="cta-glow inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-brand-teal text-white text-sm font-semibold shadow-md shadow-brand-teal/15 hover:bg-accent-teal hover:shadow-lg hover:shadow-brand-teal/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 min-h-[44px]"
+            className="primary-button cta-glow px-5 py-2.5 text-sm"
           >
             Investor Inquiry
           </a>
@@ -188,13 +183,15 @@ export default function Navbar() {
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:text-brand-teal dark:hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-90 transition-all duration-200"
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:text-brand-teal dark:hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-200"
+            aria-label="Toggle visual theme between light and dark"
             id="theme-toggle-desktop"
-            suppressHydrationWarning
           >
-            <span className="theme-icon-enter" key={theme}>
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            <span className="theme-icon-enter block dark:hidden">
+              <Moon size={18} />
+            </span>
+            <span className="theme-icon-enter hidden dark:block">
+              <Sun size={18} />
             </span>
           </button>
         </div>
@@ -204,20 +201,23 @@ export default function Navbar() {
           {/* Mobile Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-teal active:scale-90 transition-all duration-200"
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-200"
+            aria-label="Toggle visual theme between light and dark"
             id="theme-toggle-mobile"
-            suppressHydrationWarning
           >
-            <span className="theme-icon-enter" key={theme}>
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            <span className="theme-icon-enter block dark:hidden">
+              <Moon size={20} />
+            </span>
+            <span className="theme-icon-enter hidden dark:block">
+              <Sun size={20} />
             </span>
           </button>
+
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-teal active:scale-90 transition-all duration-200 rounded-xl hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:bg-slate-100 dark:active:bg-slate-700"
+            className="relative p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-teal active:scale-95 transition-all duration-200 rounded-xl hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:bg-slate-100 dark:active:bg-slate-700"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-menu"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -256,7 +256,7 @@ export default function Navbar() {
           </span>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-90 text-slate-500 dark:text-slate-400 transition-all duration-200"
+            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 text-slate-500 dark:text-slate-400 transition-all duration-200"
             aria-label="Close menu"
           >
             <X size={20} />
@@ -300,7 +300,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="cta-glow w-full inline-flex items-center justify-center py-3.5 rounded-xl bg-brand-teal text-white font-semibold shadow-md shadow-brand-teal/15 hover:bg-accent-teal hover:shadow-lg active:scale-[0.98] transition-all duration-200 text-center min-h-[44px]"
+            className="primary-button cta-glow w-full rounded-xl py-3.5 text-center"
           >
             Investor Inquiry
           </a>
