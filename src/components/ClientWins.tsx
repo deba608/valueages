@@ -85,7 +85,7 @@ export default function ClientWins() {
               variants={itemVariants}
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="surface-card interactive-card flex flex-col justify-between p-6 rounded-2xl group"
+              className="glass-effect interactive-card flex flex-col justify-between p-6 rounded-2xl group"
             >
               {/* Grayscale Styled Text Logo */}
               <div className="h-16 flex items-center justify-center mb-4">
@@ -108,7 +108,7 @@ export default function ClientWins() {
         </motion.div>
 
         {/* Bottom credibility note */}
-        <div className="surface-card p-4 rounded-xl flex items-center justify-center gap-3 max-w-3xl mx-auto">
+        <div className="glass-effect p-4 rounded-xl flex items-center justify-center gap-3 max-w-3xl mx-auto">
           <Award size={18} className="text-brand-teal shrink-0" />
           <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 text-center sm:text-left">
             Our strategic advisory focus strictly covers B2B Go-To-Market execution. No delivery liabilities exist.
