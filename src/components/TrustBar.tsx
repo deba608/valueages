@@ -16,7 +16,7 @@ function StatCard({
   subLabel,
 }: StatItemProps) {
   return (
-    <div className="min-w-[220px] sm:min-w-[240px] rounded-2xl border border-slate-200/70 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl px-4 py-4 shadow-sm">
+    <div className="min-w-55 sm:min-w-60 rounded-2xl bg-white/40 dark:bg-slate-900/30 backdrop-blur-md px-4 py-4">
       <div className="flex items-baseline gap-0.5">
         <span className="text-3xl sm:text-4xl font-extrabold text-brand-teal tracking-tight">
           {value}
@@ -70,13 +70,13 @@ export default function TrustBar() {
 
   return (
     <section
-      className="relative z-20 py-8 overflow-hidden border-y border-slate-200/80 dark:border-slate-800 trust-bar-glass"
+      className="relative z-20 py-8 overflow-hidden bg-transparent"
       aria-label="Key metrics"
     >
       {/* Fade edges */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-white dark:from-[#020617] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-white dark:from-[#020617] to-transparent" />
 
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-white dark:from-[#020617] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-white dark:from-[#020617] to-transparent" />
 
       <div className="max-w-7xl mx-auto relative">
         <motion.div

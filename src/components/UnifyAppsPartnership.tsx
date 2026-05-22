@@ -113,7 +113,7 @@ export default function UnifyAppsPartnership() {
                   </div>
 
                   {/* Layer 2: Central AI Orchestration Core (UnifyApps) */}
-                  <div className="p-5 rounded-2xl border-2 border-brand-teal/40 bg-gradient-to-r from-brand-teal/15 to-brand-teal/5 text-center relative shadow-lg">
+                  <div className="p-5 rounded-2xl border-2 border-brand-teal/40 bg-linear-to-r from-brand-teal/15 to-brand-teal/5 text-center relative shadow-lg">
                     {/* Pulsing ring */}
                     <span className="absolute -inset-1 rounded-2xl border border-brand-teal opacity-25" />
                     

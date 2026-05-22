@@ -141,26 +141,33 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--surface);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-tertiary);
-}
-
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
   scroll-padding-top: 92px;
   overflow-x: clip;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-teal) transparent;
+}
+
+/* Modern scrollbar: visible enough to use, quiet enough for the page. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-brand-teal), var(--color-brand-teal-light));
+  border: 2px solid var(--background);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-brand-teal-light), var(--color-brand-tan));
 }
 
 body {
@@ -353,7 +360,7 @@ select:focus-visible,
 .section-shell {
   position: relative;
   overflow: hidden;
-  padding-block: 5rem;
+  padding-block: clamp(4rem, 7vw, 7rem);
 }
 
 .theme-section-light {
@@ -378,7 +385,7 @@ select:focus-visible,
 
 @media (min-width: 768px) {
   .section-shell {
-    padding-block: 7rem;
+    padding-block: clamp(5.5rem, 8vw, 7rem);
   }
 }
 
@@ -470,6 +477,44 @@ button,
   background: #0FA88A;
   transform: translateY(-1px);
   box-shadow: 0 20px 42px -24px rgba(16, 155, 130, 0.8);
+}
+
+.nav-inquiry-button {
+  position: relative;
+  isolation: isolate;
+  min-height: 44px;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 155, 130, 0.28);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 42%),
+    linear-gradient(135deg, #109B82 0%, #0FA88A 52%, #5D9F9B 100%);
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0;
+  box-shadow: 0 16px 34px -22px rgba(16, 155, 130, 0.9);
+}
+
+.nav-inquiry-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  translate: -120% 0;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.26), transparent);
+  transition: translate 0.55s ease;
+}
+
+.nav-inquiry-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 44px -22px rgba(16, 155, 130, 0.95);
+}
+
+.nav-inquiry-button:hover::after {
+  translate: 120% 0;
+}
+
+.nav-inquiry-button:active {
+  transform: translateY(0) scale(0.99);
 }
 
 .secondary-button {
@@ -1008,5 +1053,62 @@ html[data-theme="dark"] .theme-section-muted {
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* Last-mile theme contract: every section sits over one constant page grid. */
+html[data-theme="light"] body {
+  background-color: #fbfcf8 !important;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.055) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+  background-attachment: fixed !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] body {
+  background-color: #050911 !important;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.065) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+  background-attachment: fixed !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-theme] .theme-section-light,
+html[data-theme] .theme-section-muted,
+html[data-theme] footer.theme-section-light {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="light"] .surface-card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+}
+
+html[data-theme="light"] .surface-panel {
+  background: rgba(255, 255, 255, 0.78);
+  color: #0f172a;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+html[data-theme="light"] .glass-effect {
+  background: rgba(255, 255, 255, 0.82);
+  color: #0f172a;
+}
+
+html[data-theme="light"] .text-slate-300,
+html[data-theme="light"] .text-slate-400,
+html[data-theme="light"] .text-slate-500 {
+  color: #475569 !important;
+}
+
+@media (max-width: 640px) {
+  .section-shell {
+    padding-block: 3.75rem;
   }
 }

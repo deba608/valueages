@@ -1,7 +1,7 @@
 (() => {
   try {
-    const storedTheme = window.localStorage.getItem("valueages-theme");
-    const theme = storedTheme === "dark" || storedTheme === "light" ? storedTheme : "light";
+    // Always start in light mode, ignore stored preference
+    const theme = "light";
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;

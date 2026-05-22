@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useTheme } from "@/components/ThemeProvider";
 import Image from "next/image";
 
@@ -14,6 +15,12 @@ export default function Navbar() {
   const firstFocusableRef = useRef<HTMLAnchorElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
   const { toggleTheme } = useTheme();
+  const { scrollYProgress } = useScroll();
+  const scrollScaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.2,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,6 +95,13 @@ export default function Navbar() {
   ];
 
   return (
+    <>
+    <motion.div
+      className="fixed left-0 top-0 z-[60] h-0.5 w-full origin-left bg-gradient-to-r from-brand-teal via-brand-teal-light to-brand-tan shadow-[0_0_18px_rgba(16,155,130,0.45)]"
+      style={{ scaleX: scrollScaleX }}
+      aria-hidden="true"
+    />
+
     <nav
       ref={navbarRef}
       className={`fixed z-50 transition-all duration-500 ease-in-out ${
@@ -145,7 +159,7 @@ export default function Navbar() {
             width={224}
             height={44}
             className={`h-10 w-auto sm:h-11 shrink-0 transition-all duration-500 ease-in-out group-hover:scale-105 dark-invert ${
-              isScrolledDeep ? "max-w-0 opacity-0 pointer-events-none scale-0 select-none origin-left ml-[-6px]" : "max-w-[200px] opacity-100"
+              isScrolledDeep ? "max-w-0 opacity-0 pointer-events-none scale-0 select-none origin-left -ml-1.5" : "max-w-[14rem] opacity-100"
             }`}
             loading="eager"
             style={{ width: 'auto' }}
@@ -165,7 +179,7 @@ export default function Navbar() {
                       isActive
                         ? "nav-link-active text-brand-teal font-semibold"
                         : "text-slate-600 dark:text-slate-300 hover:text-brand-teal"
-                    } ${isScrolledDeep ? "py-1 px-2.5 text-xs min-h-[32px]" : "py-2 px-3.5 min-h-[44px]"}`}
+                    } ${isScrolledDeep ? "py-1 px-2.5 text-xs min-h-8" : "py-2 px-3.5 min-h-11"}`}
                   >
                     {link.name}
                   </a>
@@ -178,11 +192,16 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className={`primary-button cta-glow text-sm transition-all duration-500 ease-in-out whitespace-nowrap overflow-hidden flex items-center justify-center ${
-              isScrolledDeep ? "px-3.5 py-1.5 text-xs rounded-full min-h-[32px]" : "px-5 py-2.5 min-h-[44px]"
+            className={`nav-inquiry-button text-sm transition-all duration-500 ease-in-out whitespace-nowrap overflow-hidden flex items-center justify-center gap-2 group ${
+              isScrolledDeep ? "px-3.5 py-1.5 text-xs rounded-full min-h-8" : "px-5 py-2.5 min-h-11"
             }`}
           >
-            {isScrolledDeep ? "Inquiry" : "Investor Inquiry"}
+            <span>{isScrolledDeep ? "Inquiry" : "Investor Inquiry"}</span>
+            <ArrowRight
+              size={isScrolledDeep ? 13 : 15}
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
           </a>
 
           <div className={`w-px bg-slate-200/60 dark:bg-slate-700/60 transition-all duration-500 ${isScrolledDeep ? "h-4 mx-1" : "h-6 mx-2"}`} aria-hidden="true" />
@@ -191,7 +210,7 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             className={`relative flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:text-brand-teal dark:hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-500 ${
-              isScrolledDeep ? "p-1.5 min-w-[32px] min-h-[32px]" : "p-2.5 min-w-[44px] min-h-[44px]"
+              isScrolledDeep ? "p-1.5 min-w-8 min-h-8" : "p-2.5 min-w-11 min-h-11"
             }`}
             aria-label="Toggle visual theme between light and dark"
             id="theme-toggle-desktop"
@@ -211,7 +230,7 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             className={`relative flex items-center justify-center rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-500 ${
-              isScrolledDeep ? "p-1.5 min-w-[32px] min-h-[32px]" : "p-2.5 min-w-[44px] min-h-[44px]"
+              isScrolledDeep ? "p-1.5 min-w-8 min-h-8" : "p-2.5 min-w-11 min-h-11"
             }`}
             aria-label="Toggle visual theme between light and dark"
             id="theme-toggle-mobile"
@@ -229,7 +248,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`relative flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-teal active:scale-95 transition-all duration-500 rounded-xl hover:bg-slate-100/60 dark:hover:bg-slate-800/60 ${
-              isScrolledDeep ? "p-1.5 min-w-[32px] min-h-[32px]" : "p-2.5 min-w-[44px] min-h-[44px]"
+              isScrolledDeep ? "p-1.5 min-w-8 min-h-8" : "p-2.5 min-w-11 min-h-11"
             }`}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-menu"
@@ -269,7 +288,7 @@ export default function Navbar() {
           </span>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 text-slate-500 dark:text-slate-400 transition-all duration-200"
+            className="p-2 min-w-11 min-h-11 flex items-center justify-center rounded-lg hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 text-slate-500 dark:text-slate-400 transition-all duration-200"
             aria-label="Close menu"
           >
             <X size={20} />
@@ -287,7 +306,7 @@ export default function Navbar() {
                     ref={idx === 0 ? firstFocusableRef : undefined}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block py-3 px-4 rounded-xl min-h-[44px] flex items-center transition-all duration-200 text-base font-medium active:scale-[0.98] ${
+                    className={`py-3 px-4 rounded-xl min-h-11 flex items-center transition-all duration-200 text-base font-medium active:scale-[0.98] ${
                       isActive
                         ? "bg-brand-teal/10 text-brand-teal font-semibold"
                         : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-brand-teal"
@@ -313,12 +332,14 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="primary-button cta-glow w-full rounded-xl py-3.5 text-center"
+            className="nav-inquiry-button w-full rounded-xl py-3.5 text-center flex items-center justify-center gap-2 group"
           >
-            Investor Inquiry
+            <span>Investor Inquiry</span>
+            <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
           </a>
         </div>
       </div>
     </nav>
+    </>
   );
 }

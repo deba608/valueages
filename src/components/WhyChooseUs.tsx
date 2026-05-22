@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Award, BarChart3, Fingerprint, Layers, ShieldAlert, Sparkles, 
-  MapPin, ArrowRight, Zap, Code, ShieldCheck, CheckCircle2, ChevronRight
+  MapPin, Zap, Code, ShieldCheck, CheckCircle2, ChevronRight
 } from "lucide-react";
 
 export default function WhyChooseUs() {
@@ -95,7 +95,7 @@ export default function WhyChooseUs() {
                     </span>
                     <span className="mt-3 text-[10px] font-extrabold uppercase tracking-wide text-slate-900 dark:text-white">{step.year}</span>
                     <span className="mt-0.5 text-[9px] font-bold text-brand-teal dark:text-brand-teal/80">{step.title}</span>
-                    <span className="mt-1 text-[8px] leading-tight text-slate-400 dark:text-slate-500 hidden sm:block max-w-[110px]">{step.detail}</span>
+                    <span className="mt-1 text-[8px] leading-tight text-slate-600 dark:text-slate-500 hidden sm:block max-w-[110px]">{step.detail}</span>
                   </div>
                 ))}
               </div>
@@ -212,7 +212,7 @@ export default function WhyChooseUs() {
                 
                 {/* Source Tech */}
                 <div className="flex-1 flex items-start gap-3">
-                  <div className="mt-1 min-w-[24px]"><Code size={16} className="text-slate-400" /></div>
+                  <div className="mt-1 min-w-[24px]"><Code size={16} className="text-slate-500 dark:text-slate-400" /></div>
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={`tech-${translatorIndex}`}
@@ -282,25 +282,25 @@ export default function WhyChooseUs() {
           {/* Card 6: Pure GTM Execution */}
           <motion.div
             whileHover={{ y: -4 }}
-            className="glass-effect rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-slate-200/80 dark:border-slate-800 shadow-md group relative overflow-hidden bg-slate-900 dark:bg-black"
+            className="glass-effect rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-slate-200/80 dark:border-slate-800 shadow-md group relative overflow-hidden bg-gradient-to-br from-white to-slate-50 dark:from-[#070b12] dark:to-black"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-teal/20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
             
             <div>
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-white border border-white/10 mb-6">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-teal/10 text-brand-teal border border-brand-teal/15 dark:bg-white/10 dark:text-white dark:border-white/10 mb-6">
                 <ShieldAlert size={20} />
               </div>
-              <h3 className="text-xl font-black tracking-tight text-white transition-colors duration-300">
+              <h3 className="text-xl font-black tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
                 100% GTM Velocity
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                 Focused exclusively on enterprise entry, sales strategy, and achieving revenue targets with zero delivery drag.
               </p>
             </div>
             
             <div className="mt-8 pt-4">
               <div className="flex items-center gap-3">
-                <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div className="flex-1 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
                   <motion.div 
                     initial={{ width: "0%" }}
                     whileInView={{ width: "100%" }}
@@ -310,7 +310,7 @@ export default function WhyChooseUs() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg font-black text-white tracking-tight">100%</span>
+                  <span className="text-lg font-black text-slate-900 dark:text-white tracking-tight">100%</span>
                   <span className="text-[8px] font-extrabold text-brand-teal uppercase tracking-widest mt-0.5">VELOCITY</span>
                 </div>
               </div>
