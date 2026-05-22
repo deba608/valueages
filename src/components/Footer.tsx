@@ -22,7 +22,7 @@ export default function Footer() {
                 width={56}
                 height={56}
                 className="shrink-0 group-hover:scale-105 transition-transform duration-300"
-                style={{ filter: 'none' }}
+                style={{ filter: 'none', width: 'auto' }}
                 aria-hidden="true"
               />
 
@@ -32,6 +32,7 @@ export default function Footer() {
                 width={180}
                 height={44}
                 className="shrink-0 hidden sm:block transition-all duration-300 group-hover:scale-105 dark-invert"
+                style={{ width: 'auto' }}
               />
             </a>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-sm leading-relaxed text-left">
