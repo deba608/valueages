@@ -32,6 +32,7 @@ export default function Footer() {
                 width={180}
                 height={44}
                 className="shrink-0 hidden sm:block transition-all duration-300 group-hover:scale-105 dark-invert"
+                loading="eager"
                 style={{ width: 'auto' }}
               />
             </a>
