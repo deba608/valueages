@@ -2,10 +2,14 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
 import About from "@/components/About";
+import UnifyAppsPartnership from "@/components/UnifyAppsPartnership";
+import GSIStrategy from "@/components/GSIStrategy";
+import GCCStrategy from "@/components/GCCStrategy";
+import ValueSelling from "@/components/ValueSelling";
+import ProductExpansion from "@/components/ProductExpansion";
 import CXOConnect from "@/components/CXOConnect";
 import GTMConsole from "@/components/GTMConsole";
 import Services from "@/components/Services";
-import UnifyAppsPartnership from "@/components/UnifyAppsPartnership";
 import ClientWins from "@/components/ClientWins";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Contact from "@/components/Contact";
@@ -14,43 +18,52 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      {/* Dynamic Navigation */}
       <Navbar />
 
-      {/* Main Assembly */}
       <main id="main-content" className="flex-1 flex flex-col">
-        {/* Hero Banner */}
+        {/* 1. CXO Hero — India GTM & UnifyApps partnership */}
         <Hero />
 
-        {/* Dynamic Key metrics stats */}
+        {/* 2. Strategic proof points */}
         <TrustBar />
 
-        {/* Detailed Founder advisory Bio */}
+        {/* 3. Founder advisory & leadership credentials */}
         <About />
 
-        {/* Access networks segment */}
-        <CXOConnect />
-
-        {/* Relocated India revenue entry map console */}
-        <GTMConsole />
-
-        {/* 8 B2B GTM Services list catalog */}
-        <Services />
-
-        {/* Showcase UnifyApps Joint partnership */}
+        {/* 4. UnifyApps strategic partnership */}
         <UnifyAppsPartnership />
 
-        {/* Gray scale client success logos */}
+        {/* 5. GSI Go-To-Market Strategy */}
+        <GSIStrategy />
+
+        {/* 6. GCC AI & Digital Transformation */}
+        <GCCStrategy />
+
+        {/* 7. Value Selling Methodology */}
+        <ValueSelling />
+
+        {/* 8. Product Companies Expanding Into India */}
+        <ProductExpansion />
+
+        {/* 9. CXO Access network */}
+        <CXOConnect />
+
+        {/* 10. GTM Services catalog */}
+        <Services />
+
+        {/* 11. India revenue entry map */}
+        <GTMConsole />
+
+        {/* 12. Case study narratives */}
         <ClientWins />
 
-        {/* 6 Value indicators card grid */}
+        {/* 13. ValueEdge advantage indicators */}
         <WhyChooseUs />
 
-        {/* Validated lead capture contact form */}
+        {/* 14. Contact & lead capture */}
         <Contact />
       </main>
 
-      {/* Styled Multi-column Footer */}
       <Footer />
     </>
   );

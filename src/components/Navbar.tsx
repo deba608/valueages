@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { useTheme } from "@/components/ThemeProvider";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -14,7 +13,6 @@ export default function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const firstFocusableRef = useRef<HTMLAnchorElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
-  const { toggleTheme } = useTheme();
   const { scrollYProgress } = useScroll();
   const scrollScaleX = useSpring(scrollYProgress, {
     stiffness: 120,
@@ -109,7 +107,7 @@ export default function Navbar() {
           ? "top-3 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-4xl rounded-full py-1.5 px-6 navbar-glass shadow-lg scale-[0.98]"
           : isScrolled
           ? "top-4 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl py-2 px-8 navbar-glass shadow-md"
-          : "top-0 left-0 right-0 w-full py-4 px-8 bg-transparent border-b border-transparent"
+          : "top-0 left-0 right-0 w-full py-4 px-8 bg-white/98 border-b border-slate-100 shadow-sm"
       }`}
       role="navigation"
       aria-label="Main navigation"
@@ -178,7 +176,7 @@ export default function Navbar() {
                     className={`nav-link-pill relative text-sm font-semibold transition-colors flex items-center ${
                       isActive
                         ? "nav-link-active text-brand-teal font-semibold"
-                        : "text-slate-600 dark:text-slate-300 hover:text-brand-teal"
+                        : "text-slate-600 hover:text-brand-teal"
                     } ${isScrolledDeep ? "py-1 px-2.5 text-xs min-h-8" : "py-2 px-3.5 min-h-11"}`}
                   >
                     {link.name}
@@ -188,7 +186,7 @@ export default function Navbar() {
             })}
           </ul>
 
-          <div className={`w-px bg-slate-200/60 dark:bg-slate-700/60 transition-all duration-500 ${isScrolledDeep ? "h-4 mx-1" : "h-6 mx-2"}`} aria-hidden="true" />
+          <div className={`w-px bg-slate-200/60 transition-all duration-500 ${isScrolledDeep ? "h-4 mx-1" : "h-6 mx-2"}`} aria-hidden="true" />
 
           <a
             href="#contact"
@@ -204,50 +202,14 @@ export default function Navbar() {
             />
           </a>
 
-          <div className={`w-px bg-slate-200/60 dark:bg-slate-700/60 transition-all duration-500 ${isScrolledDeep ? "h-4 mx-1" : "h-6 mx-2"}`} aria-hidden="true" />
-
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={toggleTheme}
-            className={`relative flex items-center justify-center rounded-full text-slate-500 dark:text-slate-400 hover:text-brand-teal dark:hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-500 ${
-              isScrolledDeep ? "p-1.5 min-w-8 min-h-8" : "p-2.5 min-w-11 min-h-11"
-            }`}
-            aria-label="Toggle visual theme between light and dark"
-            id="theme-toggle-desktop"
-          >
-            <span className="theme-icon-enter block dark:hidden">
-              <Moon size={isScrolledDeep ? 14 : 18} />
-            </span>
-            <span className="theme-icon-enter hidden dark:block">
-              <Sun size={isScrolledDeep ? 14 : 18} />
-            </span>
-          </button>
         </div>
 
         {/* Mobile Right Controls */}
         <div className="lg:hidden flex items-center gap-1">
-          {/* Mobile Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className={`relative flex items-center justify-center rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-teal hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 transition-all duration-500 ${
-              isScrolledDeep ? "p-1.5 min-w-8 min-h-8" : "p-2.5 min-w-11 min-h-11"
-            }`}
-            aria-label="Toggle visual theme between light and dark"
-            id="theme-toggle-mobile"
-          >
-            <span className="theme-icon-enter block dark:hidden">
-              <Moon size={isScrolledDeep ? 14 : 20} />
-            </span>
-            <span className="theme-icon-enter hidden dark:block">
-              <Sun size={isScrolledDeep ? 14 : 20} />
-            </span>
-          </button>
-
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`relative flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-teal active:scale-95 transition-all duration-500 rounded-xl hover:bg-slate-100/60 dark:hover:bg-slate-800/60 ${
+            className={`relative flex items-center justify-center text-slate-600 hover:text-brand-teal active:scale-95 transition-all duration-500 rounded-xl hover:bg-slate-100/60 ${
               isScrolledDeep ? "p-1.5 min-w-8 min-h-8" : "p-2.5 min-w-11 min-h-11"
             }`}
             aria-expanded={mobileMenuOpen}
@@ -277,18 +239,18 @@ export default function Navbar() {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
-        className={`fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] mobile-glass border-l border-slate-200/40 dark:border-slate-700/40 z-50 shadow-2xl flex flex-col transition-all duration-500 ease-out lg:hidden ${
+        className={`fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] mobile-glass border-l border-slate-200/40 z-50 shadow-2xl flex flex-col transition-all duration-500 ease-out lg:hidden ${
           mobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
       >
         {/* Mobile header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100/60 dark:border-slate-800/60">
-          <span className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100/60">
+          <span className="text-sm font-bold text-slate-900 uppercase tracking-wide">
             Menu
           </span>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 min-w-11 min-h-11 flex items-center justify-center rounded-lg hover:bg-slate-100/60 dark:hover:bg-slate-800/60 active:scale-95 text-slate-500 dark:text-slate-400 transition-all duration-200"
+            className="p-2 min-w-11 min-h-11 flex items-center justify-center rounded-lg hover:bg-slate-100/60 active:scale-95 text-slate-500 transition-all duration-200"
             aria-label="Close menu"
           >
             <X size={20} />
@@ -309,7 +271,7 @@ export default function Navbar() {
                     className={`py-3 px-4 rounded-xl min-h-11 flex items-center transition-all duration-200 text-base font-medium active:scale-[0.98] ${
                       isActive
                         ? "bg-brand-teal/10 text-brand-teal font-semibold"
-                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-brand-teal"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-brand-teal"
                     }`}
                   >
                     {isActive && (
@@ -328,7 +290,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile CTA */}
-        <div className="px-4 pb-6 pt-2 border-t border-slate-100/60 dark:border-slate-800/60">
+        <div className="px-4 pb-6 pt-2 border-t border-slate-100/60">
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}

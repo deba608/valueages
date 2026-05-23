@@ -1,119 +1,211 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Award } from "lucide-react";
+import {
+  Award,
+  BadgeCheck,
+  Building2,
+  Cpu,
+  ShoppingBag,
+  Tv2,
+  Zap,
+} from "lucide-react";
+
+const clients = [
+  {
+    name: "Persistent",
+    logoText: "PERSISTENT",
+    type: "Technology Solutions",
+    description: "Global digital engineering & IT consultancy powering next-gen enterprise transformation.",
+    icon: Cpu,
+    accentFrom: "from-sky-500/20",
+    accentTo: "to-brand-teal/10",
+    borderColor: "border-sky-200/70",
+    iconBg: "bg-sky-50",
+    iconColor: "text-sky-600",
+    badgeBg: "bg-sky-50",
+    badgeText: "text-sky-700",
+    badgeBorder: "border-sky-200",
+    hoverText: "group-hover:text-sky-600",
+  },
+  {
+    name: "Jubilant Group",
+    logoText: "JUBILANT",
+    type: "Conglomerate",
+    description: "Diversified leader across pharmaceuticals, food services, and specialty chemicals.",
+    icon: Building2,
+    accentFrom: "from-amber-400/20",
+    accentTo: "to-orange-300/10",
+    borderColor: "border-amber-200/70",
+    iconBg: "bg-amber-50",
+    iconColor: "text-amber-600",
+    badgeBg: "bg-amber-50",
+    badgeText: "text-amber-700",
+    badgeBorder: "border-amber-200",
+    hoverText: "group-hover:text-amber-600",
+  },
+  {
+    name: "MPHASIS",
+    logoText: "MPHASIS",
+    type: "IT Infrastructure",
+    description: "Leading cloud & cognitive services enterprise transforming global financial institutions.",
+    icon: Zap,
+    accentFrom: "from-violet-500/20",
+    accentTo: "to-purple-400/10",
+    borderColor: "border-violet-200/70",
+    iconBg: "bg-violet-50",
+    iconColor: "text-violet-600",
+    badgeBg: "bg-violet-50",
+    badgeText: "text-violet-700",
+    badgeBorder: "border-violet-200",
+    hoverText: "group-hover:text-violet-600",
+  },
+  {
+    name: "Fossil",
+    logoText: "FOSSIL",
+    type: "Consumer & Lifestyle",
+    description: "Global luxury design & smart accessories brand redefining connected consumer experiences.",
+    icon: ShoppingBag,
+    accentFrom: "from-rose-500/20",
+    accentTo: "to-pink-400/10",
+    borderColor: "border-rose-200/70",
+    iconBg: "bg-rose-50",
+    iconColor: "text-rose-600",
+    badgeBg: "bg-rose-50",
+    badgeText: "text-rose-700",
+    badgeBorder: "border-rose-200",
+    hoverText: "group-hover:text-rose-600",
+  },
+  {
+    name: "Sony TV",
+    logoText: "SONY",
+    type: "Entertainment & Media",
+    description: "World-class consumer electronics & media network shaping digital entertainment at scale.",
+    icon: Tv2,
+    accentFrom: "from-brand-teal/20",
+    accentTo: "to-emerald-400/10",
+    borderColor: "border-teal-200/70",
+    iconBg: "bg-teal-50",
+    iconColor: "text-brand-teal",
+    badgeBg: "bg-teal-50",
+    badgeText: "text-teal-700",
+    badgeBorder: "border-teal-200",
+    hoverText: "group-hover:text-brand-teal",
+  },
+];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
 
 export default function ClientWins() {
-  const clients = [
-    {
-      name: "Persistent",
-      type: "Technology Solutions",
-      description: "Global digital engineering & IT consultancy powerhouse.",
-      logoText: "PERSISTENT"
-    },
-    {
-      name: "Jubilant Group",
-      type: "Conglomerate",
-      description: "Diversified leader in pharmaceuticals, food services, & chemicals.",
-      logoText: "JUBILANT"
-    },
-    {
-      name: "MPHASIS",
-      type: "IT Infrastructure",
-      description: "Leading cloud & cognitive technology enterprise provider.",
-      logoText: "M P H A S I S"
-    },
-    {
-      name: "Fossil",
-      type: "Consumer Goods",
-      description: "Global luxury design, accessories, & smart fashion brand.",
-      logoText: "FOSSIL"
-    },
-    {
-      name: "Sony TV",
-      type: "Entertainment",
-      description: "World-class consumer electronics, media, & television network.",
-      logoText: "SONY"
-    }
-  ];
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
-
   return (
-    <section id="clients" className="section-shell theme-section-muted" aria-labelledby="clients-title">
-      <div className="container max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="section-eyebrow mx-auto mb-3">
-            Market Success
-          </span>
-          <h2 id="clients-title" className="font-serif text-3xl sm:text-4xl font-semibold leading-tight text-slate-900 dark:text-white mb-4">
+    <section
+      id="clients"
+      className="section-shell theme-section-muted"
+      aria-labelledby="clients-title"
+    >
+      <div className="container relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
+
+        {/* ── Section Header ── */}
+        <div className="mx-auto mb-14 max-w-3xl text-center">
+          <span className="section-eyebrow mx-auto mb-4">Market Success</span>
+          <h2
+            id="clients-title"
+            className="font-serif text-3xl font-bold leading-tight text-slate-950 sm:text-4xl"
+          >
             Enterprise Engagements &amp; Market Success
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-sm max-w-2xl mx-auto">
-            Representative enterprise sales engagements closed through strategic co-selling frameworks.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-500">
+            Representative enterprise engagements closed through strategic co-selling and
+            boardroom GTM frameworks across India's top industries.
           </p>
         </div>
 
-        {/* Grayscale Logo Grid */}
+        {/* ── Client Cards ── */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 items-stretch mb-12"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5"
         >
-          {clients.map((client, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              whileHover={{ y: -4, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="glass-effect interactive-card flex flex-col justify-between p-6 rounded-2xl group"
-            >
-              {/* Grayscale Styled Text Logo */}
-              <div className="h-16 flex items-center justify-center mb-4">
-                <span className="font-sans text-lg font-black tracking-widest text-slate-400 dark:text-slate-500 group-hover:text-slate-800 dark:group-hover:text-brand-teal transition-colors duration-300">
-                  {client.logoText}
-                </span>
-              </div>
-              
-              {/* Client Info snippet */}
-              <div className="text-center pt-3 border-t border-slate-50 dark:border-slate-800">
-                <p className="text-[10px] font-extrabold uppercase tracking-wider text-brand-teal mb-1">
-                  {client.type}
-                </p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
-                  {client.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {clients.map((client) => {
+            const Icon = client.icon;
+            return (
+              <motion.div
+                key={client.name}
+                variants={cardVariants}
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 280, damping: 20 }}
+                className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl ${client.borderColor}`}
+              >
+                {/* Colour-coded top accent bar */}
+                <div className={`h-1.5 w-full bg-gradient-to-r ${client.accentFrom} ${client.accentTo}`} />
+
+                <div className="flex flex-1 flex-col p-6">
+                  {/* Icon + industry badge */}
+                  <div className="mb-5 flex items-start justify-between gap-2">
+                    <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${client.iconBg} ${client.iconColor}`}>
+                      <Icon size={20} strokeWidth={1.8} />
+                    </span>
+                    <span className={`rounded-full border px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wide ${client.badgeBg} ${client.badgeText} ${client.badgeBorder}`}>
+                      {client.type}
+                    </span>
+                  </div>
+
+                  {/* Company name */}
+                  <p className={`mb-3 font-sans text-xl font-black tracking-tight text-slate-900 transition-colors duration-300 ${client.hoverText}`}>
+                    {client.logoText}
+                  </p>
+
+                  {/* Description */}
+                  <p className="flex-1 text-[12px] leading-relaxed text-slate-500">
+                    {client.description}
+                  </p>
+
+                  {/* Footer engagement tag */}
+                  <div className="mt-5 flex items-center gap-2 border-t border-slate-100 pt-4">
+                    <BadgeCheck size={14} className="shrink-0 text-brand-teal" aria-hidden="true" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-teal">
+                      Enterprise Engagement
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
-        {/* Bottom credibility note */}
-        <div className="glass-effect p-4 rounded-xl flex items-center justify-center gap-3 max-w-3xl mx-auto">
-          <Award size={18} className="text-brand-teal shrink-0" />
-          <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 text-center sm:text-left">
-            Our strategic advisory focus strictly covers B2B Go-To-Market execution. No delivery liabilities exist.
+        {/* ── Credibility note ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-10 flex flex-col items-center gap-3 rounded-2xl border border-brand-teal/15 bg-white px-6 py-5 shadow-sm sm:flex-row sm:justify-center"
+        >
+          <Award size={20} className="shrink-0 text-brand-teal" aria-hidden="true" />
+          <p className="text-center text-sm font-semibold text-slate-700 sm:text-left">
+            Strategic advisory focus covers B2B Go-To-Market execution only.{" "}
+            <span className="font-normal text-slate-500">
+              Zero delivery or implementation liability.
+            </span>
           </p>
-        </div>
+        </motion.div>
 
       </div>
     </section>

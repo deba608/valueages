@@ -35,7 +35,7 @@ export default function Footer() {
                 style={{ width: 'auto' }}
               />
             </a>
-            <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-sm leading-relaxed text-left">
+            <p className="text-sm text-slate-600 mt-1 max-w-sm leading-relaxed text-left">
               VALUEAGES is a premier enterprise-grade sales advisory helping global B2B product and SaaS tech companies
               successfully enter, navigate, and accelerate revenue operations across the Indian market.
             </p>
@@ -46,7 +46,7 @@ export default function Footer() {
                 href="https://linkedin.com/company/valueages"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800/60 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-brand-teal hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-200"
+                className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 hover:text-brand-teal hover:bg-slate-200 transition-all duration-200"
                 aria-label="Connect on LinkedIn"
               >
                 <span className="sr-only">LinkedIn</span>
@@ -56,7 +56,7 @@ export default function Footer() {
               </a>
               <a
                 href="mailto:manas.das@valueages.com"
-                className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800/60 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-brand-teal hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-200"
+                className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 hover:text-brand-teal hover:bg-slate-200 transition-all duration-200"
                 aria-label="Send email"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -68,7 +68,7 @@ export default function Footer() {
 
           {/* Column 2: Navigation Links */}
           <div className="md:col-span-2 text-left">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200 mb-5">Quick Links</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-5">Quick Links</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a href="#about" className="hover:text-brand-teal transition-colors duration-200">About Advisor</a>
@@ -90,7 +90,7 @@ export default function Footer() {
 
           {/* Column 3: Services categories */}
           <div className="md:col-span-2 text-left">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200 mb-5">Focus Areas</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-5">Focus Areas</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a href="#services" className="hover:text-brand-teal transition-colors duration-200">India Market Entry</a>
@@ -109,32 +109,32 @@ export default function Footer() {
 
           {/* Column 4: Direct Channels */}
           <div className="md:col-span-3 text-left">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-200 mb-5">Channels</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-5">Channels</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex min-w-0 flex-wrap items-center gap-2">
-                <span className="text-slate-500 dark:text-slate-500">Email:</span>
-                <a href="mailto:manas.das@valueages.com" className="break-all hover:text-brand-teal transition-colors duration-200 font-medium text-slate-700 dark:text-slate-300">
+                <span className="text-slate-500">Email:</span>
+                <a href="mailto:manas.das@valueages.com" className="break-all hover:text-brand-teal transition-colors duration-200 font-medium text-slate-700">
                   manas.das@valueages.com
                 </a>
               </li>
               <li className="flex min-w-0 flex-wrap items-center gap-2">
-                <span className="text-slate-500 dark:text-slate-500">Phone:</span>
-                <a href="tel:+919654017778" className="hover:text-brand-teal transition-colors duration-200 font-medium text-slate-700 dark:text-slate-300">+91 9654017778</a>
+                <span className="text-slate-500">Phone:</span>
+                <a href="tel:+919654017778" className="hover:text-brand-teal transition-colors duration-200 font-medium text-slate-700">+91 9654017778</a>
               </li>
               <li className="flex min-w-0 flex-wrap items-center gap-2">
-                <span className="text-slate-500 dark:text-slate-500">Website:</span>
-                <a href="https://www.valueages.com" target="_blank" rel="noopener noreferrer" className="break-all hover:text-brand-teal transition-colors duration-200 font-medium text-slate-700 dark:text-slate-300">www.valueages.com</a>
+                <span className="text-slate-500">Website:</span>
+                <a href="https://www.valueages.com" target="_blank" rel="noopener noreferrer" className="break-all hover:text-brand-teal transition-colors duration-200 font-medium text-slate-700">www.valueages.com</a>
               </li>
               <li className="flex min-w-0 flex-wrap items-start gap-2">
-                <span className="text-slate-500 dark:text-slate-500">Location:</span>
-                <span className="text-slate-700 dark:text-slate-300 font-medium">DLF Cyber City, Patia, Bhubaneswar</span>
+                <span className="text-slate-500">Location:</span>
+                <span className="text-slate-700 font-medium">DLF Cyber City, Patia, Bhubaneswar</span>
               </li>
               <li className="pt-2">
                 <a
                   href="https://linkedin.com/company/valueages"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-brand-teal hover:text-slate-950 dark:hover:text-white font-semibold transition-colors duration-200"
+                  className="inline-flex items-center gap-1 text-brand-teal hover:text-slate-950 font-semibold transition-colors duration-200"
                 >
                   Connect on LinkedIn 
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,11 +148,11 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom Block */}
-        <div className="pt-8 border-t border-slate-200 dark:border-slate-800/60 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p className="text-slate-500 dark:text-slate-500">
+        <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+          <p className="text-slate-500">
             &copy; {currentYear} VALUEAGES. All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-500">
+          <div className="flex flex-wrap items-center gap-2 text-slate-500">
             <span>Strategic sales partner to</span>
             <a
               href="https://unifyapps.com"
