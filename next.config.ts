@@ -9,8 +9,6 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
-    // Also add to domains for compatibility
-    domains: ["images.unsplash.com"],
   },
 };
 
