@@ -267,6 +267,10 @@ export default function CXOConnect() {
           {/* RIGHT DIAGRAM */}
           <div className="order-1 lg:order-2 lg:col-span-7">
             <div className="premium-card relative overflow-hidden rounded-2xl p-4 sm:p-6 lg:p-8 bg-white border border-slate-200/80 shadow-xl">
+              {/* Subtle Ambient Glows */}
+              <div className="absolute top-0 left-0 w-64 h-64 bg-brand-teal/5 rounded-full blur-[80px] pointer-events-none" />
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-rust/5 rounded-full blur-[80px] pointer-events-none" />
+              
               <div
                 className="absolute inset-0 opacity-10 pointer-events-none select-none"
                 style={{
@@ -397,7 +401,7 @@ export default function CXOConnect() {
 
                   {/* MIDDLE */}
                   <path
-                    d="M 50 50 L 72 50"
+                    d="M 50 50 C 58 50, 64 40, 72 50"
                     fill="none"
                     stroke={
                       activeSegment === 1
@@ -411,7 +415,7 @@ export default function CXOConnect() {
                   />
 
                   <path
-                    d="M 50 50 L 72 50"
+                    d="M 50 50 C 58 50, 64 40, 72 50"
                     fill="none"
                     stroke={
                       activeSegment === 1
