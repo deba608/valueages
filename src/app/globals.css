@@ -450,6 +450,11 @@ button,
   -webkit-backdrop-filter: blur(4px);
 }
 
+/* ── Light-only theme: logo never needs colour inversion ── */
+.dark-invert {
+  /* no-op — dark mode is permanently disabled; logo renders in brand colours */
+}
+
 /* Selection Highlight */
 ::selection {
   background-color: rgba(16, 155, 130, 0.2);
@@ -518,6 +523,93 @@ button,
 }
 .animate-spin-slow {
   animation: spinSlow 20s linear infinite;
+}
+
+/* ── Ambient float — gentle up/down for background blob elements ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  33%       { transform: translateY(-18px) scale(1.01); }
+  66%       { transform: translateY(10px) scale(0.99); }
+}
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  33%       { transform: translateY(14px) scale(0.99); }
+  66%       { transform: translateY(-20px) scale(1.01); }
+}
+.animate-float {
+  animation: float 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.animate-float-slow {
+  animation: floatReverse 13s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.animate-float-delayed {
+  animation: float 11s cubic-bezier(0.45, 0.05, 0.55, 0.95) 2.5s infinite;
+}
+
+/* ── Shimmer — light beam crossing a button/card on hover ── */
+@keyframes shimmer-slide {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(250%)  skewX(-15deg); }
+}
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  transition: none;
+}
+.btn-shimmer:hover::after {
+  animation: shimmer-slide 0.65s ease forwards;
+}
+
+/* ── Glow pulse — ambient orb breathing effect ── */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+.animate-glow-pulse-slow {
+  animation: glow-pulse 8s ease-in-out 1.5s infinite;
+}
+
+/* ── Gradient text animation ── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+.animate-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ── Section entrance: blur-up reveal ── */
+@keyframes blur-up {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+.animate-blur-up {
+  animation: blur-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Text Gradient Utilities */
@@ -686,6 +778,27 @@ button,
   opacity: 1;
 }
 
+/* Light-beam shimmer pass on hover */
+.btn-premium::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  transform: translateX(-120%) skewX(-12deg);
+}
+
+.btn-premium:hover::after {
+  animation: shimmer-slide 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 /* Better focus states for accessibility */
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--color-brand-teal);
@@ -845,9 +958,9 @@ html .theme-section-muted {
     @apply text-foreground;
     background-color: var(--background);
     background-image:
-      linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
-    background-size: 32px 32px;
+      linear-gradient(rgba(15, 23, 42, 0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.032) 1px, transparent 1px);
+    background-size: 40px 40px;
     background-attachment: fixed;
   }
   html {
@@ -859,9 +972,9 @@ html .theme-section-muted {
 html body {
   background-color: #fbfcf8 !important;
   background-image:
-    linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.055) 1px, transparent 1px) !important;
-  background-size: 32px 32px !important;
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
   background-attachment: fixed !important;
   color: #0f172a !important;
 }
@@ -897,11 +1010,14 @@ html .glass-effect {
   color: #0f172a;
 }
 
-html .text-slate-300,
-html .text-slate-400,
+/* Restore proper visual hierarchy — do NOT collapse all shades to one value */
 html .text-slate-500 {
-  color: #475569 !important;
+  color: #475569 !important; /* ≈ slate-600: guaranteed readable body text */
 }
+html .text-slate-400 {
+  color: #64748b !important; /* ≈ slate-500: muted but visually distinct */
+}
+/* slate-300 and below: keep natural values — used for decorative elements only */
 
 @media (max-width: 640px) {
   .section-shell {

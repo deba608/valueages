@@ -11,6 +11,7 @@ import CXOConnect from "@/components/CXOConnect";
 import GTMConsole from "@/components/GTMConsole";
 import Services from "@/components/Services";
 import ClientWins from "@/components/ClientWins";
+import WhoShouldContact from "@/components/WhoShouldContact";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -57,7 +58,10 @@ export default function Home() {
         {/* 12. Case study narratives */}
         <ClientWins />
 
-        {/* 13. ValueEdge advantage indicators */}
+        {/* 13. Ideal fit — who should contact us */}
+        <WhoShouldContact />
+
+        {/* 14. ValueEdge advantage indicators */}
         <WhyChooseUs />
 
         {/* 14. Contact & lead capture */}
