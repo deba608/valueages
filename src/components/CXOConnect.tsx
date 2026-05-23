@@ -11,6 +11,7 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import BorderGlow from "./BorderGlow";
 
 const networks = [
   {
@@ -65,6 +66,8 @@ const themeClasses = {
     laser: "url(#laser-teal)",
     rightButton: "border-brand-teal bg-linear-to-r from-brand-teal/15 to-brand-teal/5 text-brand-teal shadow-md shadow-brand-teal/15",
     rightButtonIcon: "bg-brand-teal text-white shadow-sm shadow-brand-teal/20",
+    glowBase: "169 81 34",
+    glowColors: ["#0f766e", "#109B82", "#5D9F9B"],
   },
 
   green: {
@@ -83,6 +86,8 @@ const themeClasses = {
     laser: "url(#laser-green)",
     rightButton: "border-brand-green bg-linear-to-r from-brand-green/15 to-brand-green/5 text-brand-green shadow-md shadow-brand-green/15",
     rightButtonIcon: "bg-brand-green text-white shadow-sm shadow-brand-green/20",
+    glowBase: "162 29 43",
+    glowColors: ["#4F8F7B", "#5D9F9B", "#109B82"],
   },
 
   warm: {
@@ -101,6 +106,8 @@ const themeClasses = {
     laser: "url(#laser-warm)",
     rightButton: "border-brand-rust bg-linear-to-r from-brand-rust/15 to-brand-rust/5 text-brand-rust shadow-md shadow-brand-rust/15",
     rightButtonIcon: "bg-brand-rust text-white shadow-sm shadow-brand-rust/20",
+    glowBase: "16 52 47",
+    glowColors: ["#B85A3A", "#C99A5A", "#B85A3A"],
   },
 };
 
@@ -113,27 +120,6 @@ export default function CXOConnect() {
   const activeTheme =
     themeClasses[active.accent as keyof typeof themeClasses];
 
-  const containerVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
     <section
       id="cxo"
@@ -141,14 +127,14 @@ export default function CXOConnect() {
       aria-labelledby="cxo-title"
     >
       <div
-        className="absolute left-0 top-1/3 h-72 w-72 rounded-full bg-brand-teal/8 blur-3xl pointer-events-none"
+        className="absolute left-0 top-1/3 h-72 w-72 rounded-full bg-brand-teal/5 blur-3xl pointer-events-none"
         aria-hidden="true"
-      />
+      ></div>
 
       <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* HEADER */}
         <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -183,548 +169,567 @@ export default function CXOConnect() {
           </motion.p>
         </div>
 
-        {/* MAIN GRID */}
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* LEFT NETWORK CARDS */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="order-2 flex flex-col gap-4 lg:order-1 lg:col-span-5"
-          >
-            {networks.map((net, idx) => {
-              const Icon = net.icon;
-              const isActive = activeSegment === idx;
-              const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
+        {/* MAIN BENTO DASHBOARD CONTAINER */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="premium-card relative overflow-hidden rounded-3xl p-6 sm:p-8 lg:p-12 bg-white border border-slate-200/80 shadow-2xl"
+        >
+          {/* Immersive Background Grids & Ambient Glows */}
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none select-none"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, #109B82 1px, transparent 1px), linear-gradient(to bottom, #109B82 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+              maskImage:
+                "radial-gradient(circle at center, black 60%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(circle at center, black 60%, transparent 100%)",
+            }}
+          ></div>
 
-              return (
-                <motion.button
-                  key={net.title}
-                  type="button"
-                  variants={itemVariants}
-                  whileHover={{ y: -4 }}
-                  onMouseEnter={() => setActiveSegment(idx)}
-                  onFocus={() => setActiveSegment(idx)}
-                  onClick={() => setActiveSegment(idx)}
-                  className={`surface-card interactive-card group rounded-2xl p-4 sm:p-5 text-left transition-all duration-300 relative ${
-                    isActive
-                      ? `${netTheme.border} bg-gradient-to-br ${netTheme.bgGradient} shadow-xl ${netTheme.shadow}`
-                      : "hover:border-slate-300 hover:bg-slate-50/50"
-                  }`}
+          <div className="absolute top-0 left-0 w-80 h-80 bg-brand-teal/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-rust/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-96 h-96 bg-brand-green/3 rounded-full blur-[120px] pointer-events-none" />
+
+          {/* Full-width visual flow dashboard container */}
+          <div className="relative z-10 w-full min-h-[560px]">
+            {/* SVG CONNECTORS */}
+            <svg
+              className="absolute inset-0 hidden lg:block h-full w-full pointer-events-none z-0"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <filter
+                  id="laser-glow"
+                  x="-20%"
+                  y="-20%"
+                  width="140%"
+                  height="140%"
                 >
-                  <div className="mb-4 flex items-center justify-between gap-3">
-                    <span
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300 ${
-                        accentClasses[net.accent as keyof typeof accentClasses]
-                      }`}
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite
+                    in="SourceGraphic"
+                    in2="blur"
+                    operator="over"
+                  />
+                </filter>
+
+                <linearGradient
+                  id="laser-teal"
+                  gradientUnits="userSpaceOnUse"
+                  x1="0"
+                  y1="0"
+                  x2="100"
+                  y2="0"
+                >
+                  <stop offset="0%" stopColor="#109B82" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#0FA88A" stopOpacity="1" />
+                </linearGradient>
+
+                <linearGradient
+                  id="laser-green"
+                  gradientUnits="userSpaceOnUse"
+                  x1="0"
+                  y1="0"
+                  x2="100"
+                  y2="0"
+                >
+                  <stop offset="0%" stopColor="#4F8F7B" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#10B981" stopOpacity="1" />
+                </linearGradient>
+
+                <linearGradient
+                  id="laser-warm"
+                  gradientUnits="userSpaceOnUse"
+                  x1="0"
+                  y1="0"
+                  x2="100"
+                  y2="0"
+                >
+                  <stop offset="0%" stopColor="#B85A3A" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#C99A5A" stopOpacity="1" />
+                </linearGradient>
+              </defs>
+
+              {/* LEFT TO CENTER CONNECTOR (1ST CONNECTOR - Perfectly visible gap 11% to 50%) */}
+              <path
+                d="M 11 50 L 50 50"
+                fill="none"
+                stroke={activeTheme.glowColor}
+                strokeWidth="6"
+                vectorEffect="non-scaling-stroke"
+                filter="url(#laser-glow)"
+                className="transition-all duration-300"
+              />
+
+              <path
+                d="M 11 50 L 50 50"
+                fill="none"
+                stroke={activeTheme.laser}
+                strokeWidth="2.5"
+                vectorEffect="non-scaling-stroke"
+                strokeDasharray="6 6"
+                className="animate-flow-dash transition-all duration-300"
+              />
+
+              {/* TOP ACCORDION CONNECTOR */}
+              <path
+                d="M 50 50 C 56 50, 60 16.7, 68 16.7"
+                fill="none"
+                stroke={
+                  activeSegment === 0
+                    ? themeClasses.teal.glowColor
+                    : "rgba(148,163,184,0.08)"
+                }
+                strokeWidth={activeSegment === 0 ? "6" : "2"}
+                vectorEffect="non-scaling-stroke"
+                filter={activeSegment === 0 ? "url(#laser-glow)" : undefined}
+                className="transition-all duration-300"
+              />
+
+              <path
+                d="M 50 50 C 56 50, 60 16.7, 68 16.7"
+                fill="none"
+                stroke={
+                  activeSegment === 0
+                    ? themeClasses.teal.laser
+                    : "rgba(148,163,184,0.25)"
+                }
+                strokeWidth={activeSegment === 0 ? "2" : "1.2"}
+                vectorEffect="non-scaling-stroke"
+                strokeDasharray={activeSegment === 0 ? "8 8" : "4 4"}
+                className={`${
+                  activeSegment === 0 ? "animate-flow-dash-fast" : ""
+                } transition-all duration-300`}
+              />
+
+              {/* MIDDLE ACCORDION CONNECTOR */}
+              <path
+                d="M 50 50 C 54 50, 58 42, 68 50"
+                fill="none"
+                stroke={
+                  activeSegment === 1
+                    ? themeClasses.green.glowColor
+                    : "rgba(148,163,184,0.08)"
+                }
+                strokeWidth={activeSegment === 1 ? "6" : "2"}
+                vectorEffect="non-scaling-stroke"
+                filter={activeSegment === 1 ? "url(#laser-glow)" : undefined}
+                className="transition-all duration-300"
+              />
+
+              <path
+                d="M 50 50 C 54 50, 58 42, 68 50"
+                fill="none"
+                stroke={
+                  activeSegment === 1
+                    ? themeClasses.green.laser
+                    : "rgba(148,163,184,0.25)"
+                }
+                strokeWidth={activeSegment === 1 ? "2" : "1.2"}
+                vectorEffect="non-scaling-stroke"
+                strokeDasharray={activeSegment === 1 ? "8 8" : "4 4"}
+                className={`${
+                  activeSegment === 1 ? "animate-flow-dash-fast" : ""
+                } transition-all duration-300`}
+              />
+
+              {/* BOTTOM ACCORDION CONNECTOR */}
+              <path
+                d="M 50 50 C 56 50, 60 83.3, 68 83.3"
+                fill="none"
+                stroke={
+                  activeSegment === 2
+                    ? themeClasses.warm.glowColor
+                    : "rgba(148,163,184,0.08)"
+                }
+                strokeWidth={activeSegment === 2 ? "6" : "2"}
+                vectorEffect="non-scaling-stroke"
+                filter={activeSegment === 2 ? "url(#laser-glow)" : undefined}
+                className="transition-all duration-300"
+              />
+
+              <path
+                d="M 50 50 C 56 50, 60 83.3, 68 83.3"
+                fill="none"
+                stroke={
+                  activeSegment === 2
+                    ? themeClasses.warm.laser
+                    : "rgba(148,163,184,0.25)"
+                }
+                strokeWidth={activeSegment === 2 ? "2" : "1.2"}
+                vectorEffect="non-scaling-stroke"
+                strokeDasharray={activeSegment === 2 ? "8 8" : "4 4"}
+                className={`${
+                  activeSegment === 2 ? "animate-flow-dash-fast" : ""
+                } transition-all duration-300`}
+              />
+            </svg>
+
+            {/* MOBILE/TABLET STACK (FLUID ACCORDION FLOW) */}
+            <div className="flex flex-col gap-6 lg:hidden relative z-10">
+              {/* PRODUCT COMPANY */}
+              <motion.div
+                whileHover={{ y: -2 }}
+                className="glass-effect rounded-2xl border border-slate-200/80 p-5 text-center shadow-md"
+              >
+                <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                  <Cpu size={22} className="stroke-[1.8]" />
+                </span>
+
+                <p className="text-base font-black text-slate-950">
+                  Global Product Company
+                </p>
+
+                <p className="mt-3 text-sm leading-relaxed text-slate-500">
+                  SaaS, AI, automation, and enterprise software teams seeking India growth.
+                </p>
+              </motion.div>
+
+              {/* CONNECTOR LINE */}
+              <div className="flex justify-center -my-3">
+                <div
+                  className={`h-12 w-[2px] rounded-full transition-colors duration-300 ${activeTheme.bgLight}`}
+                />
+              </div>
+
+              {/* VALUEAGES */}
+              <motion.div
+                key={activeSegment}
+                initial={{ scale: 0.96, opacity: 0.82 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.25 }}
+                className={`relative rounded-2xl border-2 p-5 text-center shadow-xl backdrop-blur-md transition-all duration-300 ${activeTheme.cardBg}`}
+              >
+                <span
+                  className={`absolute -inset-2 rounded-2xl border animate-pulse-slow transition-all duration-300 ${activeTheme.cardPulse}`}
+                />
+
+                <span
+                  className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-inner transition-all duration-300 ${activeTheme.cardZapBg}`}
+                >
+                  <Zap size={22} className="animate-pulse" />
+                </span>
+
+                <p className="break-words text-lg sm:text-xl font-black uppercase tracking-tight text-slate-950">
+                  VALUEAGES
+                </p>
+
+                <p className={`mt-1 text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 ${activeTheme.text}`}>
+                  GTM Advisory
+                </p>
+
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  Qualifies the account thesis, maps stakeholders, and coordinates executive motion.
+                </p>
+              </motion.div>
+
+              {/* CONNECTOR LINE */}
+              <div className="flex justify-center -my-3">
+                <div
+                  className={`h-12 w-[2px] rounded-full transition-colors duration-300 ${activeTheme.bgLight}`}
+                />
+              </div>
+
+              {/* 3 EXPANDING ACCORDION CARDS FOR MOBILE */}
+              <div className="flex flex-col gap-4">
+                {networks.map((net, idx) => {
+                  const Icon = net.icon;
+                  const isSelected = activeSegment === idx;
+                  const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
+
+                  return (
+                    <button
+                      key={net.title}
+                      type="button"
+                      onClick={() => setActiveSegment(idx)}
+                      className="w-full text-left"
                     >
-                      <Icon size={18} className="stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
-                    </span>
-
-                    <span
-                      className={`rounded-full px-2.5 py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
-                        isActive
-                          ? netTheme.routePill
-                          : "bg-slate-50 text-slate-400"
-                      }`}
-                    >
-                      {isActive ? "Selected" : "Route"}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 transition-colors duration-300 mb-1">
-                    {net.title}
-                  </h3>
-
-                  <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 ${netTheme.text}`}>
-                    {net.subtitle}
-                  </p>
-
-                  <p className="text-sm leading-relaxed text-slate-500">
-                    {net.description}
-                  </p>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {net.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className={`rounded-full border px-2.5 py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
-                          isActive
-                            ? netTheme.tagActive
-                            : "border-slate-200 bg-slate-50 text-slate-500"
+                      <BorderGlow
+                        className={`w-full transition-all duration-500 overflow-hidden ${
+                          isSelected
+                            ? "shadow-lg opacity-100 scale-[1.01]"
+                            : "opacity-85 hover:opacity-95"
                         }`}
+                        edgeSensitivity={isSelected ? 30 : 50}
+                        glowColor={netTheme.glowBase}
+                        backgroundColor="transparent"
+                        borderRadius={18}
+                        glowRadius={isSelected ? 50 : 0}
+                        glowIntensity={isSelected ? 1.4 : 0}
+                        animated={isSelected}
+                        colors={netTheme.glowColors}
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.button>
-              );
-            })}
-          </motion.div>
-
-          {/* RIGHT DIAGRAM */}
-          <div className="order-1 lg:order-2 lg:col-span-7">
-            <div className="premium-card relative overflow-hidden rounded-2xl p-4 sm:p-6 lg:p-8 bg-white border border-slate-200/80 shadow-xl">
-              {/* Subtle Ambient Glows */}
-              <div className="absolute top-0 left-0 w-64 h-64 bg-brand-teal/5 rounded-full blur-[80px] pointer-events-none" />
-              <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-rust/5 rounded-full blur-[80px] pointer-events-none" />
-              
-              <div
-                className="absolute inset-0 opacity-10 pointer-events-none select-none"
-                style={{
-                  backgroundImage: "linear-gradient(to right, #109B82 1px, transparent 1px), linear-gradient(to bottom, #109B82 1px, transparent 1px)",
-                  backgroundSize: "24px 24px",
-                }}
-              />
-
-              <div
-                className={`absolute left-1/2 top-1/2 hidden lg:block h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border ${activeTheme.pulseBorder} animate-pulse-slow`}
-              />
-
-              <div
-                className="absolute left-1/2 top-1/2 hidden lg:block h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/80"
-              />
-
-              {/* RESPONSIVE DIAGRAM */}
-              <div className="relative w-full min-h-[520px] sm:min-h-[560px] lg:h-[540px]">
-                {/* SVG CONNECTORS */}
-                <svg
-                  className="absolute inset-0 hidden lg:block h-full w-full pointer-events-none z-0"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <defs>
-                    <filter
-                      id="laser-glow"
-                      x="-20%"
-                      y="-20%"
-                      width="140%"
-                      height="140%"
-                    >
-                      <feGaussianBlur stdDeviation="3" result="blur" />
-                      <feComposite
-                        in="SourceGraphic"
-                        in2="blur"
-                        operator="over"
-                      />
-                    </filter>
-
-                    <linearGradient
-                      id="laser-teal"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
-                    >
-                      <stop offset="0%" stopColor="#109B82" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#0FA88A" stopOpacity="1" />
-                    </linearGradient>
-
-                    <linearGradient
-                      id="laser-green"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
-                    >
-                      <stop offset="0%" stopColor="#4F8F7B" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#10B981" stopOpacity="1" />
-                    </linearGradient>
-
-                    <linearGradient
-                      id="laser-warm"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
-                    >
-                      <stop offset="0%" stopColor="#B85A3A" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#C99A5A" stopOpacity="1" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* LEFT TO CENTER */}
-                  <path
-                    d="M 13 50 L 50 50"
-                    fill="none"
-                    stroke={activeTheme.glowColor}
-                    strokeWidth="6"
-                    vectorEffect="non-scaling-stroke"
-                    filter="url(#laser-glow)"
-                    className="transition-all duration-300"
-                  />
-
-                  <path
-                    d="M 13 50 L 50 50"
-                    fill="none"
-                    stroke={activeTheme.laser}
-                    strokeWidth="2"
-                    vectorEffect="non-scaling-stroke"
-                    strokeDasharray="6 6"
-                    className="animate-flow-dash transition-all duration-300"
-                  />
-
-                  {/* TOP */}
-                  <path
-                    d="M 50 50 C 58 50, 64 16.7, 72 16.7"
-                    fill="none"
-                    stroke={
-                      activeSegment === 0
-                        ? themeClasses.teal.glowColor
-                        : "rgba(148,163,184,0.08)"
-                    }
-                    strokeWidth={activeSegment === 0 ? "6" : "2"}
-                    vectorEffect="non-scaling-stroke"
-                    filter={activeSegment === 0 ? "url(#laser-glow)" : undefined}
-                    className="transition-all duration-300"
-                  />
-
-                  <path
-                    d="M 50 50 C 58 50, 64 16.7, 72 16.7"
-                    fill="none"
-                    stroke={
-                      activeSegment === 0
-                        ? themeClasses.teal.laser
-                        : "rgba(148,163,184,0.25)"
-                    }
-                    strokeWidth={activeSegment === 0 ? "2" : "1.2"}
-                    vectorEffect="non-scaling-stroke"
-                    strokeDasharray={activeSegment === 0 ? "8 8" : "4 4"}
-                    className={`${
-                      activeSegment === 0 ? "animate-flow-dash-fast" : ""
-                    } transition-all duration-300`}
-                  />
-
-                  {/* MIDDLE */}
-                  <path
-                    d="M 50 50 C 58 50, 64 40, 72 50"
-                    fill="none"
-                    stroke={
-                      activeSegment === 1
-                        ? themeClasses.green.glowColor
-                        : "rgba(148,163,184,0.08)"
-                    }
-                    strokeWidth={activeSegment === 1 ? "6" : "2"}
-                    vectorEffect="non-scaling-stroke"
-                    filter={activeSegment === 1 ? "url(#laser-glow)" : undefined}
-                    className="transition-all duration-300"
-                  />
-
-                  <path
-                    d="M 50 50 C 58 50, 64 40, 72 50"
-                    fill="none"
-                    stroke={
-                      activeSegment === 1
-                        ? themeClasses.green.laser
-                        : "rgba(148,163,184,0.25)"
-                    }
-                    strokeWidth={activeSegment === 1 ? "2" : "1.2"}
-                    vectorEffect="non-scaling-stroke"
-                    strokeDasharray={activeSegment === 1 ? "8 8" : "4 4"}
-                    className={`${
-                      activeSegment === 1 ? "animate-flow-dash-fast" : ""
-                    } transition-all duration-300`}
-                  />
-
-                  {/* BOTTOM */}
-                  <path
-                    d="M 50 50 C 58 50, 64 83.3, 72 83.3"
-                    fill="none"
-                    stroke={
-                      activeSegment === 2
-                        ? themeClasses.warm.glowColor
-                        : "rgba(148,163,184,0.08)"
-                    }
-                    strokeWidth={activeSegment === 2 ? "6" : "2"}
-                    vectorEffect="non-scaling-stroke"
-                    filter={activeSegment === 2 ? "url(#laser-glow)" : undefined}
-                    className="transition-all duration-300"
-                  />
-
-                  <path
-                    d="M 50 50 C 58 50, 64 83.3, 72 83.3"
-                    fill="none"
-                    stroke={
-                      activeSegment === 2
-                        ? themeClasses.warm.laser
-                        : "rgba(148,163,184,0.25)"
-                    }
-                    strokeWidth={activeSegment === 2 ? "2" : "1.2"}
-                    vectorEffect="non-scaling-stroke"
-                    strokeDasharray={activeSegment === 2 ? "8 8" : "4 4"}
-                    className={`${
-                      activeSegment === 2 ? "animate-flow-dash-fast" : ""
-                    } transition-all duration-300`}
-                  />
-                </svg>
-
-                {/* MOBILE/TABLET STACK */}
-                <div className="flex flex-col gap-5 lg:hidden relative z-10">
-                  {/* PRODUCT COMPANY */}
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    className="glass-effect rounded-2xl border border-slate-200/80 p-5 text-center"
-                  >
-                    <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white">
-                      <Cpu size={22} className="stroke-[1.8]" />
-                    </span>
-
-                    <p className="text-base font-black text-slate-950">
-                      Global Product Company
-                    </p>
-
-                    <p className="mt-3 text-sm leading-relaxed text-slate-500">
-                      SaaS, AI, automation, and enterprise software teams
-                      seeking India growth.
-                    </p>
-                  </motion.div>
-
-                  {/* CONNECTOR */}
-                  <div className="flex justify-center">
-                    <div
-                      className={`h-14 w-[2px] rounded-full ${activeTheme.bgLight}`}
-                    />
-                  </div>
-
-                  {/* VALUEAGES */}
-                  <motion.div
-                    key={activeSegment}
-                    initial={{ scale: 0.96, opacity: 0.82 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.25 }}
-                    className={`relative rounded-2xl border-2 p-5 text-center shadow-xl backdrop-blur-md transition-all duration-300 ${activeTheme.cardBg}`}
-                  >
-                    <span
-                      className={`absolute -inset-2 rounded-2xl border animate-pulse-slow transition-all duration-300 ${activeTheme.cardPulse}`}
-                    />
-
-                    <span
-                      className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-inner transition-all duration-300 ${activeTheme.cardZapBg}`}
-                    >
-                      <Zap size={22} />
-                    </span>
-
-                    <p className="break-words text-lg sm:text-xl font-black uppercase tracking-tight text-slate-950">
-                      VALUEAGES
-                    </p>
-
-                    <p className={`mt-1 text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 ${activeTheme.text}`}>
-                      GTM Advisory
-                    </p>
-
-                    <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                      Qualifies the account thesis, maps stakeholders, and
-                      coordinates executive motion.
-                    </p>
-                  </motion.div>
-
-                  {/* RIGHT BUTTONS */}
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {networks.map((net, idx) => {
-                      const Icon = net.icon;
-                      const isActive = activeSegment === idx;
-
-                      return (
-                        <button
-                          key={net.title}
-                          type="button"
-                          onClick={() => setActiveSegment(idx)}
-                          onMouseEnter={() => setActiveSegment(idx)}
-                          className={`interactive-card rounded-2xl border p-4 text-left shadow-sm transition-all duration-300 relative overflow-hidden ${
-                            isActive
-                              ? themeClasses[net.accent as keyof typeof themeClasses].rightButton
-                              : "border-slate-200/80 bg-white/95 text-slate-600 hover:border-slate-300 hover:bg-white"
+                        <div
+                          className={`p-5 rounded-2xl border transition-all duration-500 ${
+                            isSelected
+                              ? `${netTheme.cardBg} border-transparent`
+                              : "border-slate-200/80 bg-white text-slate-600 hover:border-slate-300"
                           }`}
                         >
-                          <div className="flex items-start gap-3 min-w-0">
-                            <span
-                              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
-                                isActive
-                                  ? themeClasses[net.accent as keyof typeof themeClasses].rightButtonIcon
-                                  : "bg-slate-100 text-slate-500"
-                              }`}
-                            >
-                              <Icon size={16} />
-                            </span>
-
-                            <div className="min-w-0 flex-1">
-                              <p
-                                className={`text-xs font-extrabold uppercase tracking-wide leading-tight transition-colors duration-300 ${
-                                  isActive
-                                    ? "text-slate-950"
-                                    : "text-slate-700"
-                                }`}
-                              >
-                                {net.title}
-                              </p>
-
-                              <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
-                                {net.subtitle}
-                              </p>
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* DESKTOP ORIGINAL CONNECTOR LAYOUT */}
-                <div className="relative z-10 hidden lg:flex h-full items-center justify-between gap-4">
-                  {/* LEFT */}
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    className="glass-effect w-[27%] rounded-2xl p-5 text-center border-slate-200/80"
-                  >
-                    <span className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white">
-                      <Cpu size={22} className="stroke-[1.8]" />
-                    </span>
-
-                    <p className="text-sm xl:text-base font-extrabold text-slate-950">
-                      Global Product Company
-                    </p>
-
-                    <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-500">
-                      SaaS, AI, automation, and enterprise software teams
-                      seeking India growth.
-                    </p>
-                  </motion.div>
-
-                  {/* CENTER */}
-                  <motion.div
-                    key={activeSegment}
-                    initial={{ scale: 0.96, opacity: 0.82 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.25 }}
-                    className={`relative w-[27%] rounded-2xl border-2 p-5 text-center shadow-xl backdrop-blur-md transition-all duration-300 ${activeTheme.cardBg}`}
-                  >
-                    <span
-                      className={`absolute -inset-2 rounded-2xl border animate-pulse-slow transition-all duration-300 ${activeTheme.cardPulse}`}
-                    />
-
-                    <span
-                      className={`mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl shadow-inner transition-all duration-300 ${activeTheme.cardZapBg}`}
-                    >
-                      <Zap size={22} className="animate-pulse" />
-                    </span>
-
-                    <p className="break-words text-base xl:text-lg font-black uppercase tracking-tight text-slate-950">
-                      VALUEAGES
-                    </p>
-
-                    <p className={`mt-1 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${activeTheme.text}`}>
-                      GTM Advisory
-                    </p>
-
-                    <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-600">
-                      Qualifies the account thesis, maps stakeholders, and
-                      coordinates executive motion.
-                    </p>
-                  </motion.div>
-
-                  {/* RIGHT */}
-                  <div className="grid w-[30%] h-full grid-rows-3 gap-4 py-2 self-stretch">
-                    {networks.map((net, idx) => {
-                      const Icon = net.icon;
-                      const isActive = activeSegment === idx;
-
-                      return (
-                        <div
-                          key={net.title}
-                          className="flex items-center min-w-0"
-                        >
-                          <button
-                            type="button"
-                            onClick={() => setActiveSegment(idx)}
-                            onMouseEnter={() => setActiveSegment(idx)}
-                            className={`w-full interactive-card rounded-xl border p-3 text-left shadow-sm transition-all duration-300 relative overflow-hidden ${
-                              isActive
-                                ? themeClasses[net.accent as keyof typeof themeClasses].rightButton
-                                : "border-slate-200/80 bg-white/95 text-slate-600 hover:border-slate-300 hover:bg-white"
-                            }`}
-                          >
-                            <div className="flex items-center gap-2 min-w-0">
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-3 min-w-0">
                               <span
-                                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${
-                                  isActive
-                                    ? themeClasses[net.accent as keyof typeof themeClasses].rightButtonIcon
+                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
+                                  isSelected
+                                    ? netTheme.rightButtonIcon
                                     : "bg-slate-100 text-slate-500"
                                 }`}
                               >
-                                <Icon size={14} />
+                                <Icon size={18} />
                               </span>
-
-                              <div className="min-w-0 flex-1">
+                              <div className="min-w-0">
                                 <p
-                                  className={`text-[10px] xl:text-xs font-extrabold uppercase tracking-wide leading-tight transition-colors duration-300 ${
-                                    isActive
-                                      ? "text-slate-950"
-                                      : "text-slate-700"
+                                  className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
+                                    isSelected ? "text-slate-950" : "text-slate-700"
                                   }`}
                                 >
                                   {net.title}
                                 </p>
-
-                                <p className="mt-1 text-[9px] xl:text-[10px] leading-relaxed opacity-75 text-slate-500">
+                                <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
                                   {net.subtitle}
                                 </p>
                               </div>
                             </div>
-                          </button>
+
+                            {isSelected && (
+                              <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
+                                Active
+                              </span>
+                            )}
+                          </div>
+
+                          <motion.div
+                            initial={false}
+                            animate={{
+                              height: isSelected ? "auto" : 0,
+                              opacity: isSelected ? 1 : 0,
+                              marginTop: isSelected ? 14 : 0,
+                            }}
+                            transition={{ duration: 0.35, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-xs sm:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
+                              {net.description}
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                              {net.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </motion.div>
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                      </BorderGlow>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* DESKTOP ORIGINAL CONNECTOR LAYOUT (Consolidated and Centered) */}
+            <div className="relative z-10 hidden lg:block h-[580px] w-full">
+              {/* LEFT CARD: Global Product Company (w-[22%] left-0) */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[22%] h-fit">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="glass-effect w-full rounded-2xl p-6 text-center border-slate-200/80 shadow-lg"
+                >
+                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-md">
+                    <Cpu size={22} className="stroke-[1.8]" />
+                  </span>
+
+                  <p className="text-sm xl:text-base font-extrabold text-slate-950">
+                    Global Product Company
+                  </p>
+
+                  <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-500">
+                    SaaS, AI, automation, and enterprise software teams seeking India growth.
+                  </p>
+                </motion.div>
               </div>
 
-              {/* FOOTER */}
-              <div className="glass-effect relative z-20 mt-6 rounded-2xl p-4 border-slate-200/80 shadow-lg bg-white">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-3">
-                    <span
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300 ${
-                        accentClasses[active.accent as keyof typeof accentClasses]
-                      }`}
-                    >
-                      <ActiveIcon size={18} />
-                    </span>
+              {/* CENTER CARD: VALUEAGES GTM Advisory (w-[22%] absolute-center) */}
+              <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[22%] h-fit">
+                <motion.div
+                  key={activeSegment}
+                  initial={{ scale: 0.96, opacity: 0.82 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.25 }}
+                  className={`relative w-full rounded-2xl border-2 p-6 text-center shadow-2xl backdrop-blur-md transition-all duration-300 ${activeTheme.cardBg}`}
+                >
+                  <span
+                    className={`absolute -inset-2 rounded-2xl border animate-pulse-slow transition-all duration-300 ${activeTheme.cardPulse}`}
+                  />
 
-                    <div className="min-w-0">
-                      <p className="text-sm font-extrabold text-slate-950">
-                        Active path: {active.title}
-                      </p>
-
-                      <p className="text-xs leading-relaxed text-slate-500">
-                        Client thesis → VALUEAGES qualification → executive
-                        introduction.
-                      </p>
-                    </div>
-                  </div>
-
-                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-emerald-600">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
-                    Connected <ArrowRight size={12} />
+                  <span
+                    className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-inner transition-all duration-300 ${activeTheme.cardZapBg}`}
+                  >
+                    <Zap size={22} className="animate-pulse" />
                   </span>
-                </div>
+
+                  <p className="break-words text-base xl:text-lg font-black uppercase tracking-tight text-slate-950">
+                    VALUEAGES
+                  </p>
+
+                  <p className={`mt-1 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${activeTheme.text}`}>
+                    GTM Advisory
+                  </p>
+
+                  <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-600">
+                    Qualifies the account thesis, maps stakeholders, and coordinates executive motion.
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* RIGHT STACK: 3 Interactive Detailed Accordion Cards (w-[32%] right-0) */}
+              <div className="absolute right-0 top-0 bottom-0 w-[32%] grid grid-rows-3 gap-4 py-2">
+                {networks.map((net, idx) => {
+                  const Icon = net.icon;
+                  const isSelected = activeSegment === idx;
+                  const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
+
+                  return (
+                    <div key={net.title} className="flex items-center h-full">
+                      <button
+                        type="button"
+                        onClick={() => setActiveSegment(idx)}
+                        onMouseEnter={() => setActiveSegment(idx)}
+                        className="w-full text-left focus:outline-hidden"
+                      >
+                        <BorderGlow
+                          className={`w-full transition-all duration-500 overflow-hidden ${
+                            isSelected
+                              ? "shadow-lg opacity-100 scale-[1.01]"
+                              : "opacity-80 hover:opacity-95"
+                          }`}
+                          edgeSensitivity={isSelected ? 30 : 50}
+                          glowColor={netTheme.glowBase}
+                          backgroundColor="transparent"
+                          borderRadius={20}
+                          glowRadius={isSelected ? 60 : 0}
+                          glowIntensity={isSelected ? 1.5 : 0}
+                          animated={isSelected}
+                          colors={netTheme.glowColors}
+                        >
+                          <div
+                            className={`p-5 rounded-2xl border transition-all duration-500 ${
+                              isSelected
+                                ? `${netTheme.cardBg} border-transparent`
+                                : "border-slate-200/80 bg-white/95 text-slate-600 hover:border-slate-300 hover:bg-white"
+                            }`}
+                          >
+                            {/* Card Header */}
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="flex items-center gap-3 min-w-0">
+                                <span
+                                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
+                                    isSelected
+                                      ? netTheme.rightButtonIcon
+                                      : "bg-slate-100 text-slate-500"
+                                  }`}
+                                >
+                                  <Icon size={18} />
+                                </span>
+                                <div className="min-w-0">
+                                  <p
+                                    className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
+                                      isSelected ? "text-slate-950" : "text-slate-700"
+                                    }`}
+                                  >
+                                    {net.title}
+                                  </p>
+                                  <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
+                                    {net.subtitle}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {isSelected && (
+                                <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
+                                  Active
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Expanded Content with Smooth Height Reveal */}
+                            <motion.div
+                              initial={false}
+                              animate={{
+                                height: isSelected ? "auto" : 0,
+                                opacity: isSelected ? 1 : 0,
+                                marginTop: isSelected ? 14 : 0,
+                              }}
+                              transition={{ duration: 0.35, ease: "easeInOut" }}
+                              className="overflow-hidden"
+                            >
+                              <p className="text-xs xl:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
+                                {net.description}
+                              </p>
+
+                              <div className="flex flex-wrap gap-2">
+                                {net.tags.map((tag) => (
+                                  <span
+                                    key={tag}
+                                    className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                            </motion.div>
+                          </div>
+                        </BorderGlow>
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
-        </div>
 
-        {/* BOTTOM TAG */}
-        <p className="mx-auto mt-12 flex w-fit max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-center text-xs font-semibold text-slate-500 shadow-sm">
-          <Sparkles
-            size={14}
-            className="shrink-0 text-brand-teal"
-          />
-          Bengaluru, Mumbai, Pune, Chennai, Gurgaon, and Hyderabad enterprise
-          hubs.
-        </p>
+          {/* ACTIVE FOOTER BAR */}
+          <div className="glass-effect relative z-20 mt-8 rounded-2xl p-4 border border-slate-200/80 shadow-lg bg-white">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <span
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300 ${
+                    accentClasses[active.accent as keyof typeof accentClasses]
+                  }`}
+                >
+                  <ActiveIcon size={18} />
+                </span>
+
+                <div className="min-w-0">
+                  <p className="text-sm font-extrabold text-slate-950">
+                    Active path: {active.title}
+                  </p>
+
+                  <p className="text-xs leading-relaxed text-slate-500">
+                    Client thesis → VALUEAGES qualification → executive introduction.
+                  </p>
+                </div>
+              </div>
+
+              <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-emerald-600">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
+                Connected <ArrowRight size={12} />
+              </span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

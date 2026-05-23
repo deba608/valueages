@@ -28,11 +28,15 @@ export default function Hero() {
         aria-hidden="true"
       />
       <div
-        className="absolute right-1/4 top-16 h-[38rem] w-[38rem] rounded-full bg-brand-teal/8 blur-3xl"
+        className="absolute right-1/4 top-16 h-[38rem] w-[38rem] rounded-full bg-brand-teal/8 blur-3xl animate-float"
         aria-hidden="true"
       />
       <div
-        className="absolute left-1/4 bottom-16 h-[28rem] w-[28rem] rounded-full bg-brand-tan/10 blur-3xl"
+        className="absolute left-1/4 bottom-16 h-[28rem] w-[28rem] rounded-full bg-brand-tan/10 blur-3xl animate-float-slow"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute left-[8%] top-1/3 h-[16rem] w-[16rem] rounded-full bg-brand-teal/4 blur-3xl animate-float-delayed"
         aria-hidden="true"
       />
 
