@@ -16,7 +16,7 @@ function StatCard({
   subLabel,
 }: StatItemProps) {
   return (
-    <div className="min-w-55 sm:min-w-60 rounded-2xl bg-white/40 dark:bg-slate-900/30 backdrop-blur-md px-4 py-4">
+    <div className="min-w-55 sm:min-w-60 rounded-2xl bg-white/40 backdrop-blur-md px-4 py-4">
       <div className="flex items-baseline gap-0.5">
         <span className="text-3xl sm:text-4xl font-extrabold text-brand-teal tracking-tight">
           {value}
@@ -27,12 +27,12 @@ function StatCard({
         </span>
       </div>
 
-      <p className="text-sm font-bold text-slate-900 dark:text-slate-100 mt-2 leading-snug">
+      <p className="text-sm font-bold text-slate-900 mt-2 leading-snug">
         {label}
       </p>
 
       {subLabel && (
-        <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+        <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
           {subLabel}
         </p>
       )}
@@ -74,31 +74,28 @@ export default function TrustBar() {
       aria-label="Key metrics"
     >
       {/* Fade edges */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-white dark:from-[#020617] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-white to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-white to-transparent" />
 
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-white dark:from-[#020617] to-transparent" />
-
-      <div className="max-w-7xl mx-auto relative">
-        <motion.div
-          className="flex gap-4 w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            duration: 24,
-            ease: "linear",
-          }}
-        >
-          {[...stats, ...stats].map((stat, index) => (
-            <StatCard
-              key={index}
-              value={stat.value}
-              suffix={stat.suffix}
-              label={stat.label}
-              subLabel={stat.subLabel}
-            />
-          ))}
-        </motion.div>
-      </div>
+      <motion.div
+        className="flex gap-4 w-max"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          repeat: Infinity,
+          duration: 28,
+          ease: "linear",
+        }}
+      >
+        {[...stats, ...stats, ...stats, ...stats].map((stat, index) => (
+          <StatCard
+            key={index}
+            value={stat.value}
+            suffix={stat.suffix}
+            label={stat.label}
+            subLabel={stat.subLabel}
+          />
+        ))}
+      </motion.div>
     </section>
   );
 }

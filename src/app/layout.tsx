@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter, Playfair_Display, Geist } from "next/font/google";
-import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -59,18 +57,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn("h-full", "antialiased", inter.variable, playfair.variable, "font-sans", geist.variable)}
-      suppressHydrationWarning
     >
-      <head>
-        <Script src="/theme-init.js" strategy="beforeInteractive" />
-      </head>
       <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-[var(--foreground)] antialiased">
         <a href="#main-content" className="skip-link sr-only focus:not-sr-only">
           Skip to main content
         </a>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

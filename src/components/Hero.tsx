@@ -1,80 +1,103 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, Globe2, LineChart, Users2 } from "lucide-react";
 import BlurText from "./BlurText";
+
+const proofPoints = [
+  { icon: Globe2, label: "India GTM", value: "Market entry" },
+  { icon: Users2, label: "CXO Access", value: "Enterprise buyers" },
+  { icon: Building2, label: "GCC + GSI", value: "Partner motions" },
+  { icon: LineChart, label: "Pipeline", value: "Value selling" },
+];
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-36 pb-20 md:pt-48 md:pb-28"
+      className="relative min-h-[96vh] overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28 flex items-center"
       aria-label="Introduction"
     >
-      {/* Decorative clean background mesh - subtle and elegant with no messy mud layers */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04] pointer-events-none" style={{ backgroundImage: "radial-gradient(#109B82 1px, transparent 1px)", backgroundSize: "32px 32px" }} aria-hidden="true" />
+      {/* Background layers */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.98)_0%,rgba(240,249,246,0.55)_60%,rgba(255,255,255,0.92)_100%)]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white to-transparent"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute right-1/4 top-16 h-[38rem] w-[38rem] rounded-full bg-brand-teal/8 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute left-1/4 bottom-16 h-[28rem] w-[28rem] rounded-full bg-brand-tan/10 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="container relative z-10 mx-auto max-w-5xl px-6 sm:px-8 text-center">
       
-      {/* Sleek ambient spot glow in the center */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-teal/5 dark:bg-brand-teal/[0.07] rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-
-      <div className="container relative z-10 mx-auto max-w-5xl px-6 sm:px-8 text-center flex flex-col items-center">
-        
-        {/* Eyebrow badge */}
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="section-eyebrow mb-8 px-4 py-1.5 border border-brand-teal/20 bg-brand-teal/[0.04] dark:bg-brand-teal/10 shadow-[0_2px_12px_rgba(16,155,130,0.06)]"
-        >
-          <Sparkles size={13} className="text-brand-teal shrink-0" />
-          Enterprise GTM advisory for India
-        </motion.span>
-
-        {/* Main Heading with premium BlurText animation */}
-        <div className="mb-6 max-w-4xl flex justify-center">
+        {/* Headline — BlurText word-by-word animation */}
+        <div className="mb-8 mx-auto max-w-5xl">
           <BlurText
             text="Turn India enterprise access into a disciplined revenue motion."
-            delay={80}
+            delay={65}
             animateBy="words"
             direction="bottom"
-            className="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.12] tracking-tight text-slate-950 dark:text-white justify-center text-center font-bold"
-            stepDuration={0.4}
+            className="font-serif text-4xl font-bold leading-[1.08] text-slate-950 sm:text-5xl md:text-6xl"
+            stepDuration={0.35}
           />
         </div>
 
-        {/* Sub-paragraph */}
+        {/* Sub-heading */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-10 max-w-3xl text-slate-600 dark:text-slate-400 text-base sm:text-lg md:text-xl leading-relaxed font-normal"
+          transition={{ duration: 0.6, delay: 0.38 }}
+          className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg"
         >
-          VALUEAGES helps global product and SaaS companies build investor-grade GTM strategy, 
-          executive access, and enterprise sales execution across BFSI, GCC, and GSI ecosystems.
+          ValueEdge helps product companies turn UnifyApps capability into executive conversations,
+          partner-led pipeline, and enterprise-ready GTM narratives across India.
         </motion.p>
 
-        {/* Call to Actions */}
+        {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.52 }}
-          className="mb-14 flex w-full flex-col justify-center gap-4 sm:w-auto sm:flex-row"
+          className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
-          <a
-            href="#contact"
-            className="primary-button group btn-premium px-8 py-4 text-base shadow-lg shadow-brand-teal/20"
-          >
-            Discuss market entry
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          <a href="#contact" className="primary-button group btn-premium px-8 py-4 text-base">
+            Discuss Market Entry
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </a>
-          <a
-            href="#cxo"
-            className="secondary-button px-8 py-4 text-base"
-          >
-            View CXO network
+          <a href="#cxo" className="secondary-button px-8 py-4 text-base">
+            View CXO Network
           </a>
         </motion.div>
 
+        {/* Proof-point chips */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.66 }}
+          className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4 max-w-2xl mx-auto"
+        >
+          {proofPoints.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-sm backdrop-blur text-center"
+              >
+                <Icon size={18} className="mx-auto mb-3 text-brand-teal" aria-hidden="true" />
+                <p className="text-xs font-black uppercase tracking-wide text-slate-900">{item.label}</p>
+                <p className="mt-1 text-[11px] font-medium text-slate-500">{item.value}</p>
+              </div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );
