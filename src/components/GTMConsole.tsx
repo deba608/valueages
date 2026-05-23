@@ -19,41 +19,61 @@ const channelData = {
     title: "BFSI Sector",
     desc: "Targeting India's premier private banks, public financial institutions, and insurance leaders.",
     stages: [
-      { label: "Market thesis", value: "India ICP", width: "78%" },
-      { label: "Executive access", value: "CXO routes", width: "86%" },
-      { label: "Revenue motion", value: "GTM plays", width: "72%" },
+      { label: "Market Thesis", value: "India ICP", width: "78%" },
+      { label: "Executive Access", value: "CXO Routes", width: "86%" },
+      { label: "Revenue Motion", value: "GTM Plays", width: "72%" },
     ],
     badge: "Enterprise Ready",
   },
+
   GCCs: {
     title: "Global Capability Centers",
-    desc: "Plugging global products directly into the innovation and technology centers of Fortune 500 GCCs.",
+    desc: "Connecting enterprise software products directly into Fortune 500 innovation and engineering hubs.",
     stages: [
-      { label: "Market thesis", value: "Fortune 500 GCCs", width: "85%" },
-      { label: "Executive access", value: "Site Leaders", width: "80%" },
-      { label: "Revenue motion", value: "Co-innovation", width: "78%" },
+      { label: "Market Thesis", value: "Fortune 500 GCCs", width: "85%" },
+      { label: "Executive Access", value: "Site Leaders", width: "80%" },
+      { label: "Revenue Motion", value: "Co-Innovation", width: "78%" },
     ],
     badge: "Scale Qualified",
   },
+
   GSIs: {
     title: "Global System Integrators",
-    desc: "Building joint co-sell programs with top system integrators to scale integration pipelines rapidly.",
+    desc: "Building strategic co-sell alliances with leading global integration and consulting ecosystems.",
     stages: [
-      { label: "Market thesis", value: "SI Alliances", width: "70%" },
-      { label: "Executive access", value: "Alliance VPs", width: "88%" },
-      { label: "Revenue motion", value: "Co-sell plays", width: "65%" },
+      { label: "Market Thesis", value: "SI Alliances", width: "70%" },
+      { label: "Executive Access", value: "Alliance VPs", width: "88%" },
+      { label: "Revenue Motion", value: "Co-Sell Plays", width: "65%" },
     ],
     badge: "Alliance Driven",
   },
 };
 
 export default function GTMConsole() {
-  const [activeChannel, setActiveChannel] = useState<"BFSI" | "GCCs" | "GSIs">("BFSI");
+  const [activeChannel, setActiveChannel] =
+    useState<"BFSI" | "GCCs" | "GSIs">("BFSI");
 
   const nodes = [
-    { id: "BFSI", label: "BFSI", detail: "Banks & insurers", icon: Building2 },
-    { id: "GCCs", label: "GCCs", detail: "Capability centers", icon: Network },
-    { id: "GSIs", label: "GSIs", detail: "Co-sell partners", icon: Users },
+    {
+      id: "BFSI",
+      label: "BFSI",
+      detail: "Banks & Insurers",
+      icon: Building2,
+    },
+
+    {
+      id: "GCCs",
+      label: "GCCs",
+      detail: "Capability Centers",
+      icon: Network,
+    },
+
+    {
+      id: "GSIs",
+      label: "GSIs",
+      detail: "Co-Sell Partners",
+      icon: Users,
+    },
   ] as const;
 
   const currentData = channelData[activeChannel];
@@ -61,148 +81,313 @@ export default function GTMConsole() {
   return (
     <section
       id="gtm-console"
-      className="section-shell theme-section-light"
+      className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
       aria-labelledby="console-title"
     >
-      {/* Background ambient light */}
-      <div className="absolute left-1/3 bottom-10 w-96 h-96 bg-brand-teal/5 dark:bg-brand-teal/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+      {/* Ambient Background */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-[10%] top-20 h-[380px] w-[380px] rounded-full bg-brand-teal/10 blur-[120px]" />
+
+        <div className="absolute right-[5%] bottom-0 h-[320px] w-[320px] rounded-full bg-brand-rust/10 blur-[120px]" />
+
+        <div
+          className="absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.08) 1px, transparent 1px)",
+            backgroundSize: "42px 42px",
+          }}
+        />
+
+        {/* Floating blur */}
+        <motion.div
+          animate={{
+            y: [0, -20, 0],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 10,
+            ease: "easeInOut",
+          }}
+          className="absolute right-[20%] top-[20%] h-32 w-32 rounded-full bg-brand-teal/10 blur-3xl"
+        />
+      </div>
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
-          
-          {/* Left Column: Context and Value Proposition */}
-          <div className="flex flex-col items-start text-left lg:col-span-6">
-            <span className="section-eyebrow mb-4">
-              <Sparkles size={13} />
+        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
+          {/* LEFT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5"
+          >
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
+              <Sparkles size={13} className="text-brand-teal" />
               Disciplined Sales Execution
-            </span>
-            
+            </div>
+
+            {/* Heading */}
             <h2
               id="console-title"
-              className="mb-6 font-serif text-3xl font-semibold leading-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl"
+              className="mt-6 text-4xl font-black leading-[1.02] tracking-tight text-slate-950 dark:text-white sm:text-5xl xl:text-6xl"
             >
-              The Investor-Ready GTM Framework.
+              The Investor-Ready{" "}
+              <span className="bg-gradient-to-r from-brand-teal to-emerald-400 bg-clip-text text-transparent">
+                GTM Framework
+              </span>
             </h2>
-            
-            <p className="mb-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
-              We translate market entries into a predictable, visible revenue motion. 
-              By mapping the exact channels and qualifying pipeline routes, we guarantee clear 
-              commercial trajectory with zero administrative or delivery drag.
+
+            {/* Paragraph */}
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
+              We translate enterprise market entry into a measurable commercial
+              engine through mapped accounts, executive access, and structured
+              revenue orchestration.
             </p>
 
-            <div className="space-y-4 w-full mb-8">
-              <div className="flex gap-4 items-start p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-[#070b14]/50">
-                <span className="p-2.5 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0 mt-0.5">
-                  <ShieldCheck size={18} />
-                </span>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white">Zero Delivery Overhead</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    Unlike standard consultancies, we focus strictly on high-trust relationships, account strategy, and pipeline acceleration.
-                  </p>
-                </div>
-              </div>
+            {/* Feature Cards */}
+            <div className="mt-10 space-y-4">
+              {/* Card 1 */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.25 }}
+                className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/70 p-5 shadow-[0_10px_35px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-slate-800 dark:bg-[#0B1120]/60"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/[0.04] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              <div className="flex gap-4 items-start p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-[#070b14]/50">
-                <span className="p-2.5 rounded-lg bg-brand-rust/10 text-brand-rust shrink-0 mt-0.5">
-                  <BarChart3 size={18} />
-                </span>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white">Active Channel Metrics</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    Select a channel on the interactive console to view real-time ICP alignment, executive access quality, and active pipeline plays.
-                  </p>
+                <div className="relative flex gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-teal/10 text-brand-teal shadow-[0_0_30px_rgba(16,155,130,0.18)]">
+                    <ShieldCheck size={20} />
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Zero Delivery Overhead
+                    </h4>
+
+                    <p className="mt-1.5 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                      Pure GTM acceleration focused on relationships, account
+                      strategy, and executive revenue motion.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
+
+              {/* Card 2 */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.25 }}
+                className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/70 p-5 shadow-[0_10px_35px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-slate-800 dark:bg-[#0B1120]/60"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-rust/[0.05] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                <div className="relative flex gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-rust/10 text-brand-rust shadow-[0_0_30px_rgba(219,97,106,0.18)]">
+                    <BarChart3 size={20} />
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Live Channel Metrics
+                    </h4>
+
+                    <p className="mt-1.5 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                      Dynamic visibility into ICP alignment, executive access,
+                      and active enterprise pipeline health.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <a href="#contact" className="primary-button group btn-premium px-7 py-3.5 text-base">
+            {/* CTA */}
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              href="#contact"
+              className="group relative mt-10 inline-flex items-center gap-2 overflow-hidden rounded-xl bg-slate-950 px-7 py-3.5 text-sm font-semibold text-white shadow-2xl transition-all dark:bg-white dark:text-slate-900"
+            >
+              <span className="relative z-10 flex items-center gap-2">
                 Deploy GTM Advisory
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-          </div>
+                <ArrowRight
+                  size={17}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </span>
 
-          {/* Right Column: Relocated and Upgraded Interactive Console */}
-          <div className="lg:col-span-6 w-full">
-            <div className="surface-panel relative z-10 rounded-2xl p-5 backdrop-blur-md sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-2xl">
-              {/* Subtle top decoration grid lines */}
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#109B82 1px, transparent 1px)", backgroundSize: "20px 20px" }} aria-hidden="true" />
-              
-              <div className="relative z-10 mb-6 flex items-center justify-between gap-4 border-b border-slate-200 pb-4 dark:border-slate-700">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Investor-ready GTM console</p>
-                  <h3 className="mt-2 text-xl font-extrabold tracking-tight text-slate-950 dark:text-white">India revenue entry map</h3>
-                </div>
-                <div className="rounded-2xl border border-brand-teal/20 bg-brand-teal/10 p-3 text-brand-teal shadow-inner">
-                  <BarChart3 size={22} className="animate-pulse" />
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-teal to-emerald-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            </motion.a>
+          </motion.div>
+
+          {/* RIGHT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7"
+          >
+            <div className="relative overflow-hidden rounded-[30px] border border-slate-200/70 bg-white/75 p-5 shadow-[0_25px_80px_rgba(0,0,0,0.08)] backdrop-blur-2xl dark:border-slate-800 dark:bg-[#0B1120]/70 sm:p-7">
+              {/* Decorative Layer */}
+              <div className="absolute inset-0 opacity-[0.03]">
+                <div
+                  className="h-full w-full"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(#109B82 1px, transparent 1px)",
+                    backgroundSize: "20px 20px",
+                  }}
+                />
               </div>
 
-              {/* Interactive Node Selector */}
-              <div className="relative z-10 grid grid-cols-3 gap-3 mb-6">
+              {/* Glow border */}
+              <div className="pointer-events-none absolute inset-0 rounded-[30px] border border-white/10" />
+
+              {/* Header */}
+              <div className="relative z-10 flex items-center justify-between border-b border-slate-200/60 pb-5 dark:border-slate-800">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">
+                    Investor-ready GTM console
+                  </p>
+
+                  <h3 className="mt-2 text-xl font-black tracking-tight text-slate-950 dark:text-white sm:text-2xl">
+                    India Revenue Entry Map
+                  </h3>
+                </div>
+
+                <motion.div
+                  animate={{
+                    y: [0, -4, 0],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 3,
+                  }}
+                  className="flex h-12 w-12 items-center justify-center rounded-2xl border border-brand-teal/20 bg-brand-teal/10 text-brand-teal"
+                >
+                  <BarChart3 size={22} />
+                </motion.div>
+              </div>
+
+              {/* CHANNEL SELECTOR */}
+              <div className="relative z-10 mt-6 grid grid-cols-3 gap-3">
                 {nodes.map((node) => {
                   const Icon = node.icon;
                   const isActive = activeChannel === node.id;
+
                   return (
-                    <button
-                      key={node.label}
-                      type="button"
+                    <motion.button
+                      key={node.id}
+                      whileHover={{ y: -4 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setActiveChannel(node.id)}
-                      className={`rounded-xl border p-4 text-center cursor-pointer transition-all duration-300 ${
+                      className={`group relative overflow-hidden rounded-2xl border p-3 sm:p-4 transition-all duration-300 ${
                         isActive
-                          ? "border-brand-teal bg-brand-teal/10 text-brand-teal shadow-lg shadow-brand-teal/10"
-                          : "border-slate-200/80 bg-white/80 text-slate-600 dark:border-slate-800/80 dark:bg-slate-900/40 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-white"
+                          ? "border-brand-teal/40 bg-brand-teal/10 shadow-lg shadow-brand-teal/10"
+                          : "border-slate-200/70 bg-white/60 dark:border-slate-800 dark:bg-slate-900/40"
                       }`}
                     >
-                      <Icon size={20} className="mx-auto mb-2 transition-transform duration-300 group-hover:scale-110" />
-                      <p className="text-xs font-extrabold uppercase tracking-wide">{node.label}</p>
-                      <p className="mt-1 text-[10px] font-medium leading-tight opacity-75">{node.detail}</p>
-                    </button>
+                      {isActive && (
+                        <motion.div
+                          layoutId="active-tab"
+                          className="absolute inset-0 bg-gradient-to-br from-brand-teal/10 to-transparent"
+                        />
+                      )}
+
+                      <div className="relative z-10">
+                        <Icon
+                          size={20}
+                          className={`mx-auto mb-2 transition-transform duration-300 group-hover:scale-110 ${
+                            isActive
+                              ? "text-brand-teal"
+                              : "text-slate-500 dark:text-slate-400"
+                          }`}
+                        />
+
+                        <p
+                          className={`text-[11px] font-extrabold uppercase tracking-wide ${
+                            isActive
+                              ? "text-brand-teal"
+                              : "text-slate-800 dark:text-slate-200"
+                          }`}
+                        >
+                          {node.label}
+                        </p>
+
+                        <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-500">
+                          {node.detail}
+                        </p>
+                      </div>
+                    </motion.button>
                   );
                 })}
               </div>
 
-              {/* Content Panel showing pipeline signal */}
-              <div className="surface-card relative z-10 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-[#070b14]/90 shadow-inner">
+              {/* PIPELINE PANEL */}
+              <div className="relative z-10 mt-6 overflow-hidden rounded-3xl border border-slate-200/70 bg-white/85 p-5 shadow-inner dark:border-slate-800 dark:bg-slate-900/50 sm:p-6">
+                {/* top blur */}
+                <div className="absolute right-0 top-0 h-32 w-32 bg-brand-teal/10 blur-3xl" />
+
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeChannel}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.25 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <div className="mb-4 flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-2.5">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-white dark:bg-brand-teal shadow-md">
+                    {/* Header */}
+                    <div className="relative z-10 mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                      <div className="flex gap-3">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-lg dark:bg-brand-teal dark:text-slate-900">
                           <CircleDollarSign size={18} />
-                        </span>
+                        </div>
+
                         <div>
-                          <p className="text-sm font-extrabold text-slate-950 dark:text-white">Pipeline signal: {currentData.title}</p>
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mt-0.5">{currentData.desc}</p>
+                          <h4 className="text-sm font-bold text-slate-950 dark:text-white sm:text-base">
+                            Pipeline Signal: {currentData.title}
+                          </h4>
+
+                          <p className="mt-1 max-w-md text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
+                            {currentData.desc}
+                          </p>
                         </div>
                       </div>
-                      <span className="rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wide text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
+
+                      <div className="self-start rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.15em] text-emerald-600 dark:text-emerald-400">
                         {currentData.badge}
-                      </span>
+                      </div>
                     </div>
 
-                    <div className="space-y-4 mt-6">
-                      {currentData.stages.map((stage) => (
+                    {/* Progress Bars */}
+                    <div className="space-y-5">
+                      {currentData.stages.map((stage, index) => (
                         <div key={stage.label}>
-                          <div className="mb-1.5 flex items-center justify-between text-xs">
-                            <span className="font-bold text-slate-700 dark:text-slate-300">{stage.label}</span>
-                            <span className="font-semibold text-brand-teal">{stage.value}</span>
+                          <div className="mb-2 flex items-center justify-between">
+                            <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                              {stage.label}
+                            </span>
+
+                            <span className="text-xs font-bold text-brand-teal">
+                              {stage.value}
+                            </span>
                           </div>
-                          <div className="h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+
+                          <div className="h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: stage.width }}
-                              transition={{ duration: 0.8, ease: "easeOut" }}
-                              className="h-full rounded-full bg-brand-teal"
-                            />
+                              transition={{
+                                duration: 0.8,
+                                delay: index * 0.08,
+                                ease: "easeOut",
+                              }}
+                              className="relative h-full rounded-full bg-gradient-to-r from-brand-teal to-emerald-400"
+                            >
+                              <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.4),transparent)] animate-[shimmer_2s_infinite]" />
+                            </motion.div>
                           </div>
                         </div>
                       ))}
@@ -211,27 +396,47 @@ export default function GTMConsole() {
                 </AnimatePresence>
               </div>
 
-              {/* Extra value cards inside console */}
-              <div className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-2 mt-6">
-                <div className="surface-card rounded-xl p-4 border border-slate-100 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40">
-                  <ShieldCheck size={18} className="mb-2 text-brand-teal" />
-                  <p className="text-xs font-bold text-slate-900 dark:text-white">No delivery drag</p>
-                  <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Pure advisory and sales speed, bypassing implementation bottlenecks.
+              {/* Bottom Cards */}
+              <div className="relative z-10 mt-5 grid gap-3 sm:grid-cols-2">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="rounded-2xl border border-slate-200/70 bg-white/70 p-4 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/40"
+                >
+                  <ShieldCheck
+                    size={18}
+                    className="mb-3 text-brand-teal"
+                  />
+
+                  <p className="text-xs font-bold text-slate-900 dark:text-white">
+                    No Delivery Drag
                   </p>
-                </div>
-                <div className="surface-card rounded-xl p-4 border border-slate-100 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40">
-                  <CheckCircle2 size={18} className="mb-2 text-brand-teal" />
-                  <p className="text-xs font-bold text-slate-900 dark:text-white">Boardroom clarity</p>
-                  <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Clear client thesis, mapped accounts, and explicit executive motion.
+
+                  <p className="mt-1 text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
+                    Advisory-first execution without implementation complexity.
                   </p>
-                </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="rounded-2xl border border-slate-200/70 bg-white/70 p-4 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/40"
+                >
+                  <CheckCircle2
+                    size={18}
+                    className="mb-3 text-brand-teal"
+                  />
+
+                  <p className="text-xs font-bold text-slate-900 dark:text-white">
+                    Boardroom Clarity
+                  </p>
+
+                  <p className="mt-1 text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
+                    Mapped accounts, executive pathways, and visible GTM
+                    trajectory.
+                  </p>
+                </motion.div>
               </div>
-
             </div>
-          </div>
-
+          </motion.div>
         </div>
       </div>
     </section>
