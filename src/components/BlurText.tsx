@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState, useMemo } from "react";
 
-const buildKeyframes = (from: any, steps: any[]) => {
+const buildKeyframes = (
+  from: Record<string, string | number>,
+  steps: Record<string, string | number>[]
+) => {
   const keys = new Set([...Object.keys(from), ...steps.flatMap(s => Object.keys(s))]);
 
-  const keyframes: Record<string, any[]> = {};
+  const keyframes: Record<string, (string | number)[]> = {};
   keys.forEach(k => {
     keyframes[k] = [from[k], ...steps.map(s => s[k])];
   });
@@ -21,8 +24,8 @@ interface BlurTextProps {
   direction?: "top" | "bottom";
   threshold?: number;
   rootMargin?: string;
-  animationFrom?: any;
-  animationTo?: any[];
+  animationFrom?: Record<string, string | number>;
+  animationTo?: Record<string, string | number>[];
   easing?: (t: number) => number;
   onAnimationComplete?: () => void;
   stepDuration?: number;
@@ -95,12 +98,12 @@ const BlurText = ({
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
-        const spanTransition: any = {
+        const spanTransition = {
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
+          ease: easing,
         };
-        spanTransition.ease = easing;
 
         return (
           <motion.span

@@ -22,7 +22,7 @@ const networks = [
       "Relationship pathways into site leaders, transformation offices, and innovation teams running enterprise platforms from India.",
     tags: ["GCCs", "Innovation hubs", "Shared services"],
     icon: Building2,
-    accent: "slate",
+    accent: "green",
   },
   {
     title: "GSI Alliances",
@@ -37,14 +37,69 @@ const networks = [
 
 const accentClasses = {
   teal: "border-brand-teal/35 bg-brand-teal/10 text-brand-teal",
-  slate: "border-slate-300 bg-slate-100 text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200",
+  green: "border-brand-green/35 bg-brand-green/10 text-brand-green",
   warm: "border-brand-tan/35 bg-brand-tan/10 text-brand-rust",
+};
+
+const themeClasses = {
+  teal: {
+    border: "border-brand-teal",
+    bgLight: "bg-brand-teal/10",
+    bgGradient: "from-white to-brand-teal/3 dark:from-slate-900/90 dark:to-brand-teal/5",
+    shadow: "shadow-brand-teal/5 dark:shadow-brand-teal/10",
+    text: "text-brand-teal",
+    tagActive: "border-brand-teal/25 bg-brand-teal/4 text-brand-teal dark:bg-brand-teal/10",
+    routePill: "bg-brand-teal/10 text-brand-teal border border-brand-teal/20 shadow-[0_0_12px_rgba(16,155,130,0.12)]",
+    cardBg: "border-brand-teal bg-gradient-to-br from-white/95 to-brand-teal/[0.08] dark:from-[#071916]/95 dark:to-[#041513]/95 dark:shadow-brand-teal/20",
+    cardPulse: "border-brand-teal/30",
+    pulseBorder: "border-brand-teal/15",
+    cardZapBg: "bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal shadow-inner shadow-brand-teal/25",
+    glowColor: "rgba(16, 155, 130, 0.25)",
+    laser: "url(#laser-teal)",
+    rightButton: "border-brand-teal bg-linear-to-r from-brand-teal/15 to-brand-teal/5 text-brand-teal shadow-md shadow-brand-teal/15 dark:from-brand-teal/25",
+    rightButtonIcon: "bg-brand-teal text-white shadow-sm shadow-brand-teal/20",
+  },
+  green: {
+    border: "border-brand-green",
+    bgLight: "bg-brand-green/10",
+    bgGradient: "from-white to-brand-green/3 dark:from-slate-900/90 dark:to-brand-green/5",
+    shadow: "shadow-brand-green/5 dark:shadow-brand-green/10",
+    text: "text-brand-green",
+    tagActive: "border-brand-green/25 bg-brand-green/4 text-brand-green dark:bg-brand-green/10",
+    routePill: "bg-brand-green/10 text-brand-green border border-brand-green/20 shadow-[0_0_12px_rgba(79,143,123,0.12)]",
+    cardBg: "border-brand-green bg-gradient-to-br from-white/95 to-brand-green/[0.08] dark:from-[#051815]/95 dark:to-[#021310]/95 dark:shadow-brand-green/20",
+    cardPulse: "border-brand-green/30",
+    pulseBorder: "border-brand-green/15",
+    cardZapBg: "bg-brand-green/10 dark:bg-brand-green/20 text-brand-green shadow-inner shadow-brand-green/25",
+    glowColor: "rgba(79, 143, 123, 0.25)",
+    laser: "url(#laser-green)",
+    rightButton: "border-brand-green bg-linear-to-r from-brand-green/15 to-brand-green/5 text-brand-green shadow-md shadow-brand-green/15 dark:from-brand-green/25",
+    rightButtonIcon: "bg-brand-green text-white shadow-sm shadow-brand-green/20",
+  },
+  warm: {
+    border: "border-brand-rust",
+    bgLight: "bg-brand-tan/10",
+    bgGradient: "from-white to-brand-rust/3 dark:from-slate-900/90 dark:to-brand-rust/5",
+    shadow: "shadow-brand-rust/5 dark:shadow-brand-rust/10",
+    text: "text-brand-rust",
+    tagActive: "border-brand-rust/25 bg-brand-rust/4 text-brand-rust dark:bg-brand-rust/10",
+    routePill: "bg-brand-rust/10 text-brand-rust border border-brand-rust/20 shadow-[0_0_12px_rgba(184,90,58,0.12)]",
+    cardBg: "border-brand-rust bg-gradient-to-br from-white/95 to-brand-rust/[0.08] dark:from-[#1b0f0b]/95 dark:to-[#170a06]/95 dark:shadow-brand-rust/20",
+    cardPulse: "border-brand-rust/30",
+    pulseBorder: "border-brand-rust/15",
+    cardZapBg: "bg-brand-rust/10 dark:bg-brand-rust/20 text-brand-rust shadow-inner shadow-brand-rust/25",
+    glowColor: "rgba(184, 90, 58, 0.25)",
+    laser: "url(#laser-warm)",
+    rightButton: "border-brand-rust bg-linear-to-r from-brand-rust/15 to-brand-rust/5 text-brand-rust shadow-md shadow-brand-rust/15 dark:from-brand-rust/25",
+    rightButtonIcon: "bg-brand-rust text-white shadow-sm shadow-brand-rust/20",
+  },
 };
 
 export default function CXOConnect() {
   const [activeSegment, setActiveSegment] = useState(0);
   const active = networks[activeSegment];
   const ActiveIcon = active.icon;
+  const activeTheme = themeClasses[active.accent as keyof typeof themeClasses];
 
   return (
     <section
@@ -63,7 +118,7 @@ export default function CXOConnect() {
           <h2 id="cxo-title" className="mb-4 font-serif text-3xl font-semibold leading-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
             A clear bridge from global product teams to Indian enterprise buyers.
           </h2>
-            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400">
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400">
             The network is presented as a disciplined access model: client thesis, VALUEAGES qualification, and direct
             routes to decision makers who can sponsor enterprise adoption.
           </p>
@@ -74,6 +129,7 @@ export default function CXOConnect() {
             {networks.map((net, idx) => {
               const Icon = net.icon;
               const isActive = activeSegment === idx;
+              const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
 
               return (
                 <button
@@ -83,8 +139,8 @@ export default function CXOConnect() {
                   onFocus={() => setActiveSegment(idx)}
                   onClick={() => setActiveSegment(idx)}
                   className={`surface-card interactive-card group rounded-2xl p-5 text-left transition-all duration-300 ${
-                      isActive
-                      ? "border-brand-teal bg-linear-to-br from-white to-brand-teal/3 dark:from-slate-900/90 dark:to-brand-teal/5 shadow-xl shadow-brand-teal/5 dark:shadow-brand-teal/10"
+                    isActive
+                      ? `${netTheme.border} bg-linear-to-br ${netTheme.bgGradient} shadow-xl ${netTheme.shadow}`
                       : "hover:border-slate-300 hover:bg-slate-50/50 dark:hover:border-slate-700 dark:hover:bg-slate-900/30"
                   }`}
                 >
@@ -94,20 +150,20 @@ export default function CXOConnect() {
                     </span>
                     <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
                       isActive 
-                        ? "bg-brand-teal/10 text-brand-teal border border-brand-teal/20 shadow-[0_0_12px_rgba(16,155,130,0.12)]" 
+                        ? netTheme.routePill
                         : "bg-slate-50 text-slate-400 dark:bg-slate-800/80"
                     }`}>
                       {isActive ? "Selected route" : "Access route"}
                     </span>
                   </div>
                   <h3 className="text-lg font-extrabold text-slate-950 dark:text-white transition-colors duration-300">{net.title}</h3>
-                  <p className="mt-1 text-xs font-bold uppercase tracking-wide text-brand-teal">{net.subtitle}</p>
+                  <p className={`mt-1 text-xs font-bold uppercase tracking-wide transition-colors duration-300 ${netTheme.text}`}>{net.subtitle}</p>
                   <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{net.description}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {net.tags.map((tag) => (
                       <span key={tag} className={`rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
                         isActive
-                          ? "border-brand-teal/25 bg-brand-teal/4 text-brand-teal dark:bg-brand-teal/10"
+                          ? netTheme.tagActive
                           : "border-slate-200 bg-slate-50 text-slate-500 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-400"
                       }`}>
                         {tag}
@@ -122,7 +178,7 @@ export default function CXOConnect() {
           <div className="order-1 lg:order-2 lg:col-span-7">
             <div className="premium-card relative min-h-130 overflow-hidden rounded-2xl p-4 sm:p-7">
               <div className="absolute inset-0 diagram-grid opacity-70" aria-hidden="true" />
-              <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-teal/15 animate-pulse-slow" aria-hidden="true" />
+              <div className={`absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border ${activeTheme.pulseBorder} animate-pulse-slow transition-all duration-300`} aria-hidden="true" />
               <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/80 dark:border-slate-700" aria-hidden="true" />
 
               {/* Dedicated relative diagram area to mathematically guarantee pixel-perfect connector lines */}
@@ -140,27 +196,41 @@ export default function CXOConnect() {
                       <feGaussianBlur stdDeviation="3" result="blur" />
                       <feComposite in="SourceGraphic" in2="blur" operator="over" />
                     </filter>
-                    <linearGradient id="laser-active" x1="0%" y1="0%" x2="100%" y2="0%">
+                    
+                    {/* Teal Accent Gradient */}
+                    <linearGradient id="laser-teal" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#109B82" stopOpacity="0.8" />
                       <stop offset="100%" stopColor="#0FA88A" stopOpacity="1" />
                     </linearGradient>
+
+                    {/* Green Accent Gradient */}
+                    <linearGradient id="laser-green" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#4F8F7B" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#10B981" stopOpacity="1" />
+                    </linearGradient>
+
+                    {/* Warm Accent Gradient */}
+                    <linearGradient id="laser-warm" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#B85A3A" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#C99A5A" stopOpacity="1" />
+                    </linearGradient>
                   </defs>
 
-                  {/* Left connection to Center Card (Always active) */}
-                  <path d="M 13 50 L 50 50" fill="none" stroke="rgba(16,155,130,0.18)" strokeWidth="6" vectorEffect="non-scaling-stroke" filter="url(#laser-glow)" />
-                  <path d="M 13 50 L 50 50" fill="none" stroke="url(#laser-active)" strokeWidth="2" vectorEffect="non-scaling-stroke" strokeDasharray="6 6" className="animate-flow-dash" />
+                  {/* Left connection to Center Card (Always active and matching selected segments style) */}
+                  <path d="M 13 50 L 50 50" fill="none" stroke={activeTheme.glowColor} strokeWidth="6" vectorEffect="non-scaling-stroke" filter="url(#laser-glow)" className="transition-all duration-300" />
+                  <path d="M 13 50 L 50 50" fill="none" stroke={activeTheme.laser} strokeWidth="2" vectorEffect="non-scaling-stroke" strokeDasharray="6 6" className="animate-flow-dash transition-all duration-300" />
 
                   {/* Center to Top Button (Path 1) */}
-                  <path d="M 50 50 C 58 50, 64 16.7, 72 16.7" fill="none" stroke={activeSegment === 0 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 0 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 0 ? "url(#laser-glow)" : undefined} />
-                  <path d="M 50 50 C 58 50, 64 16.7, 72 16.7" fill="none" stroke={activeSegment === 0 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 0 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 0 ? "8 8" : "4 4"} className={activeSegment === 0 ? "animate-flow-dash-fast" : ""} />
+                  <path d="M 50 50 C 58 50, 64 16.7, 72 16.7" fill="none" stroke={activeSegment === 0 ? themeClasses.teal.glowColor : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 0 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 0 ? "url(#laser-glow)" : undefined} className="transition-all duration-300" />
+                  <path d="M 50 50 C 58 50, 64 16.7, 72 16.7" fill="none" stroke={activeSegment === 0 ? themeClasses.teal.laser : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 0 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 0 ? "8 8" : "4 4"} className={`${activeSegment === 0 ? "animate-flow-dash-fast" : ""} transition-all duration-300`} />
 
                   {/* Center to Middle Button (Path 2) */}
-                  <path d="M 50 50 L 72 50" fill="none" stroke={activeSegment === 1 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 1 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 1 ? "url(#laser-glow)" : undefined} />
-                  <path d="M 50 50 L 72 50" fill="none" stroke={activeSegment === 1 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 1 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 1 ? "8 8" : "4 4"} className={activeSegment === 1 ? "animate-flow-dash-fast" : ""} />
+                  <path d="M 50 50 L 72 50" fill="none" stroke={activeSegment === 1 ? themeClasses.green.glowColor : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 1 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 1 ? "url(#laser-glow)" : undefined} className="transition-all duration-300" />
+                  <path d="M 50 50 L 72 50" fill="none" stroke={activeSegment === 1 ? themeClasses.green.laser : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 1 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 1 ? "8 8" : "4 4"} className={`${activeSegment === 1 ? "animate-flow-dash-fast" : ""} transition-all duration-300`} />
 
                   {/* Center to Bottom Button (Path 3) */}
-                  <path d="M 50 50 C 58 50, 64 83.3, 72 83.3" fill="none" stroke={activeSegment === 2 ? "rgba(16,155,130,0.18)" : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 2 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 2 ? "url(#laser-glow)" : undefined} />
-                  <path d="M 50 50 C 58 50, 64 83.3, 72 83.3" fill="none" stroke={activeSegment === 2 ? "url(#laser-active)" : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 2 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 2 ? "8 8" : "4 4"} className={activeSegment === 2 ? "animate-flow-dash-fast" : ""} />
+                  <path d="M 50 50 C 58 50, 64 83.3, 72 83.3" fill="none" stroke={activeSegment === 2 ? themeClasses.warm.glowColor : "rgba(148,163,184,0.08)"} strokeWidth={activeSegment === 2 ? "6" : "2"} vectorEffect="non-scaling-stroke" filter={activeSegment === 2 ? "url(#laser-glow)" : undefined} className="transition-all duration-300" />
+                  <path d="M 50 50 C 58 50, 64 83.3, 72 83.3" fill="none" stroke={activeSegment === 2 ? themeClasses.warm.laser : "rgba(148,163,184,0.25)"} strokeWidth={activeSegment === 2 ? "2" : "1.2"} vectorEffect="non-scaling-stroke" strokeDasharray={activeSegment === 2 ? "8 8" : "4 4"} className={`${activeSegment === 2 ? "animate-flow-dash-fast" : ""} transition-all duration-300`} />
                 </svg>
 
                 {/* Exact height bounding box to guarantee pixel perfect alignment */}
@@ -181,14 +251,14 @@ export default function CXOConnect() {
                     initial={{ scale: 0.96, opacity: 0.82 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.25 }}
-                    className="relative w-[26%] min-w-0 rounded-2xl border-2 border-brand-teal bg-gradient-to-br from-white/95 to-brand-teal/[0.08] p-5 text-center shadow-xl shadow-brand-teal/10 backdrop-blur-md dark:from-[#071916]/95 dark:to-[#041513]/95 dark:shadow-brand-teal/20"
+                    className={`relative w-[26%] min-w-0 rounded-2xl border-2 p-5 text-center shadow-xl backdrop-blur-md transition-all duration-300 ${activeTheme.cardBg}`}
                   >
-                    <span className="absolute -inset-2 rounded-2xl border border-brand-teal/30 animate-pulse-slow" aria-hidden="true" />
-                    <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal shadow-inner shadow-brand-teal/25">
+                    <span className={`absolute -inset-2 rounded-2xl border animate-pulse-slow transition-all duration-300 ${activeTheme.cardPulse}`} aria-hidden="true" />
+                    <span className={`mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl shadow-inner transition-all duration-300 ${activeTheme.cardZapBg}`}>
                       <Zap size={22} className="animate-pulse" />
                     </span>
                     <p className="text-base font-black uppercase tracking-wide text-slate-950 dark:text-white">VALUEAGES</p>
-                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-teal">GTM Advisory</p>
+                    <p className={`mt-1 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 ${activeTheme.text}`}>GTM Advisory</p>
                     <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300">Qualifies the account thesis, maps stakeholders, and coordinates executive motion.</p>
                   </motion.div>
 
@@ -206,14 +276,14 @@ export default function CXOConnect() {
                             onMouseEnter={() => setActiveSegment(idx)}
                             className={`w-full interactive-card rounded-xl border p-3 text-left shadow-sm transition-all duration-300 relative overflow-hidden ${
                               isActive
-                                ? "border-brand-teal bg-linear-to-r from-brand-teal/15 to-brand-teal/5 text-brand-teal shadow-md shadow-brand-teal/15 dark:from-brand-teal/25"
+                                ? themeClasses[net.accent as keyof typeof themeClasses].rightButton
                                 : "border-slate-200/80 bg-white/95 text-slate-600 dark:border-slate-800/80 dark:bg-slate-900/70 dark:text-slate-300 hover:border-slate-300 hover:bg-white"
                             }`}
                           >
                             <div className="flex items-center gap-2 min-w-0">
                               <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${
                                 isActive
-                                  ? "bg-brand-teal text-white shadow-sm shadow-brand-teal/20"
+                                  ? themeClasses[net.accent as keyof typeof themeClasses].rightButtonIcon
                                   : "bg-slate-100 text-slate-500 dark:bg-slate-800/80 dark:text-slate-400"
                               }`}>
                                 <Icon size={14} />
