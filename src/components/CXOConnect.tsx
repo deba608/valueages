@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   ArrowRight,
   Building2,
   Cpu,
- Landmark,
+  Landmark,
   Network,
   Sparkles,
   Zap,
@@ -52,76 +52,55 @@ const themeClasses = {
   teal: {
     border: "border-brand-teal",
     bgLight: "bg-brand-teal/10",
-    bgGradient:
-      "from-white to-brand-teal/3 dark:from-slate-900/90 dark:to-brand-teal/5",
-    shadow: "shadow-brand-teal/5 dark:shadow-brand-teal/10",
+    bgGradient: "from-white to-brand-teal/5",
+    shadow: "shadow-brand-teal/5",
     text: "text-brand-teal",
-    tagActive:
-      "border-brand-teal/25 bg-brand-teal/4 text-brand-teal dark:bg-brand-teal/10",
-    routePill:
-      "bg-brand-teal/10 text-brand-teal border border-brand-teal/20 shadow-[0_0_12px_rgba(16,155,130,0.12)]",
-    cardBg:
-      "border-brand-teal bg-gradient-to-br from-white/95 to-brand-teal/[0.08] dark:from-[#071916]/95 dark:to-[#041513]/95 dark:shadow-brand-teal/20",
+    tagActive: "border-brand-teal/25 bg-brand-teal/5 text-brand-teal",
+    routePill: "bg-brand-teal/10 text-brand-teal border border-brand-teal/20 shadow-[0_0_12px_rgba(16,155,130,0.12)]",
+    cardBg: "border-brand-teal bg-gradient-to-br from-white to-brand-teal/[0.08]",
     cardPulse: "border-brand-teal/30",
     pulseBorder: "border-brand-teal/15",
-    cardZapBg:
-      "bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal shadow-inner shadow-brand-teal/25",
+    cardZapBg: "bg-brand-teal/10 text-brand-teal shadow-inner shadow-brand-teal/25",
     glowColor: "rgba(16, 155, 130, 0.25)",
     laser: "url(#laser-teal)",
-    rightButton:
-      "border-brand-teal bg-linear-to-r from-brand-teal/15 to-brand-teal/5 text-brand-teal shadow-md shadow-brand-teal/15 dark:from-brand-teal/25",
-    rightButtonIcon:
-      "bg-brand-teal text-white shadow-sm shadow-brand-teal/20",
+    rightButton: "border-brand-teal bg-linear-to-r from-brand-teal/15 to-brand-teal/5 text-brand-teal shadow-md shadow-brand-teal/15",
+    rightButtonIcon: "bg-brand-teal text-white shadow-sm shadow-brand-teal/20",
   },
 
   green: {
     border: "border-brand-green",
     bgLight: "bg-brand-green/10",
-    bgGradient:
-      "from-white to-brand-green/3 dark:from-slate-900/90 dark:to-brand-green/5",
-    shadow: "shadow-brand-green/5 dark:shadow-brand-green/10",
+    bgGradient: "from-white to-brand-green/5",
+    shadow: "shadow-brand-green/5",
     text: "text-brand-green",
-    tagActive:
-      "border-brand-green/25 bg-brand-green/4 text-brand-green dark:bg-brand-green/10",
-    routePill:
-      "bg-brand-green/10 text-brand-green border border-brand-green/20 shadow-[0_0_12px_rgba(79,143,123,0.12)]",
-    cardBg:
-      "border-brand-green bg-gradient-to-br from-white/95 to-brand-green/[0.08] dark:from-[#051815]/95 dark:to-[#021310]/95 dark:shadow-brand-green/20",
+    tagActive: "border-brand-green/25 bg-brand-green/5 text-brand-green",
+    routePill: "bg-brand-green/10 text-brand-green border border-brand-green/20 shadow-[0_0_12px_rgba(79,143,123,0.12)]",
+    cardBg: "border-brand-green bg-gradient-to-br from-white to-brand-green/[0.08]",
     cardPulse: "border-brand-green/30",
     pulseBorder: "border-brand-green/15",
-    cardZapBg:
-      "bg-brand-green/10 dark:bg-brand-green/20 text-brand-green shadow-inner shadow-brand-green/25",
+    cardZapBg: "bg-brand-green/10 text-brand-green shadow-inner shadow-brand-green/25",
     glowColor: "rgba(79, 143, 123, 0.25)",
     laser: "url(#laser-green)",
-    rightButton:
-      "border-brand-green bg-linear-to-r from-brand-green/15 to-brand-green/5 text-brand-green shadow-md shadow-brand-green/15 dark:from-brand-green/25",
-    rightButtonIcon:
-      "bg-brand-green text-white shadow-sm shadow-brand-green/20",
+    rightButton: "border-brand-green bg-linear-to-r from-brand-green/15 to-brand-green/5 text-brand-green shadow-md shadow-brand-green/15",
+    rightButtonIcon: "bg-brand-green text-white shadow-sm shadow-brand-green/20",
   },
 
   warm: {
     border: "border-brand-rust",
     bgLight: "bg-brand-tan/10",
-    bgGradient:
-      "from-white to-brand-rust/3 dark:from-slate-900/90 dark:to-brand-rust/5",
-    shadow: "shadow-brand-rust/5 dark:shadow-brand-rust/10",
+    bgGradient: "from-white to-brand-rust/5",
+    shadow: "shadow-brand-rust/5",
     text: "text-brand-rust",
-    tagActive:
-      "border-brand-rust/25 bg-brand-rust/4 text-brand-rust dark:bg-brand-rust/10",
-    routePill:
-      "bg-brand-rust/10 text-brand-rust border border-brand-rust/20 shadow-[0_0_12px_rgba(184,90,58,0.12)]",
-    cardBg:
-      "border-brand-rust bg-gradient-to-br from-white/95 to-brand-rust/[0.08] dark:from-[#1b0f0b]/95 dark:to-[#170a06]/95 dark:shadow-brand-rust/20",
+    tagActive: "border-brand-rust/25 bg-brand-rust/5 text-brand-rust",
+    routePill: "bg-brand-rust/10 text-brand-rust border border-brand-rust/20 shadow-[0_0_12px_rgba(184,90,58,0.12)]",
+    cardBg: "border-brand-rust bg-gradient-to-br from-white to-brand-rust/[0.08]",
     cardPulse: "border-brand-rust/30",
     pulseBorder: "border-brand-rust/15",
-    cardZapBg:
-      "bg-brand-rust/10 dark:bg-brand-rust/20 text-brand-rust shadow-inner shadow-brand-rust/25",
+    cardZapBg: "bg-brand-rust/10 text-brand-rust shadow-inner shadow-brand-rust/25",
     glowColor: "rgba(184, 90, 58, 0.25)",
     laser: "url(#laser-warm)",
-    rightButton:
-      "border-brand-rust bg-linear-to-r from-brand-rust/15 to-brand-rust/5 text-brand-rust shadow-md shadow-brand-rust/15 dark:from-brand-rust/25",
-    rightButtonIcon:
-      "bg-brand-rust text-white shadow-sm shadow-brand-rust/20",
+    rightButton: "border-brand-rust bg-linear-to-r from-brand-rust/15 to-brand-rust/5 text-brand-rust shadow-md shadow-brand-rust/15",
+    rightButtonIcon: "bg-brand-rust text-white shadow-sm shadow-brand-rust/20",
   },
 };
 
@@ -134,96 +113,135 @@ export default function CXOConnect() {
   const activeTheme =
     themeClasses[active.accent as keyof typeof themeClasses];
 
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section
       id="cxo"
-      className="section-shell theme-section-muted relative overflow-hidden"
+      className="section-shell theme-section-muted relative overflow-hidden py-24 sm:py-32"
       aria-labelledby="cxo-title"
     >
       <div
-        className="absolute left-0 top-1/3 h-72 w-72 rounded-full bg-brand-teal/8 blur-3xl dark:bg-brand-teal/12"
+        className="absolute left-0 top-1/3 h-72 w-72 rounded-full bg-brand-teal/8 blur-3xl pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* HEADER */}
-        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <span className="section-eyebrow mx-auto mb-3">
+        <div className="mx-auto mb-16 max-w-3xl text-center md:mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 rounded-full border border-brand-teal/20 bg-brand-teal/5 px-4 py-1.5 text-xs font-semibold text-brand-teal shadow-xs mb-4"
+          >
+            <Sparkles size={13} className="text-brand-teal animate-pulse" />
             CXO Connect
-          </span>
+          </motion.div>
 
-          <h2
+          <motion.h2
             id="cxo-title"
-            className="mb-4 font-serif text-3xl font-semibold leading-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-4 font-serif text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl"
           >
             A clear bridge from global product teams to Indian enterprise buyers.
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mx-auto max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base"
+          >
             The network is presented as a disciplined access model: client
             thesis, VALUEAGES qualification, and direct routes to decision makers
             who can sponsor enterprise adoption.
-          </p>
+          </motion.p>
         </div>
 
         {/* MAIN GRID */}
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
           {/* LEFT NETWORK CARDS */}
-          <div className="order-2 flex flex-col gap-4 lg:order-1 lg:col-span-5">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="order-2 flex flex-col gap-4 lg:order-1 lg:col-span-5"
+          >
             {networks.map((net, idx) => {
               const Icon = net.icon;
-
               const isActive = activeSegment === idx;
-
-              const netTheme =
-                themeClasses[net.accent as keyof typeof themeClasses];
+              const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
 
               return (
-                <button
+                <motion.button
                   key={net.title}
                   type="button"
+                  variants={itemVariants}
+                  whileHover={{ y: -4 }}
                   onMouseEnter={() => setActiveSegment(idx)}
                   onFocus={() => setActiveSegment(idx)}
                   onClick={() => setActiveSegment(idx)}
-                  className={`surface-card interactive-card group rounded-2xl p-4 sm:p-5 text-left transition-all duration-300 ${
+                  className={`surface-card interactive-card group rounded-2xl p-4 sm:p-5 text-left transition-all duration-300 relative ${
                     isActive
-                      ? `${netTheme.border} bg-linear-to-br ${netTheme.bgGradient} shadow-xl ${netTheme.shadow}`
+                      ? `${netTheme.border} bg-gradient-to-br ${netTheme.bgGradient} shadow-xl ${netTheme.shadow}`
                       : "hover:border-slate-300 hover:bg-slate-50/50"
                   }`}
                 >
                   <div className="mb-4 flex items-center justify-between gap-3">
                     <span
                       className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300 ${
-                        accentClasses[
-                          net.accent as keyof typeof accentClasses
-                        ]
+                        accentClasses[net.accent as keyof typeof accentClasses]
                       }`}
                     >
-                      <Icon size={18} />
+                      <Icon size={18} className="stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
                     </span>
 
                     <span
-                      className={`rounded-full px-2 py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
+                      className={`rounded-full px-2.5 py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
                         isActive
                           ? netTheme.routePill
-                          : "bg-slate-50 text-slate-400 dark:bg-slate-800/80"
+                          : "bg-slate-50 text-slate-400"
                       }`}
                     >
                       {isActive ? "Selected" : "Route"}
                     </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-extrabold text-slate-950 dark:text-white">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 transition-colors duration-300 mb-1">
                     {net.title}
                   </h3>
 
-                  <p
-                    className={`mt-1 text-[10px] sm:text-xs font-bold uppercase tracking-wide ${netTheme.text}`}
-                  >
+                  <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 ${netTheme.text}`}>
                     {net.subtitle}
                   </p>
 
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="text-sm leading-relaxed text-slate-500">
                     {net.description}
                   </p>
 
@@ -234,24 +252,27 @@ export default function CXOConnect() {
                         className={`rounded-full border px-2.5 py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-wide transition-all duration-300 ${
                           isActive
                             ? netTheme.tagActive
-                            : "border-slate-200 bg-slate-50 text-slate-500 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-400"
+                            : "border-slate-200 bg-slate-50 text-slate-500"
                         }`}
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                </button>
+                </motion.button>
               );
             })}
-          </div>
+          </motion.div>
 
           {/* RIGHT DIAGRAM */}
           <div className="order-1 lg:order-2 lg:col-span-7">
-            <div className="premium-card relative overflow-hidden rounded-2xl p-3 sm:p-5 lg:p-7">
+            <div className="premium-card relative overflow-hidden rounded-2xl p-4 sm:p-6 lg:p-8 bg-white border border-slate-200/80 shadow-xl">
               <div
-                className="absolute inset-0 diagram-grid opacity-70"
-                aria-hidden="true"
+                className="absolute inset-0 opacity-10 pointer-events-none select-none"
+                style={{
+                  backgroundImage: "linear-gradient(to right, #109B82 1px, transparent 1px), linear-gradient(to bottom, #109B82 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
               />
 
               <div
@@ -259,7 +280,7 @@ export default function CXOConnect() {
               />
 
               <div
-                className="absolute left-1/2 top-1/2 hidden lg:block h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/80 dark:border-slate-700"
+                className="absolute left-1/2 top-1/2 hidden lg:block h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/80"
               />
 
               {/* RESPONSIVE DIAGRAM */}
@@ -295,16 +316,8 @@ export default function CXOConnect() {
                       x2="100%"
                       y2="0%"
                     >
-                      <stop
-                        offset="0%"
-                        stopColor="#109B82"
-                        stopOpacity="0.8"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="#0FA88A"
-                        stopOpacity="1"
-                      />
+                      <stop offset="0%" stopColor="#109B82" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#0FA88A" stopOpacity="1" />
                     </linearGradient>
 
                     <linearGradient
@@ -314,16 +327,8 @@ export default function CXOConnect() {
                       x2="100%"
                       y2="0%"
                     >
-                      <stop
-                        offset="0%"
-                        stopColor="#4F8F7B"
-                        stopOpacity="0.8"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="#10B981"
-                        stopOpacity="1"
-                      />
+                      <stop offset="0%" stopColor="#4F8F7B" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#10B981" stopOpacity="1" />
                     </linearGradient>
 
                     <linearGradient
@@ -333,16 +338,8 @@ export default function CXOConnect() {
                       x2="100%"
                       y2="0%"
                     >
-                      <stop
-                        offset="0%"
-                        stopColor="#B85A3A"
-                        stopOpacity="0.8"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="#C99A5A"
-                        stopOpacity="1"
-                      />
+                      <stop offset="0%" stopColor="#B85A3A" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#C99A5A" stopOpacity="1" />
                     </linearGradient>
                   </defs>
 
@@ -378,11 +375,7 @@ export default function CXOConnect() {
                     }
                     strokeWidth={activeSegment === 0 ? "6" : "2"}
                     vectorEffect="non-scaling-stroke"
-                    filter={
-                      activeSegment === 0
-                        ? "url(#laser-glow)"
-                        : undefined
-                    }
+                    filter={activeSegment === 0 ? "url(#laser-glow)" : undefined}
                     className="transition-all duration-300"
                   />
 
@@ -398,9 +391,7 @@ export default function CXOConnect() {
                     vectorEffect="non-scaling-stroke"
                     strokeDasharray={activeSegment === 0 ? "8 8" : "4 4"}
                     className={`${
-                      activeSegment === 0
-                        ? "animate-flow-dash-fast"
-                        : ""
+                      activeSegment === 0 ? "animate-flow-dash-fast" : ""
                     } transition-all duration-300`}
                   />
 
@@ -415,11 +406,7 @@ export default function CXOConnect() {
                     }
                     strokeWidth={activeSegment === 1 ? "6" : "2"}
                     vectorEffect="non-scaling-stroke"
-                    filter={
-                      activeSegment === 1
-                        ? "url(#laser-glow)"
-                        : undefined
-                    }
+                    filter={activeSegment === 1 ? "url(#laser-glow)" : undefined}
                     className="transition-all duration-300"
                   />
 
@@ -435,9 +422,7 @@ export default function CXOConnect() {
                     vectorEffect="non-scaling-stroke"
                     strokeDasharray={activeSegment === 1 ? "8 8" : "4 4"}
                     className={`${
-                      activeSegment === 1
-                        ? "animate-flow-dash-fast"
-                        : ""
+                      activeSegment === 1 ? "animate-flow-dash-fast" : ""
                     } transition-all duration-300`}
                   />
 
@@ -452,11 +437,7 @@ export default function CXOConnect() {
                     }
                     strokeWidth={activeSegment === 2 ? "6" : "2"}
                     vectorEffect="non-scaling-stroke"
-                    filter={
-                      activeSegment === 2
-                        ? "url(#laser-glow)"
-                        : undefined
-                    }
+                    filter={activeSegment === 2 ? "url(#laser-glow)" : undefined}
                     className="transition-all duration-300"
                   />
 
@@ -472,9 +453,7 @@ export default function CXOConnect() {
                     vectorEffect="non-scaling-stroke"
                     strokeDasharray={activeSegment === 2 ? "8 8" : "4 4"}
                     className={`${
-                      activeSegment === 2
-                        ? "animate-flow-dash-fast"
-                        : ""
+                      activeSegment === 2 ? "animate-flow-dash-fast" : ""
                     } transition-all duration-300`}
                   />
                 </svg>
@@ -484,17 +463,17 @@ export default function CXOConnect() {
                   {/* PRODUCT COMPANY */}
                   <motion.div
                     whileHover={{ y: -2 }}
-                    className="glass-effect rounded-2xl border border-slate-200/80 p-5 text-center dark:border-slate-800"
+                    className="glass-effect rounded-2xl border border-slate-200/80 p-5 text-center"
                   >
-                    <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-slate-800">
-                      <Cpu size={22} />
+                    <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                      <Cpu size={22} className="stroke-[1.8]" />
                     </span>
 
-                    <p className="text-base font-black text-slate-950 dark:text-white">
+                    <p className="text-base font-black text-slate-950">
                       Global Product Company
                     </p>
 
-                    <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                    <p className="mt-3 text-sm leading-relaxed text-slate-500">
                       SaaS, AI, automation, and enterprise software teams
                       seeking India growth.
                     </p>
@@ -525,17 +504,15 @@ export default function CXOConnect() {
                       <Zap size={22} />
                     </span>
 
-                    <p className="break-words text-lg sm:text-xl font-black uppercase tracking-tight text-slate-950 dark:text-white">
+                    <p className="break-words text-lg sm:text-xl font-black uppercase tracking-tight text-slate-950">
                       VALUEAGES
                     </p>
 
-                    <p
-                      className={`mt-1 text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 ${activeTheme.text}`}
-                    >
+                    <p className={`mt-1 text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 ${activeTheme.text}`}>
                       GTM Advisory
                     </p>
 
-                    <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600">
                       Qualifies the account thesis, maps stakeholders, and
                       coordinates executive motion.
                     </p>
@@ -545,7 +522,6 @@ export default function CXOConnect() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     {networks.map((net, idx) => {
                       const Icon = net.icon;
-
                       const isActive = activeSegment === idx;
 
                       return (
@@ -556,20 +532,16 @@ export default function CXOConnect() {
                           onMouseEnter={() => setActiveSegment(idx)}
                           className={`interactive-card rounded-2xl border p-4 text-left shadow-sm transition-all duration-300 relative overflow-hidden ${
                             isActive
-                              ? themeClasses[
-                                  net.accent as keyof typeof themeClasses
-                                ].rightButton
-                              : "border-slate-200/80 bg-white/95 text-slate-600 dark:border-slate-800/80 dark:bg-slate-900/70 dark:text-slate-300 hover:border-slate-300 hover:bg-white"
+                              ? themeClasses[net.accent as keyof typeof themeClasses].rightButton
+                              : "border-slate-200/80 bg-white/95 text-slate-600 hover:border-slate-300 hover:bg-white"
                           }`}
                         >
                           <div className="flex items-start gap-3 min-w-0">
                             <span
                               className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
                                 isActive
-                                  ? themeClasses[
-                                      net.accent as keyof typeof themeClasses
-                                    ].rightButtonIcon
-                                  : "bg-slate-100 text-slate-500 dark:bg-slate-800/80 dark:text-slate-400"
+                                  ? themeClasses[net.accent as keyof typeof themeClasses].rightButtonIcon
+                                  : "bg-slate-100 text-slate-500"
                               }`}
                             >
                               <Icon size={16} />
@@ -579,14 +551,14 @@ export default function CXOConnect() {
                               <p
                                 className={`text-xs font-extrabold uppercase tracking-wide leading-tight transition-colors duration-300 ${
                                   isActive
-                                    ? "text-slate-950 dark:text-white"
-                                    : "text-slate-700 dark:text-slate-300"
+                                    ? "text-slate-950"
+                                    : "text-slate-700"
                                 }`}
                               >
                                 {net.title}
                               </p>
 
-                              <p className="mt-1 text-[10px] leading-relaxed opacity-75">
+                              <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
                                 {net.subtitle}
                               </p>
                             </div>
@@ -602,17 +574,17 @@ export default function CXOConnect() {
                   {/* LEFT */}
                   <motion.div
                     whileHover={{ y: -4 }}
-                    className="glass-effect w-[27%] rounded-2xl p-5 text-center border-slate-200/80 dark:border-slate-800"
+                    className="glass-effect w-[27%] rounded-2xl p-5 text-center border-slate-200/80"
                   >
-                    <span className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-slate-800">
-                      <Cpu size={22} />
+                    <span className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                      <Cpu size={22} className="stroke-[1.8]" />
                     </span>
 
-                    <p className="text-sm xl:text-base font-extrabold text-slate-950 dark:text-white">
+                    <p className="text-sm xl:text-base font-extrabold text-slate-950">
                       Global Product Company
                     </p>
 
-                    <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                    <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-500">
                       SaaS, AI, automation, and enterprise software teams
                       seeking India growth.
                     </p>
@@ -636,17 +608,15 @@ export default function CXOConnect() {
                       <Zap size={22} className="animate-pulse" />
                     </span>
 
-                    <p className="break-words text-base xl:text-lg font-black uppercase tracking-tight text-slate-950 dark:text-white">
+                    <p className="break-words text-base xl:text-lg font-black uppercase tracking-tight text-slate-950">
                       VALUEAGES
                     </p>
 
-                    <p
-                      className={`mt-1 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${activeTheme.text}`}
-                    >
+                    <p className={`mt-1 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${activeTheme.text}`}>
                       GTM Advisory
                     </p>
 
-                    <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-600">
                       Qualifies the account thesis, maps stakeholders, and
                       coordinates executive motion.
                     </p>
@@ -656,7 +626,6 @@ export default function CXOConnect() {
                   <div className="grid w-[30%] h-full grid-rows-3 gap-4 py-2 self-stretch">
                     {networks.map((net, idx) => {
                       const Icon = net.icon;
-
                       const isActive = activeSegment === idx;
 
                       return (
@@ -670,20 +639,16 @@ export default function CXOConnect() {
                             onMouseEnter={() => setActiveSegment(idx)}
                             className={`w-full interactive-card rounded-xl border p-3 text-left shadow-sm transition-all duration-300 relative overflow-hidden ${
                               isActive
-                                ? themeClasses[
-                                    net.accent as keyof typeof themeClasses
-                                  ].rightButton
-                                : "border-slate-200/80 bg-white/95 text-slate-600 dark:border-slate-800/80 dark:bg-slate-900/70 dark:text-slate-300 hover:border-slate-300 hover:bg-white"
+                                ? themeClasses[net.accent as keyof typeof themeClasses].rightButton
+                                : "border-slate-200/80 bg-white/95 text-slate-600 hover:border-slate-300 hover:bg-white"
                             }`}
                           >
                             <div className="flex items-center gap-2 min-w-0">
                               <span
                                 className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-all duration-300 ${
                                   isActive
-                                    ? themeClasses[
-                                        net.accent as keyof typeof themeClasses
-                                      ].rightButtonIcon
-                                    : "bg-slate-100 text-slate-500 dark:bg-slate-800/80 dark:text-slate-400"
+                                    ? themeClasses[net.accent as keyof typeof themeClasses].rightButtonIcon
+                                    : "bg-slate-100 text-slate-500"
                                 }`}
                               >
                                 <Icon size={14} />
@@ -693,14 +658,14 @@ export default function CXOConnect() {
                                 <p
                                   className={`text-[10px] xl:text-xs font-extrabold uppercase tracking-wide leading-tight transition-colors duration-300 ${
                                     isActive
-                                      ? "text-slate-950 dark:text-white"
-                                      : "text-slate-700 dark:text-slate-300"
+                                      ? "text-slate-950"
+                                      : "text-slate-700"
                                   }`}
                                 >
                                   {net.title}
                                 </p>
 
-                                <p className="mt-1 text-[9px] xl:text-[10px] leading-relaxed opacity-75">
+                                <p className="mt-1 text-[9px] xl:text-[10px] leading-relaxed opacity-75 text-slate-500">
                                   {net.subtitle}
                                 </p>
                               </div>
@@ -714,32 +679,30 @@ export default function CXOConnect() {
               </div>
 
               {/* FOOTER */}
-              <div className="glass-effect relative z-20 mt-6 rounded-2xl p-4 border-slate-200/80 dark:border-slate-800 shadow-lg">
+              <div className="glass-effect relative z-20 mt-6 rounded-2xl p-4 border-slate-200/80 shadow-lg bg-white">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
                     <span
                       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300 ${
-                        accentClasses[
-                          active.accent as keyof typeof accentClasses
-                        ]
+                        accentClasses[active.accent as keyof typeof accentClasses]
                       }`}
                     >
                       <ActiveIcon size={18} />
                     </span>
 
                     <div className="min-w-0">
-                      <p className="text-sm font-extrabold text-slate-950 dark:text-white">
+                      <p className="text-sm font-extrabold text-slate-950">
                         Active path: {active.title}
                       </p>
 
-                      <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                      <p className="text-xs leading-relaxed text-slate-500">
                         Client thesis → VALUEAGES qualification → executive
                         introduction.
                       </p>
                     </div>
                   </div>
 
-                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-emerald-600">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
                     Connected <ArrowRight size={12} />
                   </span>
@@ -750,12 +713,11 @@ export default function CXOConnect() {
         </div>
 
         {/* BOTTOM TAG */}
-        <p className="mx-auto mt-12 flex w-fit max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-center text-xs font-semibold text-slate-500 shadow-sm dark:border-slate-700 dark:bg-slate-800/65 dark:text-slate-400">
+        <p className="mx-auto mt-12 flex w-fit max-w-full items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-center text-xs font-semibold text-slate-500 shadow-sm">
           <Sparkles
             size={14}
             className="shrink-0 text-brand-teal"
           />
-
           Bengaluru, Mumbai, Pune, Chennai, Gurgaon, and Hyderabad enterprise
           hubs.
         </p>
