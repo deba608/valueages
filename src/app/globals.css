@@ -957,25 +957,25 @@ html .theme-section-muted {
   body {
     @apply text-foreground;
     background-color: var(--background);
+    /* Premium 1px dot grid on 28px rhythm */
     background-image:
-      linear-gradient(rgba(15, 23, 42, 0.032) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15, 23, 42, 0.032) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-attachment: fixed;
+      radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.07) 1px, transparent 0);
+    background-size: 28px 28px;
   }
   html {
     @apply font-sans;
   }
 }
 
-/* Last-mile theme contract: every section sits over one constant page grid. */
+/* Last-mile theme contract: premium dot grid + brand depth glows. */
 html body {
   background-color: #fbfcf8 !important;
   background-image:
-    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px) !important;
-  background-size: 40px 40px !important;
-  background-attachment: fixed !important;
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(16, 155, 130, 0.065) 0%, transparent 100%),
+    radial-gradient(ellipse 45% 25% at 98% 4%, rgba(201, 154, 90, 0.04) 0%, transparent 100%),
+    radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.065) 1px, transparent 0) !important;
+  background-size: 100%, 100%, 28px 28px !important;
+  background-repeat: no-repeat, no-repeat, repeat !important;
   color: #0f172a !important;
 }
 

@@ -1,25 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 
 /**
  * Returns true when the viewport matches the given CSS media query string.
- * Safe for SSR — returns `false` on the server and hydrates correctly.
+ * Uses useSyncExternalStore for tear-free reads and correct SSR hydration.
  *
  * @example
  * const isDesktop = useMediaQuery("(min-width: 1024px)");
  */
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+  const subscribe = useMemo(
+    () => (callback: () => void) => {
+      const mql = window.matchMedia(query);
+      mql.addEventListener("change", callback);
+      return () => mql.removeEventListener("change", callback);
+    },
+    [query],
+  );
 
-  useEffect(() => {
-    const mql = window.matchMedia(query);
-    setMatches(mql.matches);
+  const getSnapshot = useMemo(
+    () => () => window.matchMedia(query).matches,
+    [query],
+  );
 
-    const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, [query]);
+  const getServerSnapshot = () => false;
 
-  return matches;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
