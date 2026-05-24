@@ -1,8 +1,6 @@
 import Groq from "groq-sdk";
 import { NextRequest } from "next/server";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
 const SYSTEM_PROMPT = `You are the Valueages AI assistant — a knowledgeable, professional, and concise advisor representing Valueages, a premier enterprise GTM (Go-To-Market) advisory firm.
 
 About Valueages:
@@ -66,6 +64,14 @@ if (typeof setInterval !== "undefined") {
 }
 
 export async function POST(req: NextRequest) {
+  const groqApiKey = process.env.GROQ_API_KEY;
+  if (!groqApiKey) {
+    return new Response(
+      JSON.stringify({ error: "AI is not configured. Please try again later." }),
+      { status: 503, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     req.headers.get("x-real-ip") ??
@@ -101,6 +107,7 @@ export async function POST(req: NextRequest) {
     // Cap conversation history at last 10 messages to control token usage
     const recentMessages = messages.slice(-10);
 
+    const groq = new Groq({ apiKey: groqApiKey });
     const stream = await groq.chat.completions.create({
       model: "llama-3.1-8b-instant",
       messages: [
