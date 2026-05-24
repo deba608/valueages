@@ -16,39 +16,74 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
+const SITE_URL = "https://valueages.com";
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Valueages",
-  url: "https://valueages.com",
-  logo: "https://valueages.com/Nav_logo1.svg",
-  description:
-    "Specialized go-to-market advisory helping global SaaS and product companies expand in India. Direct CXO, BFSI, GCC, and GSI access from day one.",
-  founder: {
-    "@type": "Person",
-    name: "Manas Das",
-    jobTitle: "Managing Director & GTM Lead",
-    email: "manas.das@valueages.com",
-    telephone: "+919654017778",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Bhubaneswar",
-    addressRegion: "Odisha",
-    addressCountry: "IN",
-    streetAddress: "DLF Cyber City, Patia",
-  },
-  areaServed: { "@type": "Country", name: "India" },
-  serviceType: [
-    "India Market Entry",
-    "Enterprise Sales Strategy",
-    "GTM Advisory",
-    "Fractional Sales Leadership",
-    "BFSI CXO Access",
-    "GCC Programme Management",
-    "GSI Partner Alliances",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Valueages",
+      url: SITE_URL,
+      logo: `${SITE_URL}/Nav_logo1.svg`,
+      founder: {
+        "@type": "Person",
+        name: "Manas Das",
+        jobTitle: "Managing Director & GTM Lead",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "business inquiries",
+        email: "manas.das@valueages.com",
+        telephone: "+919654017778",
+        areaServed: "IN",
+        availableLanguage: ["en"],
+      },
+      sameAs: ["https://unifyapps.com"],
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#professional-service`,
+      name: "Valueages",
+      url: SITE_URL,
+      image: `${SITE_URL}/opengraph-image`,
+      logo: `${SITE_URL}/Nav_logo1.svg`,
+      description:
+        "India enterprise GTM advisory for global SaaS and product companies, including CXO access, BFSI relationships, GCC programs, and GSI alliances.",
+      parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "DLF Cyber City, Patia",
+        addressLocality: "Bhubaneswar",
+        addressRegion: "Odisha",
+        addressCountry: "IN",
+      },
+      areaServed: { "@type": "Country", name: "India" },
+      serviceType: [
+        "India market entry advisory",
+        "Enterprise sales strategy",
+        "SaaS go-to-market consulting",
+        "Fractional sales leadership",
+        "BFSI CXO access",
+        "GCC program advisory",
+        "GSI partner alliances",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Valueages",
+      url: SITE_URL,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      inLanguage: "en-IN",
+      potentialAction: {
+        "@type": "ContactAction",
+        target: `${SITE_URL}/#contact`,
+        name: "Contact Valueages",
+      },
+    },
   ],
-  sameAs: ["https://unifyapps.com"],
 };
 
 export default function Home() {

@@ -20,6 +20,7 @@ const playfair = Playfair_Display({
 });
 
 const SITE_URL = "https://valueages.com";
+const OG_IMAGE = "/opengraph-image";
 
 export const viewport: Viewport = {
   themeColor: "#109B82",
@@ -29,18 +30,22 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  applicationName: "Valueages",
+  category: "Business Consulting",
   title: {
-    default: "Valueages — India Enterprise GTM Advisory",
+    default: "Valueages | India Enterprise GTM Advisory for SaaS Growth",
     template: "%s | Valueages",
   },
   description:
-    "Specialized go-to-market advisory helping global SaaS and product companies expand in India. Direct CXO, BFSI, GCC, and GSI access — from day one.",
+    "Valueages helps global SaaS and product companies enter India with enterprise GTM advisory, CXO access, BFSI relationships, GCC programs, and GSI alliances.",
   keywords: [
+    "India Enterprise GTM Advisory",
     "Enterprise Sales Strategy",
-    "GTM India",
-    "Go To Market Consulting",
     "SaaS Market Entry India",
+    "Go To Market Consulting",
     "BFSI CXO Access",
+    "GCC Sales Strategy",
+    "GSI Alliances India",
     "Global Captive Centers India",
     "Global System Integrators partnership",
     "Fractional Country Sales Leader India",
@@ -52,30 +57,32 @@ export const metadata: Metadata = {
   authors: [{ name: "Valueages", url: SITE_URL }],
   creator: "Valueages",
   publisher: "Valueages",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "Valueages — India Enterprise GTM Advisory",
+    title: "Valueages | India Enterprise GTM Advisory",
     description:
-      "Your strategic bridge to Indian enterprise buyers, BFSI organisations, GCCs, and global system integrators through proven fractional sales leadership.",
+      "Enterprise GTM advisory for global SaaS and product companies expanding into India through CXO access, BFSI relationships, GCC programs, and GSI alliances.",
     url: SITE_URL,
     siteName: "Valueages",
     type: "website",
     locale: "en_IN",
     images: [
       {
-        url: "/opengraph-image",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Valueages — India Enterprise GTM Advisory",
+        alt: "Valueages India Enterprise GTM Advisory",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Valueages — India Enterprise GTM Advisory",
+    title: "Valueages | India Enterprise GTM Advisory",
     description:
-      "Specialized go-to-market advisory helping global SaaS companies expand in India with direct CXO, BFSI, GCC, and GSI access.",
-    images: ["/opengraph-image"],
+      "India market entry and enterprise GTM advisory for SaaS companies with direct CXO, BFSI, GCC, and GSI access.",
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
