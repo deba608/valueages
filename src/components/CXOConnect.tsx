@@ -120,10 +120,32 @@ export default function CXOConnect() {
   const activeTheme =
     themeClasses[active.accent as keyof typeof themeClasses];
 
+  // Scrolling entrance staggered reveals matching other capabilities
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const childVariants: Variants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section
       id="cxo"
-      className="section-shell theme-section-muted relative overflow-hidden py-24 sm:py-32"
+      className="section-shell theme-section-muted relative overflow-hidden transition-colors duration-500 py-24 sm:py-32"
       aria-labelledby="cxo-title"
     >
       <div
@@ -377,8 +399,8 @@ export default function CXOConnect() {
             <div className="flex flex-col gap-6 lg:hidden relative z-10">
               {/* PRODUCT COMPANY */}
               <motion.div
-                whileHover={{ y: -2 }}
-                className="glass-effect rounded-2xl border border-slate-200/80 p-5 text-center shadow-md"
+                whileHover={{ y: -4 }}
+                className="glass-effect rounded-2xl border border-slate-200/80 p-5 text-center shadow-md transition-all duration-300 hover:shadow-lg"
               >
                 <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white">
                   <Cpu size={22} className="stroke-[1.8]" />
@@ -446,107 +468,119 @@ export default function CXOConnect() {
                   const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
 
                   return (
-                    <button
+                    <motion.div
                       key={net.title}
-                      type="button"
-                      onClick={() => setActiveSegment(idx)}
+                      whileHover={{ y: -2 }}
                       className="w-full text-left"
                     >
-                      <BorderGlow
-                        className={`w-full transition-all duration-500 overflow-hidden ${
-                          isSelected
-                            ? "shadow-lg opacity-100 scale-[1.01]"
-                            : "opacity-85 hover:opacity-95"
-                        }`}
-                        edgeSensitivity={isSelected ? 30 : 50}
-                        glowColor={netTheme.glowBase}
-                        backgroundColor="transparent"
-                        borderRadius={18}
-                        glowRadius={isSelected ? 50 : 0}
-                        glowIntensity={isSelected ? 1.4 : 0}
-                        animated={isSelected}
-                        colors={netTheme.glowColors}
+                      <button
+                        type="button"
+                        onClick={() => setActiveSegment(idx)}
+                        className="w-full text-left"
                       >
-                        <div
-                          className={`p-5 rounded-2xl border transition-all duration-500 ${
+                        <BorderGlow
+                          className={`w-full transition-all duration-300 overflow-hidden ${
                             isSelected
-                              ? `${netTheme.cardBg} border-transparent`
-                              : "border-slate-200/80 bg-white text-slate-600 hover:border-slate-300"
+                              ? "shadow-lg opacity-100"
+                              : "opacity-85 hover:opacity-95"
                           }`}
+                          edgeSensitivity={isSelected ? 30 : 50}
+                          glowColor={netTheme.glowBase}
+                          backgroundColor="transparent"
+                          borderRadius={18}
+                          glowRadius={isSelected ? 70 : 0}
+                          glowIntensity={isSelected ? 1.4 : 0}
+                          animated={isSelected}
+                          colors={netTheme.glowColors}
                         >
-                          <div className="flex items-center justify-between gap-3">
-                            <div className="flex items-center gap-3 min-w-0">
-                              <span
-                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
-                                  isSelected
-                                    ? netTheme.rightButtonIcon
-                                    : "bg-slate-100 text-slate-500"
-                                }`}
-                              >
-                                <Icon size={18} />
-                              </span>
-                              <div className="min-w-0">
-                                <p
-                                  className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
-                                    isSelected ? "text-slate-950" : "text-slate-700"
+                          <div
+                            className={`p-5 rounded-2xl border transition-all duration-300 ${
+                              isSelected
+                                ? `${netTheme.cardBg} border-transparent`
+                                : "border-slate-200/80 bg-white text-slate-600 hover:border-slate-300"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="flex items-center gap-3 min-w-0">
+                                <span
+                                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
+                                    isSelected
+                                      ? netTheme.rightButtonIcon
+                                      : "bg-slate-100 text-slate-500"
                                   }`}
                                 >
-                                  {net.title}
-                                </p>
-                                <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
-                                  {net.subtitle}
-                                </p>
-                              </div>
-                            </div>
-
-                            {isSelected && (
-                              <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
-                                Active
-                              </span>
-                            )}
-                          </div>
-
-                          <motion.div
-                            initial={false}
-                            animate={{
-                              height: isSelected ? "auto" : 0,
-                              opacity: isSelected ? 1 : 0,
-                              marginTop: isSelected ? 14 : 0,
-                            }}
-                            transition={{ duration: 0.35, ease: "easeInOut" }}
-                            className="overflow-hidden"
-                          >
-                            <p className="text-xs sm:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
-                              {net.description}
-                            </p>
-
-                            <div className="flex flex-wrap gap-2">
-                              {net.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
-                                >
-                                  {tag}
+                                  <Icon size={18} />
                                 </span>
-                              ))}
+                                <div className="min-w-0">
+                                  <p
+                                    className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
+                                      isSelected ? "text-slate-950" : "text-slate-700"
+                                    }`}
+                                  >
+                                    {net.title}
+                                  </p>
+                                  <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
+                                    {net.subtitle}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {isSelected && (
+                                <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
+                                  Active
+                                </span>
+                              )}
                             </div>
-                          </motion.div>
-                        </div>
-                      </BorderGlow>
-                    </button>
+
+                            <motion.div
+                              initial={false}
+                              animate={{
+                                height: isSelected ? "auto" : 0,
+                                opacity: isSelected ? 1 : 0,
+                                marginTop: isSelected ? 14 : 0,
+                              }}
+                              transition={{ duration: 0.35, ease: "easeInOut" }}
+                              className="overflow-hidden"
+                            >
+                              <p className="text-xs sm:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
+                                {net.description}
+                              </p>
+
+                              <div className="flex flex-wrap gap-2">
+                                {net.tags.map((tag) => (
+                                  <span
+                                    key={tag}
+                                    className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                            </motion.div>
+                          </div>
+                        </BorderGlow>
+                      </button>
+                    </motion.div>
                   );
                 })}
               </div>
             </div>
 
             {/* DESKTOP ORIGINAL CONNECTOR LAYOUT (Consolidated and Centered) */}
-            <div className="relative z-10 hidden lg:block h-[580px] w-full">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              className="relative z-10 hidden lg:block h-[580px] w-full"
+            >
               {/* LEFT CARD: Global Product Company (w-[22%] left-0) */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[22%] h-fit">
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="glass-effect w-full rounded-2xl p-6 text-center border-slate-200/80 shadow-lg"
-                >
+              <motion.div
+                variants={childVariants}
+                whileHover={{ y: -6 }}
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-[22%] h-fit cursor-pointer"
+              >
+                <div className="glass-effect w-full rounded-2xl p-6 text-center border border-slate-200/80 shadow-lg hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.12)] transition-all duration-300">
                   <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-md">
                     <Cpu size={22} className="stroke-[1.8]" />
                   </span>
@@ -558,15 +592,19 @@ export default function CXOConnect() {
                   <p className="mt-3 text-xs xl:text-sm leading-relaxed text-slate-500">
                     SaaS, AI, automation, and enterprise software teams seeking India growth.
                   </p>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
 
               {/* CENTER CARD: VALUEAGES GTM Advisory (w-[22%] absolute-center) */}
-              <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[22%] h-fit">
+              <motion.div
+                variants={childVariants}
+                whileHover={{ y: -6 }}
+                className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[22%] h-fit cursor-pointer z-10"
+              >
                 <motion.div
                   key={activeSegment}
-                  initial={{ scale: 0.96, opacity: 0.82 }}
-                  animate={{ scale: 1, opacity: 1 }}
+                  initial={{ scale: 0.96 }}
+                  animate={{ scale: 1 }}
                   transition={{ duration: 0.25 }}
                   className={`relative w-full rounded-2xl border-2 p-6 text-center shadow-2xl backdrop-blur-md transition-all duration-300 ${activeTheme.cardBg}`}
                 >
@@ -592,17 +630,24 @@ export default function CXOConnect() {
                     Qualifies the account thesis, maps stakeholders, and coordinates executive motion.
                   </p>
                 </motion.div>
-              </div>
+              </motion.div>
 
               {/* RIGHT STACK: 3 Interactive Detailed Accordion Cards (w-[32%] right-0) */}
-              <div className="absolute right-0 top-0 bottom-0 w-[32%] grid grid-rows-3 gap-4 py-2">
+              <motion.div
+                variants={childVariants}
+                className="absolute right-0 top-0 bottom-0 w-[32%] grid grid-rows-3 gap-4 py-2"
+              >
                 {networks.map((net, idx) => {
                   const Icon = net.icon;
                   const isSelected = activeSegment === idx;
                   const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
 
                   return (
-                    <div key={net.title} className="flex items-center h-full">
+                    <motion.div
+                      key={net.title}
+                      whileHover={{ y: isSelected ? -4 : -2 }}
+                      className="flex items-center h-full"
+                    >
                       <button
                         type="button"
                         onClick={() => setActiveSegment(idx)}
@@ -610,22 +655,22 @@ export default function CXOConnect() {
                         className="w-full text-left focus:outline-hidden"
                       >
                         <BorderGlow
-                          className={`w-full transition-all duration-500 overflow-hidden ${
+                          className={`w-full transition-all duration-300 overflow-hidden ${
                             isSelected
-                              ? "shadow-lg opacity-100 scale-[1.01]"
+                              ? "shadow-lg opacity-100"
                               : "opacity-80 hover:opacity-95"
                           }`}
                           edgeSensitivity={isSelected ? 30 : 50}
                           glowColor={netTheme.glowBase}
                           backgroundColor="transparent"
                           borderRadius={20}
-                          glowRadius={isSelected ? 60 : 0}
-                          glowIntensity={isSelected ? 1.5 : 0}
+                          glowRadius={isSelected ? 70 : 0}
+                          glowIntensity={isSelected ? 1.4 : 0}
                           animated={isSelected}
                           colors={netTheme.glowColors}
                         >
                           <div
-                            className={`p-5 rounded-2xl border transition-all duration-500 ${
+                            className={`p-5 rounded-2xl border transition-all duration-300 ${
                               isSelected
                                 ? `${netTheme.cardBg} border-transparent`
                                 : "border-slate-200/80 bg-white/95 text-slate-600 hover:border-slate-300 hover:bg-white"
@@ -693,11 +738,11 @@ export default function CXOConnect() {
                           </div>
                         </BorderGlow>
                       </button>
-                    </div>
+                    </motion.div>
                   );
                 })}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
           {/* ACTIVE FOOTER BAR */}
