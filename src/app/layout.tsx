@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,9 +19,22 @@ const playfair = Playfair_Display({
   weight: ["600", "700", "800"],
 });
 
+const SITE_URL = "https://valueages.com";
+
+export const viewport: Viewport = {
+  themeColor: "#109B82",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "VALUEAGES",
-  description: "Specialized sales & go-to-market (GTM) consulting firm helping global SaaS and product tech companies expand and win in the Indian enterprise market. Dedicated advisory with direct CXO, BFSI, GCC and GSI access.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Valueages — India Enterprise GTM Advisory",
+    template: "%s | Valueages",
+  },
+  description:
+    "Specialized go-to-market advisory helping global SaaS and product companies expand in India. Direct CXO, BFSI, GCC, and GSI access — from day one.",
   keywords: [
     "Enterprise Sales Strategy",
     "GTM India",
@@ -31,21 +44,49 @@ export const metadata: Metadata = {
     "Global Captive Centers India",
     "Global System Integrators partnership",
     "Fractional Country Sales Leader India",
-    "VALUEAGES",
-    "Digital Transformation"
+    "Valueages",
+    "Digital Transformation",
+    "UnifyApps",
+    "India Enterprise Advisory",
   ],
-  authors: [{ name: "Manas", url: "https://valueages.com" }],
+  authors: [{ name: "Valueages", url: SITE_URL }],
+  creator: "Valueages",
+  publisher: "Valueages",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "VALUEAGES",
-    description: "Your strategic bridge to Indian enterprise buyers, BFSI organizations, GCCs, and global system integrators through proven fractional sales leadership.",
+    title: "Valueages — India Enterprise GTM Advisory",
+    description:
+      "Your strategic bridge to Indian enterprise buyers, BFSI organisations, GCCs, and global system integrators through proven fractional sales leadership.",
+    url: SITE_URL,
+    siteName: "Valueages",
     type: "website",
     locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Valueages — India Enterprise GTM Advisory",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Valueages — India Enterprise GTM Advisory",
+    description:
+      "Specialized go-to-market advisory helping global SaaS companies expand in India with direct CXO, BFSI, GCC, and GSI access.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   icons: {
     icon: "/Nav_logo1.svg",
     apple: "/Nav_logo1.svg",
-    shortcut: "/Nav_logo1.svg"
-  }
+    shortcut: "/Nav_logo1.svg",
+  },
 };
 
 export default function RootLayout({
