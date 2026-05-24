@@ -401,7 +401,7 @@ export default function CXOConnect() {
                 whileHover={{ y: -4 }}
                 className="glass-effect rounded-2xl border border-slate-200/80 p-5 text-center shadow-md transition-all duration-300 hover:shadow-lg"
               >
-                <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green text-white shadow-md shadow-brand-green/20">
                   <Cpu size={22} className="stroke-[1.8]" />
                 </span>
 
@@ -565,7 +565,7 @@ export default function CXOConnect() {
                 <div className="relative w-full rounded-2xl border-2 p-6 text-center shadow-2xl bg-gradient-to-br from-white to-slate-50/50 transition-all duration-300 border-slate-200">
                   <span className="absolute -inset-2 rounded-2xl border border-slate-200/40 animate-pulse-slow transition-all duration-300" />
                   
-                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-md shadow-slate-950/20">
+                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green text-white shadow-md shadow-brand-green/20">
                     <Cpu size={22} className="stroke-[1.8]" />
                   </span>
 
