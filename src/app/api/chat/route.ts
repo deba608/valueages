@@ -1,8 +1,6 @@
 import { NextRequest } from "next/server";
 
 // Prevent Next.js from statically evaluating this route during build.
-// The Groq SDK is loaded via dynamic import inside the handler so it is
-// never instantiated at module-init time (which would throw without the key).
 export const dynamic = "force-dynamic";
 export const runtime = "edge";
 
@@ -44,6 +42,16 @@ Instructions:
 // Note: Cloudflare Workers are ephemeral — this map is per-isolate, not global.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
+type GroqStreamChunk = {
+  choices?: Array<{
+    delta?: {
+      content?: string;
+    };
+  }>;
+};
+
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const entry = rateLimitMap.get(ip);
@@ -72,7 +80,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let messages: { role: "user" | "assistant"; content: string }[];
+  let messages: ChatMessage[];
 
   try {
     const body = await req.json();
@@ -95,41 +103,73 @@ export async function POST(req: NextRequest) {
     // Cap conversation history at last 10 messages to control token usage
     const recentMessages = messages.slice(-10);
 
-    // Dynamic import — groq-sdk is resolved at request time only, never at
-    // build/module-init time. This prevents the SDK from throwing during
-    // Next.js static page-data collection when GROQ_API_KEY is absent.
     const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
       throw new Error("GROQ_API_KEY is not configured.");
     }
-    const { default: Groq } = await import("groq-sdk");
-    const groq = new Groq({ apiKey });
 
-    const stream = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...recentMessages,
-      ],
-      stream: true,
-      max_tokens: 512,
-      temperature: 0.7,
+    const groqResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...recentMessages,
+        ],
+        stream: true,
+        max_tokens: 512,
+        temperature: 0.7,
+      }),
     });
 
+    if (!groqResponse.ok || !groqResponse.body) {
+      throw new Error("Groq request failed.");
+    }
+
     const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
 
     const readable = new ReadableStream({
       async start(controller) {
+        const reader = groqResponse.body?.getReader();
+        if (!reader) {
+          controller.close();
+          return;
+        }
+
+        let buffer = "";
+
         try {
-          for await (const chunk of stream) {
-            const text = chunk.choices[0]?.delta?.content ?? "";
-            if (text) {
-              controller.enqueue(encoder.encode(text));
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop() ?? "";
+
+            for (const rawLine of lines) {
+              const line = rawLine.trim();
+              if (!line.startsWith("data: ")) continue;
+
+              const data = line.slice(6);
+              if (data === "[DONE]") continue;
+
+              const parsed = JSON.parse(data) as GroqStreamChunk;
+              const text = parsed.choices?.[0]?.delta?.content ?? "";
+              if (text) {
+                controller.enqueue(encoder.encode(text));
+              }
             }
           }
         } catch (err) {
           controller.error(err);
         } finally {
+          reader.releaseLock();
           controller.close();
         }
       },
