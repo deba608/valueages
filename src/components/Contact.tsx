@@ -146,7 +146,7 @@ export default function Contact() {
           </p>
 
           {/* Minimalist flat trust anchors instead of box-on-box grid cards */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-wider text-slate-650">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-wider text-slate-600">
             <span className="flex items-center gap-2">
               <Check size={14} className="text-brand-teal stroke-[2.5]" />
               No pitch, no deck
@@ -165,7 +165,7 @@ export default function Contact() {
         </div>
 
         {/* ── Main grid ── */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-start mt-12">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-12 lg:gap-12 items-start mt-12">
 
           {/* Left — info panel */}
           <motion.div

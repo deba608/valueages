@@ -191,7 +191,7 @@ export default function Footer() {
         />
 
         {/* ── Bottom strip ── */}
-        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between safe-bottom">
           <p className="text-xs text-slate-400">
             &copy; {year} Valueages. All rights reserved.
           </p>

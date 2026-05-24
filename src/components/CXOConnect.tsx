@@ -480,7 +480,7 @@ export default function CXOConnect() {
                           className={`w-full p-5 rounded-2xl border-2 transition-all duration-300 ${
                             isSelected
                               ? `${netTheme.cardBg} shadow-[0_8px_30px_rgba(0,0,0,0.04)]`
-                              : "border-slate-200 bg-white text-slate-650 hover:border-slate-300 hover:shadow-xs"
+                              : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:shadow-xs"
                           }`}
                         >
                           <div className="flex items-center justify-between gap-3">
@@ -497,7 +497,7 @@ export default function CXOConnect() {
                               <div className="min-w-0">
                                 <p
                                   className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
-                                    isSelected ? "text-slate-950" : "text-slate-750"
+                                    isSelected ? "text-slate-950" : "text-slate-700"
                                   }`}
                                 >
                                   {net.title}
@@ -659,7 +659,7 @@ export default function CXOConnect() {
                               <div className="min-w-0">
                                 <p
                                   className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
-                                    isSelected ? "text-slate-950" : "text-slate-750"
+                                    isSelected ? "text-slate-950" : "text-slate-700"
                                   }`}
                                 >
                                   {net.title}
