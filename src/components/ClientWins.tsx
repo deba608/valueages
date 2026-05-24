@@ -131,7 +131,7 @@ export default function ClientWins() {
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-500">
             Representative enterprise engagements closed through strategic co-selling and
-            boardroom GTM frameworks across India's top industries.
+            boardroom GTM frameworks across India&apos;s top industries.
           </p>
         </div>
 

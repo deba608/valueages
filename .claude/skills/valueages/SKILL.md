@@ -1,70 +1,26 @@
-```markdown
-# valueages Development Patterns
+# Valueages — Claude Skill
 
-> Auto-generated skill from repository analysis
+> This file is read by Claude Code. For the full, canonical AI intelligence layer, read `.ai/` directory.
 
-## Overview
-This skill teaches the core development patterns and conventions used in the `valueages` repository, a TypeScript project built with the Next.js framework. You'll learn about file naming, import/export styles, commit patterns, and how to write and locate tests. This guide also provides suggested commands for common workflows to streamline your development process.
+## Quick Reference
 
-## Coding Conventions
+**Stack**: Next.js 16.2.6 (Turbopack) · React 19 · TypeScript 5 · Tailwind CSS v4 · Framer Motion 12
 
-### File Naming
-- Use **camelCase** for file names.
-  - Example: `userProfile.ts`, `apiHandler.tsx`
+**Full docs**: See `.ai/AGENTS.md` for complete rules, gotchas, and pre-commit checklist.
 
-### Import Style
-- Both default and named imports are used.
-- Mixed import styles are acceptable.
-  - Example:
-    ```typescript
-    import React from 'react';
-    import { useState } from 'react';
-    import customHook from './useCustomHook';
-    ```
+## Critical Rules
 
-### Export Style
-- Prefer **default exports** for modules.
-  - Example:
-    ```typescript
-    const MyComponent = () => { /* ... */ };
-    export default MyComponent;
-    ```
+1. Never add `dark:` Tailwind classes — dark mode permanently disabled
+2. Run `npm run build` after every change — zero TypeScript errors required
+3. Icons: `lucide-react` only
+4. SVG linearGradients need `gradientUnits="userSpaceOnUse"` on horizontal paths
+5. Card hover: `whileHover={{ y: -6 }}` primary, `whileHover={{ y: -4 }}` secondary
+6. Scroll reveals: always `viewport={{ once: true, margin: "-100px" }}`
 
-### Commit Patterns
-- Commit messages are **freeform** (no enforced prefixes).
-- Average commit message length: ~36 characters.
-  - Example: `fix login redirect on mobile`
+## Read These Before Any Task
 
-## Workflows
-
-_No automated workflows detected in the repository._
-
-## Testing Patterns
-
-- **Test files** follow the `*.test.*` pattern.
-  - Example: `userProfile.test.ts`, `apiHandler.test.tsx`
-- **Testing framework** is not specified. To run or write tests, locate files matching `*.test.*`.
-
-#### Example Test File
-```typescript
-// userProfile.test.ts
-import { render } from '@testing-library/react';
-import UserProfile from './userProfile';
-
-test('renders user profile', () => {
-  const { getByText } = render(<UserProfile />);
-  expect(getByText(/profile/i)).toBeInTheDocument();
-});
-```
-
-## Commands
-
-| Command     | Purpose                                         |
-|-------------|-------------------------------------------------|
-| /create-file camelCaseName | Create a new file using camelCase naming convention |
-| /import-example            | Show examples of import styles    |
-| /export-example            | Show examples of export styles    |
-| /find-tests                | List all test files (`*.test.*`)  |
-| /commit-guidelines         | Show commit message best practices|
-
-```
+- `.ai/STACK.md` — framework, dependencies
+- `.ai/ARCHITECTURE.md` — folder structure, patterns
+- `.ai/DESIGN_SYSTEM.md` — colors, typography, animation standards
+- `.ai/COMPONENT_RULES.md` — build/modify guide with checklists
+- `.ai/UI_RULES.md` — non-negotiable UI enforcement

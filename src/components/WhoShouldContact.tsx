@@ -235,7 +235,7 @@ export default function WhoShouldContact() {
                     className="group/link flex items-center gap-1.5 text-[12px] font-bold text-brand-teal"
                     aria-label={`Contact us — ${profile.title}`}
                   >
-                    Let's talk
+                    Let&apos;s talk
                     <ArrowRight
                       size={13}
                       className="transition-transform duration-200 group-hover/link:translate-x-0.5"
@@ -292,7 +292,7 @@ export default function WhoShouldContact() {
                 </div>
                 <div className="border-t border-slate-100 px-6 py-4">
                   <a href="#contact" className="group/link flex items-center gap-1.5 text-[12px] font-bold text-brand-teal" aria-label={`Contact us — ${profile.title}`}>
-                    Let's talk
+                    Let&apos;s talk
                     <ArrowRight size={13} className="transition-transform duration-200 group-hover/link:translate-x-0.5" aria-hidden="true" />
                   </a>
                 </div>
@@ -315,7 +315,7 @@ export default function WhoShouldContact() {
           <div>
             <p className="text-sm font-black text-slate-700">Not the right fit</p>
             <p className="mt-1 text-[12px] leading-relaxed text-slate-500">
-              We don't work with early-stage startups without enterprise traction, delivery-only
+              We don&apos;t work with early-stage startups without enterprise traction, delivery-only
               engagements, or teams without active India go-to-market intent. Our focus stays narrow
               so our impact stays sharp.
             </p>
@@ -334,7 +334,7 @@ export default function WhoShouldContact() {
             Recognise your challenge above?
           </p>
           <p className="max-w-lg text-sm leading-relaxed text-slate-500">
-            One conversation is enough to know if there's a fit. No decks, no pitches — just a
+            One conversation is enough to know if there&apos;s a fit. No decks, no pitches — just a
             focused discussion about your India GTM situation.
           </p>
           <a

@@ -1,0 +1,67 @@
+# VALUEAGES — Cursor Rules
+
+> These rules apply to all Cursor AI sessions in this repository.
+
+## Project Context
+
+This is a **Next.js 16.2.6** marketing site (Turbopack). It uses React 19, TypeScript 5 (strict), Tailwind CSS v4, and Framer Motion 12.
+
+**IMPORTANT**: Next.js 16 has breaking changes vs. 13/14/15. Do not apply patterns from older Next.js versions. Always read `node_modules/next/dist/docs/` for this version.
+
+## Required Reading
+
+Before any task, read these files:
+- `.ai/STACK.md`
+- `.ai/ARCHITECTURE.md`  
+- `.ai/DESIGN_SYSTEM.md`
+- `.ai/COMPONENT_RULES.md`
+- `.ai/UI_RULES.md`
+
+## Absolute Rules
+
+1. **NO `dark:` Tailwind classes** — dark mode is permanently disabled
+2. **Run `npm run build` after every change** — fix all TypeScript errors
+3. **All section components** live in `src/components/` (flat, no subdirs)
+4. **Default exports only** — `export default function ComponentName()`
+5. **Icons**: `lucide-react` exclusively
+
+## Animation Rules
+
+```tsx
+// Primary card hover
+whileHover={{ y: -6 }}
+
+// Secondary card hover  
+whileHover={{ y: -4 }}
+
+// Entrance reveals — always use once:true
+initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
+
+// Standard stagger
+staggerChildren: 0.08
+```
+
+## SVG Gotcha
+
+Always use `gradientUnits="userSpaceOnUse"` on SVG linearGradients:
+```tsx
+<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0">
+```
+
+## Design Tokens
+
+```
+brand-teal:  #109B82  (primary)
+brand-green: #4F8F7B  (secondary)
+brand-rust:  #B85A3A  (warm accent)
+brand-tan:   #C99A5A  (warm gradient)
+font-serif:  Playfair Display (headings)
+font-sans:   Inter (body)
+```
+
+## Pre-Commit
+
+- [ ] `npm run build` zero errors
+- [ ] No `dark:` classes
+- [ ] No `any` types
+- [ ] `viewport={{ once: true }}` on all reveals
