@@ -52,10 +52,15 @@ yarn-error.log*
 graphify-out/
 
 # ── AI Tool Local Configs (machine-specific, never commit) ───────────────────
+# Codex — full directory (AI tool data, scripts, agent configs)
+.codex/
+# Claude — local machine identity and settings only
 .claude/settings.local.json
 .claude/settings.json
 .claude/homunculus/
-.codex/skills/ui-ux-pro-max/scripts/__pycache__/
+.claude/ecc-tools.json
+.claude/identity.json
+# Python bytecache (from any AI skill scripts)
 **/__pycache__/
 **/*.pyc
 **/*.pyo
