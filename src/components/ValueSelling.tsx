@@ -24,7 +24,7 @@ export default function ValueSelling() {
               Make enterprise buyers see the business case before the demo.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-slate-600">
-              ValueEdge keeps the copy sharp and the conversation commercial. We turn UnifyApps capability
+              Valueages keeps the copy sharp and the conversation commercial. We turn UnifyApps capability
               into boardroom value, then align stakeholders around outcomes that move deals forward.
             </p>
 

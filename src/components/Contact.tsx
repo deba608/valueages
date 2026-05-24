@@ -138,7 +138,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section-shell theme-section-muted" aria-labelledby="contact-title">
-      <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute top-1/4 left-[10%] w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl" aria-hidden="true" />
 
       <div className="container max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">

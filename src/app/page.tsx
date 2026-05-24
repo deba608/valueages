@@ -61,7 +61,7 @@ export default function Home() {
         {/* 13. Ideal fit — who should contact us */}
         <WhoShouldContact />
 
-        {/* 14. ValueEdge advantage indicators */}
+        {/* 14. Valueages advantage indicators */}
         <WhyChooseUs />
 
         {/* 14. Contact & lead capture */}

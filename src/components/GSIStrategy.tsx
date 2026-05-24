@@ -28,7 +28,7 @@ export default function GSIStrategy() {
               Turn GSI relationships into India enterprise pipeline.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-slate-600">
-              ValueEdge helps GSIs position UnifyApps as the automation and AI orchestration layer inside
+              Valueages helps GSIs position UnifyApps as the automation and AI orchestration layer inside
               transformation programs, then carries that story into enterprise buying rooms.
             </p>
             <div className="mt-8 grid grid-cols-3 gap-3">
