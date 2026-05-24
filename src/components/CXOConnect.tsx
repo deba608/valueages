@@ -11,7 +11,6 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
-import BorderGlow from "./BorderGlow";
 
 const networks = [
   {
@@ -468,99 +467,82 @@ export default function CXOConnect() {
                   const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
 
                   return (
-                    <motion.div
+                    <div
                       key={net.title}
-                      whileHover={{ y: -2 }}
                       className="w-full text-left"
                     >
                       <button
                         type="button"
                         onClick={() => setActiveSegment(idx)}
-                        className="w-full text-left"
+                        className="w-full text-left focus:outline-hidden"
                       >
-                        <BorderGlow
-                          className={`w-full transition-all duration-300 overflow-hidden ${
+                        <div
+                          className={`w-full p-5 rounded-2xl border-2 transition-all duration-300 ${
                             isSelected
-                              ? "shadow-lg opacity-100"
-                              : "opacity-85 hover:opacity-95"
+                              ? `${netTheme.cardBg} shadow-[0_8px_30px_rgba(0,0,0,0.04)]`
+                              : "border-slate-200 bg-white text-slate-650 hover:border-slate-300 hover:shadow-xs"
                           }`}
-                          edgeSensitivity={isSelected ? 30 : 50}
-                          glowColor={netTheme.glowBase}
-                          backgroundColor="transparent"
-                          borderRadius={18}
-                          glowRadius={isSelected ? 70 : 0}
-                          glowIntensity={isSelected ? 1.4 : 0}
-                          animated={isSelected}
-                          colors={netTheme.glowColors}
                         >
-                          <div
-                            className={`p-5 rounded-2xl border transition-all duration-300 ${
-                              isSelected
-                                ? `${netTheme.cardBg} border-transparent`
-                                : "border-slate-200/80 bg-white text-slate-600 hover:border-slate-300"
-                            }`}
-                          >
-                            <div className="flex items-center justify-between gap-3">
-                              <div className="flex items-center gap-3 min-w-0">
-                                <span
-                                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
-                                    isSelected
-                                      ? netTheme.rightButtonIcon
-                                      : "bg-slate-100 text-slate-500"
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-3 min-w-0">
+                              <span
+                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
+                                  isSelected
+                                    ? netTheme.rightButtonIcon
+                                    : "bg-slate-100 text-slate-500"
+                                }`}
+                              >
+                                <Icon size={18} />
+                              </span>
+                              <div className="min-w-0">
+                                <p
+                                  className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
+                                    isSelected ? "text-slate-950" : "text-slate-750"
                                   }`}
                                 >
-                                  <Icon size={18} />
-                                </span>
-                                <div className="min-w-0">
-                                  <p
-                                    className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
-                                      isSelected ? "text-slate-950" : "text-slate-700"
-                                    }`}
-                                  >
-                                    {net.title}
-                                  </p>
-                                  <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
-                                    {net.subtitle}
-                                  </p>
-                                </div>
+                                  {net.title}
+                                </p>
+                                <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
+                                  {net.subtitle}
+                                </p>
                               </div>
-
-                              {isSelected && (
-                                <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
-                                  Active
-                                </span>
-                              )}
                             </div>
 
-                            <motion.div
-                              initial={false}
-                              animate={{
-                                height: isSelected ? "auto" : 0,
-                                opacity: isSelected ? 1 : 0,
-                                marginTop: isSelected ? 14 : 0,
-                              }}
-                              transition={{ duration: 0.35, ease: "easeInOut" }}
-                              className="overflow-hidden"
-                            >
-                              <p className="text-xs sm:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
-                                {net.description}
-                              </p>
-
-                              <div className="flex flex-wrap gap-2">
-                                {net.tags.map((tag) => (
-                                  <span
-                                    key={tag}
-                                    className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                            </motion.div>
+                            {isSelected && (
+                              <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
+                                Active
+                              </span>
+                            )}
                           </div>
-                        </BorderGlow>
+
+                          <motion.div
+                            initial={false}
+                            animate={{
+                              height: isSelected ? "auto" : 0,
+                              opacity: isSelected ? 1 : 0,
+                              marginTop: isSelected ? 14 : 0,
+                            }}
+                            transition={{ duration: 0.35, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-xs sm:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
+                              {net.description}
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                              {net.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </motion.div>
+                        </div>
                       </button>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
@@ -643,102 +625,84 @@ export default function CXOConnect() {
                   const netTheme = themeClasses[net.accent as keyof typeof themeClasses];
 
                   return (
-                    <motion.div
+                    <div
                       key={net.title}
-                      whileHover={{ y: isSelected ? -4 : -2 }}
                       className="flex items-center h-full"
                     >
                       <button
                         type="button"
                         onClick={() => setActiveSegment(idx)}
-                        onMouseEnter={() => setActiveSegment(idx)}
                         className="w-full text-left focus:outline-hidden"
                       >
-                        <BorderGlow
-                          className={`w-full transition-all duration-300 overflow-hidden ${
+                        <div
+                          className={`w-full p-5 rounded-2xl border-2 transition-all duration-300 ${
                             isSelected
-                              ? "shadow-lg opacity-100"
-                              : "opacity-80 hover:opacity-95"
+                              ? `${netTheme.cardBg} shadow-[0_8px_30px_rgba(0,0,0,0.04)]`
+                              : "border-slate-200 bg-white text-slate-600 hover:border-slate-300/80 hover:bg-slate-50/10 hover:shadow-xs"
                           }`}
-                          edgeSensitivity={isSelected ? 30 : 50}
-                          glowColor={netTheme.glowBase}
-                          backgroundColor="transparent"
-                          borderRadius={20}
-                          glowRadius={isSelected ? 70 : 0}
-                          glowIntensity={isSelected ? 1.4 : 0}
-                          animated={isSelected}
-                          colors={netTheme.glowColors}
                         >
-                          <div
-                            className={`p-5 rounded-2xl border transition-all duration-300 ${
-                              isSelected
-                                ? `${netTheme.cardBg} border-transparent`
-                                : "border-slate-200/80 bg-white/95 text-slate-600 hover:border-slate-300 hover:bg-white"
-                            }`}
-                          >
-                            {/* Card Header */}
-                            <div className="flex items-center justify-between gap-3">
-                              <div className="flex items-center gap-3 min-w-0">
-                                <span
-                                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
-                                    isSelected
-                                      ? netTheme.rightButtonIcon
-                                      : "bg-slate-100 text-slate-500"
+                          {/* Card Header */}
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-3 min-w-0">
+                              <span
+                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
+                                  isSelected
+                                    ? netTheme.rightButtonIcon
+                                    : "bg-slate-100 text-slate-500"
+                                }`}
+                              >
+                                <Icon size={18} />
+                              </span>
+                              <div className="min-w-0">
+                                <p
+                                  className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
+                                    isSelected ? "text-slate-950" : "text-slate-750"
                                   }`}
                                 >
-                                  <Icon size={18} />
-                                </span>
-                                <div className="min-w-0">
-                                  <p
-                                    className={`text-xs sm:text-sm font-extrabold uppercase tracking-wider leading-tight transition-colors duration-300 ${
-                                      isSelected ? "text-slate-950" : "text-slate-700"
-                                    }`}
-                                  >
-                                    {net.title}
-                                  </p>
-                                  <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
-                                    {net.subtitle}
-                                  </p>
-                                </div>
+                                  {net.title}
+                                </p>
+                                <p className="mt-1 text-[10px] leading-relaxed opacity-75 text-slate-500">
+                                  {net.subtitle}
+                                </p>
                               </div>
-
-                              {isSelected && (
-                                <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
-                                  Active
-                                </span>
-                              )}
                             </div>
 
-                            {/* Expanded Content with Smooth Height Reveal */}
-                            <motion.div
-                              initial={false}
-                              animate={{
-                                height: isSelected ? "auto" : 0,
-                                opacity: isSelected ? 1 : 0,
-                                marginTop: isSelected ? 14 : 0,
-                              }}
-                              transition={{ duration: 0.35, ease: "easeInOut" }}
-                              className="overflow-hidden"
-                            >
-                              <p className="text-xs xl:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
-                                {net.description}
-                              </p>
-
-                              <div className="flex flex-wrap gap-2">
-                                {net.tags.map((tag) => (
-                                  <span
-                                    key={tag}
-                                    className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                            </motion.div>
+                            {isSelected && (
+                              <span className={`rounded-full px-2.5 py-0.5 text-[8px] font-extrabold uppercase tracking-widest ${netTheme.routePill}`}>
+                                Active
+                              </span>
+                            )}
                           </div>
-                        </BorderGlow>
+
+                          {/* Expanded Content with Smooth Height Reveal */}
+                          <motion.div
+                            initial={false}
+                            animate={{
+                              height: isSelected ? "auto" : 0,
+                              opacity: isSelected ? 1 : 0,
+                              marginTop: isSelected ? 14 : 0,
+                            }}
+                            transition={{ duration: 0.35, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-xs xl:text-sm leading-relaxed text-slate-600 border-t border-slate-200/60 pt-4 mb-4">
+                              {net.description}
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                              {net.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className={`rounded-full border px-2.5 py-0.75 text-[9px] font-extrabold uppercase tracking-wider transition-all duration-300 ${netTheme.tagActive}`}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </motion.div>
+                        </div>
                       </button>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </motion.div>
