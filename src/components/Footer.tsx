@@ -102,7 +102,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="md:col-span-3 md:col-start-6">
+          <div className="md:col-span-2 md:col-start-6">
             <p className="mb-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-400">
               Quick Links
             </p>
@@ -125,7 +125,7 @@ export default function Footer() {
           </div>
 
           {/* Focus Areas */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-2 md:col-start-9">
             <p className="mb-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-400">
               Focus Areas
             </p>
@@ -148,7 +148,7 @@ export default function Footer() {
           </div>
 
           {/* Contact details */}
-          <div className="md:col-span-2 md:col-start-11 lg:col-start-12">
+          <div className="md:col-span-2 md:col-start-11">
             <p className="mb-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-400">
               Contact
             </p>

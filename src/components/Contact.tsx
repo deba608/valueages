@@ -19,15 +19,6 @@ import {
 // Social channel removed: intentionally omitted
 
 /* ─────────────────────────────────────────────
-   Trust anchors — social proof above the form
-───────────────────────────────────────────── */
-const trustAnchors = [
-  { icon: ShieldCheck, label: "No pitch, no deck", sub: "Just a focused discussion" },
-  { icon: Clock,       label: "Response in 24 h",  sub: "Direct to Manas Das"       },
-  { icon: CheckCircle2,label: "Confidential",       sub: "All inquiries are private" },
-];
-
-/* ─────────────────────────────────────────────
    Form field helpers
 ───────────────────────────────────────────── */
 type FieldName = "name" | "email" | "company" | "message";
@@ -108,10 +99,8 @@ export default function Contact() {
 
   const inputCls = (f: FieldName) => {
     const hasErr = errors[f] && touched[f];
-    const ok     = validFields[f] && touched[f];
     return `w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 min-h-11 bg-white text-slate-900 placeholder:text-slate-400 ${
       hasErr ? "border-brand-rust focus:ring-brand-rust/20 focus:border-brand-rust"
-      : ok   ? "border-emerald-400 focus:ring-emerald-400/20 focus:border-emerald-400"
              : "border-slate-200 focus:ring-brand-teal/20 focus:border-brand-teal"
     }`;
   };
@@ -122,11 +111,23 @@ export default function Contact() {
       className="section-shell theme-section-muted relative overflow-hidden"
       aria-labelledby="contact-title"
     >
-      {/* ── Ambient depth ── */}
+      {/* ── Ambient depth and subtle dot grid instead of heavy green blobs ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-brand-teal/[0.06] blur-[100px]" />
-        <div className="absolute bottom-0 left-[10%] h-80 w-80 rounded-full bg-brand-tan/[0.05] blur-3xl" />
-        <div className="absolute top-1/3 right-[5%] h-64 w-64 rounded-full bg-brand-teal/[0.04] blur-3xl" />
+        {/* Subtle dot matrix grid */}
+        <div
+          className="absolute inset-0 pointer-events-none select-none opacity-[0.02]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #109B82 1px, transparent 1px), linear-gradient(to bottom, #109B82 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+            maskImage: "radial-gradient(circle at center, black 40%, transparent 80%)",
+            WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 80%)",
+          }}
+        />
+        {/* Extremely low-opacity ambient glows */}
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-brand-teal/[0.018] blur-[110px]" />
+        <div className="absolute bottom-0 left-[10%] h-80 w-80 rounded-full bg-brand-tan/[0.015] blur-3xl" />
+        <div className="absolute top-1/3 right-[5%] h-64 w-64 rounded-full bg-brand-teal/[0.012] blur-3xl" />
       </div>
 
       <div className="container relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
@@ -148,17 +149,17 @@ export default function Contact() {
           {/* Minimalist flat trust anchors instead of box-on-box grid cards */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-wider text-slate-650">
             <span className="flex items-center gap-2">
-              <ShieldCheck size={14} className="text-brand-teal" />
+              <Check size={14} className="text-brand-teal stroke-[2.5]" />
               No pitch, no deck
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-slate-300 hidden sm:inline" />
             <span className="flex items-center gap-2">
-              <Clock size={14} className="text-brand-tan" />
+              <Check size={14} className="text-brand-teal stroke-[2.5]" />
               24h Advisor Response
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-slate-300 hidden sm:inline" />
             <span className="flex items-center gap-2">
-              <CheckCircle2 size={14} className="text-brand-teal" />
+              <Check size={14} className="text-brand-teal stroke-[2.5]" />
               Private & Confidential
             </span>
           </div>
@@ -227,12 +228,12 @@ export default function Contact() {
                   href="tel:+919654017778"
                   className="group flex items-center gap-3.5 rounded-xl border border-transparent p-1 transition-all duration-200 hover:border-brand-teal/10 hover:bg-brand-teal/[0.02]"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-tan/8 text-brand-tan group-hover:bg-brand-tan group-hover:text-white transition-all duration-200">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-teal/8 text-brand-teal group-hover:bg-brand-teal group-hover:text-white transition-all duration-200">
                     <Phone size={16} strokeWidth={1.8} />
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="text-[8px] font-extrabold uppercase tracking-wider text-slate-400">Direct Phone</p>
-                    <p className="mt-0.5 text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-brand-tan transition-colors">+91 9654017778</p>
+                    <p className="mt-0.5 text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-brand-teal transition-colors">+91 9654017778</p>
                     <p className="text-[10px] text-slate-400 mt-0.5 group-hover:text-slate-500 transition-colors">+91 6362025780</p>
                   </div>
                   <ArrowRight size={13} className="text-slate-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
@@ -240,7 +241,7 @@ export default function Contact() {
 
                 {/* Corporate Address */}
                 <div className="flex items-start gap-3.5 p-1">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-rust/8 text-brand-rust">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-teal/8 text-brand-teal">
                     <MapPin size={16} strokeWidth={1.8} />
                   </span>
                   <div className="min-w-0">
