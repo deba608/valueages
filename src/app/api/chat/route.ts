@@ -1,24 +1,10 @@
-import Groq from "groq-sdk";
 import { NextRequest } from "next/server";
 
 // Prevent Next.js from statically evaluating this route during build.
-// The Groq SDK requires GROQ_API_KEY at runtime — not available at build time.
+// The Groq SDK is loaded via dynamic import inside the handler so it is
+// never instantiated at module-init time (which would throw without the key).
 export const dynamic = "force-dynamic";
 export const runtime = "edge";
-
-
-let groqInstance: Groq | null = null;
-
-function getGroqClient(): Groq {
-  if (!groqInstance) {
-    const apiKey = process.env.GROQ_API_KEY;
-    if (!apiKey) {
-      throw new Error("The GROQ_API_KEY environment variable is missing or empty.");
-    }
-    groqInstance = new Groq({ apiKey });
-  }
-  return groqInstance;
-}
 
 const SYSTEM_PROMPT = `You are the Valueages AI assistant — a knowledgeable, professional, and concise advisor representing Valueages, a premier enterprise GTM (Go-To-Market) advisory firm.
 
@@ -54,7 +40,8 @@ Instructions:
 - Never make up specific client names, revenue figures, or guarantees
 - If asked something outside your scope, politely redirect to scheduling a consultation`;
 
-// In-memory rate limiter: 10 req/min per IP
+// In-memory rate limiter: 10 req/min per IP.
+// Note: Cloudflare Workers are ephemeral — this map is per-isolate, not global.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
 function isRateLimited(ip: string): boolean {
@@ -71,11 +58,6 @@ function isRateLimited(ip: string): boolean {
   entry.count++;
   return false;
 }
-
-// Note: In Cloudflare Workers (edge runtime) each invocation is isolated —
-// the rateLimitMap is per-request scoped and stale-entry cleanup via
-// setInterval is not supported. The expiry check inside isRateLimited handles
-// the reset instead.
 
 export async function POST(req: NextRequest) {
   const ip =
@@ -113,8 +95,17 @@ export async function POST(req: NextRequest) {
     // Cap conversation history at last 10 messages to control token usage
     const recentMessages = messages.slice(-10);
 
-    const groqClient = getGroqClient();
-    const stream = await groqClient.chat.completions.create({
+    // Dynamic import — groq-sdk is resolved at request time only, never at
+    // build/module-init time. This prevents the SDK from throwing during
+    // Next.js static page-data collection when GROQ_API_KEY is absent.
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+      throw new Error("GROQ_API_KEY is not configured.");
+    }
+    const { default: Groq } = await import("groq-sdk");
+    const groq = new Groq({ apiKey });
+
+    const stream = await groq.chat.completions.create({
       model: "llama-3.1-8b-instant",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
