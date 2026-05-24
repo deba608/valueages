@@ -50,7 +50,7 @@ export default function GCCStrategy() {
               Help captive centers become AI-powered enterprise engines.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600">
-              GCCs in India are now transformation nerve centers. ValueEdge helps leaders identify high-value
+              GCCs in India are now transformation nerve centers. Valueages helps leaders identify high-value
               use cases, secure executive buy-in, and activate UnifyApps across global operating functions.
             </p>
 

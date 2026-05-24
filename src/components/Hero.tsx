@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[96vh] overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28 flex items-center"
+      className="relative min-h-dvh overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28 flex items-center"
       aria-label="Introduction"
     >
       {/* Background layers */}
@@ -61,7 +61,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.38 }}
           className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg"
         >
-          ValueEdge helps product companies turn UnifyApps capability into executive conversations,
+          Valueages helps product companies turn UnifyApps capability into executive conversations,
           partner-led pipeline, and enterprise-ready GTM narratives across India.
         </motion.p>
 

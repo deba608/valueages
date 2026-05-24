@@ -154,7 +154,7 @@ export default function WhoShouldContact() {
             Is This Built For You?
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-500">
-            ValueEdge works with a focused set of enterprise roles where our GTM depth creates the
+            Valueages works with a focused set of enterprise roles where our GTM depth creates the
             most measurable impact. If you recognise your challenge below, we should talk.
           </p>
         </div>

@@ -100,6 +100,11 @@ html {
   scrollbar-color: var(--color-brand-teal) transparent;
 }
 
+/* Eliminate 300ms tap delay on all interactive elements */
+a, button, [role="button"], input, textarea, select, label {
+  touch-action: manipulation;
+}
+
 /* Modern scrollbar: visible enough to use, quiet enough for the page. */
 ::-webkit-scrollbar {
   width: 10px;
@@ -127,13 +132,18 @@ body {
   overflow-x: clip;
 }
 
-/* Smooth theme transition across core layout elements */
-body, section, nav, footer, button, input, textarea, a, .premium-card, .glass-effect, .navbar-glass, .card-interactive, .cta-glow, .trust-bar-glass, .glow-card-teal, .glow-card-rust, .surface-card, .surface-panel, .interactive-card, .primary-button, .secondary-button {
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Smooth theme transitions — surface/color properties only, not layout */
+@media (prefers-reduced-motion: no-preference) {
+  body, section, nav, footer, button, input, textarea, a,
+  .premium-card, .glass-effect, .navbar-glass, .card-interactive,
+  .trust-bar-glass, .surface-card, .surface-panel,
+  .interactive-card, .primary-button, .secondary-button {
+    transition:
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 /* Logo brightness invert in dark mode to avoid hydration lag */
@@ -160,7 +170,7 @@ select:focus-visible,
   outline: none;
 }
 
-/* Reduced Motion Support */
+/* Reduced Motion Support — covers ALL animation utilities */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -171,12 +181,41 @@ select:focus-visible,
     scroll-behavior: auto !important;
   }
 
+  /* Disable all named animation classes */
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-glow-pulse,
+  .animate-glow-pulse-slow,
+  .animate-gradient-text,
+  .animate-blur-up,
+  .animate-pulse,
   .animate-pulse-slow,
+  .animate-spin,
   .animate-spin-slow,
+  .animate-ping,
   .animate-flow-dash,
   .animate-flow-dash-fast,
-  .animate-ping {
+  .section-reveal {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Disable shimmer on buttons */
+  .btn-premium::after,
+  .btn-shimmer::after {
+    animation: none !important;
+  }
+
+  /* Keep layout stable — no hover transforms */
+  .interactive-card:hover,
+  .primary-button:hover,
+  .secondary-button:hover,
+  .card-interactive:hover,
+  .card-hover:hover {
+    transform: none !important;
   }
 }
 

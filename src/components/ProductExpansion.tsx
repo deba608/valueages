@@ -29,7 +29,7 @@ export default function ProductExpansion() {
                 <Globe size={20} className="text-brand-teal" />
                 <p className="mt-3 text-sm font-black text-slate-950">Product company exploring India?</p>
                 <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  ValueEdge helps convert market ambition into boardroom access and enterprise pipeline.
+                  Valueages helps convert market ambition into boardroom access and enterprise pipeline.
                 </p>
               </div>
             </div>
@@ -40,7 +40,7 @@ export default function ProductExpansion() {
                 Your UnifyApps partner for India go-to-market.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-600">
-                If you are exploring India, ValueEdge helps localize your value proposition, reach enterprise
+                If you are exploring India, Valueages helps localize your value proposition, reach enterprise
                 buyers, and build a partner-led sales pipeline with UnifyApps at the center.
               </p>
 

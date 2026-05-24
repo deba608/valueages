@@ -18,7 +18,7 @@ export default function UnifyAppsPartnership() {
           <div className="lg:col-span-6">
             <span className="section-eyebrow mb-4">Strategic Partnership</span>
             <h2 id="partnership-title" className="font-serif text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">
-              ValueEdge makes UnifyApps boardroom-relevant for India.
+              Valueages makes UnifyApps boardroom-relevant for India.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-slate-600">
               We help product, GSI, and GCC leaders understand where UnifyApps can create visible business

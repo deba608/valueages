@@ -7,6 +7,8 @@ import {
   MapPin, Zap, Code, ShieldCheck, CheckCircle2, ChevronRight
 } from "lucide-react";
 import BorderGlow from "./BorderGlow";
+import SectionAmbient from "./shared/SectionAmbient";
+import { cardThemes } from "@/lib/cardThemes";
 
 export default function WhyChooseUs() {
   // State for the active translation item in Card 4 (Positioning Depth)
@@ -33,32 +35,6 @@ export default function WhyChooseUs() {
     return () => clearInterval(timer);
   }, [translations.length]);
 
-  const cardThemes = {
-    teal: {
-      iconBg: "bg-brand-teal/5 text-brand-teal border border-brand-teal/10 group-hover:bg-brand-teal group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(16,155,130,0.4)]",
-      badge: "bg-brand-teal/5 text-brand-teal border border-brand-teal/10 group-hover:bg-brand-teal/10",
-      glowBase: "169 81 34", // HSL Teal
-      glowColors: ["#0f766e", "#109B82", "#5D9F9B"],
-    },
-    green: {
-      iconBg: "bg-brand-green/5 text-brand-green border border-brand-green/10 group-hover:bg-brand-green group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(79,143,123,0.4)]",
-      badge: "bg-brand-green/5 text-brand-green border border-brand-green/10 group-hover:bg-brand-green/10",
-      glowBase: "162 29 43", // HSL Green
-      glowColors: ["#4F8F7B", "#5D9F9B", "#109B82"],
-    },
-    rust: {
-      iconBg: "bg-brand-rust/5 text-brand-rust border border-brand-rust/10 group-hover:bg-brand-rust group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(184,90,58,0.4)]",
-      badge: "bg-brand-rust/5 text-brand-rust border border-brand-rust/10 group-hover:bg-brand-rust/10",
-      glowBase: "16 52 47", // HSL Rust
-      glowColors: ["#B85A3A", "#C99A5A", "#B85A3A"],
-    },
-    tan: {
-      iconBg: "bg-brand-tan/5 text-brand-tan border border-brand-tan/10 group-hover:bg-brand-tan group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(201,154,90,0.4)]",
-      badge: "bg-brand-tan/5 text-brand-tan border border-brand-tan/10 group-hover:bg-brand-tan/10",
-      glowBase: "35 52 57", // HSL Tan
-      glowColors: ["#C99A5A", "#5D9F9B", "#109B82"],
-    },
-  };
 
   const containerVariants: Variants = {
     hidden: {},
@@ -87,24 +63,7 @@ export default function WhyChooseUs() {
       className="section-shell theme-section-light relative overflow-hidden transition-colors duration-500 py-24 sm:py-32" 
       aria-labelledby="why-title"
     >
-      {/* Ambient Background & Grid */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Subtle radial-faded grid line pattern */}
-        <div 
-          className="absolute inset-0 pointer-events-none select-none opacity-[0.04]" 
-          style={{
-            backgroundImage: "linear-gradient(to right, #109B82 1px, transparent 1px), linear-gradient(to bottom, #109B82 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-            maskImage: "radial-gradient(circle at center, black 40%, transparent 80%)",
-            WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 80%)"
-          }} 
-        />
-        
-        {/* Soft Ambient Glows */}
-        <div className="absolute top-1/4 left-[-10%] h-[400px] w-[400px] rounded-full bg-brand-teal/5 blur-[120px]" />
-        <div className="absolute bottom-1/4 right-[-10%] h-[350px] w-[350px] rounded-full bg-brand-rust/5 blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-brand-green/3 blur-[140px]" />
-      </div>
+      <SectionAmbient />
 
       <div className="container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -236,7 +195,7 @@ export default function WhyChooseUs() {
             >
               <div className="flex flex-col h-full justify-between rounded-3xl p-6 sm:p-8 bg-white border border-slate-200/80 transition-all duration-300 group-hover:border-transparent group-hover:bg-white/95 group-hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.15)]">
                 <div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 mb-6 px-2.5 py-1 w-fit border border-brand-rust/10 bg-brand-rust/5 text-brand-rust group-hover:bg-brand-rust group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(184,90,58,0.4)]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 mb-6 border border-brand-rust/10 bg-brand-rust/5 text-brand-rust group-hover:bg-brand-rust group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(184,90,58,0.4)]">
                     <Award size={20} className="stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <h3 className="text-xl font-black tracking-tight text-slate-900 group-hover:text-brand-rust transition-colors duration-300">
@@ -280,7 +239,7 @@ export default function WhyChooseUs() {
             >
               <div className="flex flex-col h-full justify-between rounded-3xl p-6 sm:p-8 bg-white border border-slate-200/80 transition-all duration-300 group-hover:border-transparent group-hover:bg-white/95 group-hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.15)]">
                 <div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 mb-6 px-2.5 py-1 w-fit border border-brand-tan/10 bg-brand-tan/5 text-brand-tan group-hover:bg-brand-tan group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(201,154,90,0.4)]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 mb-6 border border-brand-tan/10 bg-brand-tan/5 text-brand-tan group-hover:bg-brand-tan group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(201,154,90,0.4)]">
                     <MapPin size={20} className="stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 group-hover:text-brand-tan transition-colors duration-300">
@@ -438,7 +397,7 @@ export default function WhyChooseUs() {
             >
               <div className="flex flex-col h-full justify-between rounded-3xl p-6 sm:p-8 bg-white border border-slate-200/80 transition-all duration-300 group-hover:border-transparent group-hover:bg-white/95 group-hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.15)]">
                 <div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 mb-6 px-2.5 py-1 w-fit border border-brand-teal/10 bg-brand-teal/5 text-brand-teal group-hover:bg-brand-teal group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(16,155,130,0.4)]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 mb-6 border border-brand-teal/10 bg-brand-teal/5 text-brand-teal group-hover:bg-brand-teal group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(16,155,130,0.4)]">
                     <Sparkles size={20} className="stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <h3 className="text-xl font-black tracking-tight text-slate-900 group-hover:text-brand-teal transition-colors duration-300">
@@ -477,7 +436,7 @@ export default function WhyChooseUs() {
             >
               <div className="flex flex-col h-full justify-between rounded-3xl p-6 sm:p-8 bg-white border border-slate-200/80 transition-all duration-300 group-hover:border-transparent group-hover:bg-white/95 group-hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.15)]">
                 <div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 mb-6 px-2.5 py-1 w-fit border border-brand-rust/10 bg-brand-rust/5 text-brand-rust group-hover:bg-brand-rust group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(184,90,58,0.4)]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 mb-6 border border-brand-rust/10 bg-brand-rust/5 text-brand-rust group-hover:bg-brand-rust group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(184,90,58,0.4)]">
                     <ShieldAlert size={20} className="stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <h3 className="text-xl font-black tracking-tight text-slate-900 group-hover:text-brand-rust transition-colors duration-300">
