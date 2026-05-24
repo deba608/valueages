@@ -452,7 +452,7 @@ export default function Navbar() {
                   >
                     <Mail size={13} className="text-brand-teal flex-shrink-0" />
                     <span className="text-xs text-slate-500 group-hover:text-slate-700 transition-colors duration-150">
-                      info@valueages.com
+                      manas.das@valueages.com
                     </span>
                   </a>
                 </div>
