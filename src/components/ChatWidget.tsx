@@ -165,6 +165,7 @@ export default function ChatWidget() {
                 </div>
               </div>
               <button
+                type="button"
                 onClick={handleClose}
                 aria-label="Close chat"
                 className="flex h-8 w-8 items-center justify-center rounded-full text-white/80 hover:bg-white/20 hover:text-white transition-colors duration-200 active:scale-95"
@@ -246,6 +247,7 @@ export default function ChatWidget() {
                   className="flex-1 resize-none rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-brand-teal/50 focus:bg-white focus:ring-2 focus:ring-brand-teal/15 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed min-h-[42px] max-h-[100px]"
                 />
                 <button
+                  type="button"
                   onClick={sendMessage}
                   disabled={!input.trim() || isLoading}
                   aria-label="Send message"
@@ -268,6 +270,7 @@ export default function ChatWidget() {
 
       {/* Floating Trigger Button */}
       <motion.button
+        type="button"
         onClick={() => setIsOpen((v) => !v)}
         aria-label={isOpen ? "Close chat" : "Open AI chat assistant"}
         aria-expanded={isOpen}

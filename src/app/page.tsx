@@ -48,7 +48,7 @@ const jsonLd = {
       "@id": `${SITE_URL}/#professional-service`,
       name: "Valueages",
       url: SITE_URL,
-      image: `${SITE_URL}/opengraph-image`,
+      image: `${SITE_URL}/opengraph-image.svg`,
       logo: `${SITE_URL}/Nav_logo1.svg`,
       description:
         "India enterprise GTM advisory for global SaaS and product companies, including CXO access, BFSI relationships, GCC programs, and GSI alliances.",
