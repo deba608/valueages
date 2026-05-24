@@ -562,8 +562,10 @@ export default function CXOConnect() {
                 whileHover={{ y: -6 }}
                 className="absolute left-0 top-1/2 -translate-y-1/2 w-[22%] h-fit cursor-pointer"
               >
-                <div className="glass-effect w-full rounded-2xl p-6 text-center border border-slate-200/80 shadow-lg hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.12)] transition-all duration-300">
-                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-md">
+                <div className="relative w-full rounded-2xl border-2 p-6 text-center shadow-2xl bg-gradient-to-br from-white to-slate-50/50 transition-all duration-300 border-slate-200">
+                  <span className="absolute -inset-2 rounded-2xl border border-slate-200/40 animate-pulse-slow transition-all duration-300" />
+                  
+                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-md shadow-slate-950/20">
                     <Cpu size={22} className="stroke-[1.8]" />
                   </span>
 
@@ -632,6 +634,7 @@ export default function CXOConnect() {
                       <button
                         type="button"
                         onClick={() => setActiveSegment(idx)}
+                        onMouseEnter={() => setActiveSegment(idx)}
                         className="w-full text-left focus:outline-hidden"
                       >
                         <div
