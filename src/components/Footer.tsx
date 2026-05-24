@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 
 // Social channel removed: intentionally omitted

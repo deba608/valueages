@@ -11,7 +11,6 @@ import {
   Loader2,
   Check,
   ShieldCheck,
-  Clock,
   ArrowRight,
   Phone,
 } from "lucide-react";
@@ -264,8 +263,7 @@ export default function Contact() {
           >
             <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_2px_32px_-8px_rgba(15,23,42,0.1),0_1px_0_rgba(255,255,255,0.8)_inset]">
 
-              {/* Form header accent */}
-              <div className="h-1 w-full bg-gradient-to-r from-brand-teal via-brand-teal-light to-brand-tan" />
+
 
               <div className="p-6 sm:p-8">
                 <AnimatePresence mode="wait">
