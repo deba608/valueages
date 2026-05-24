@@ -438,7 +438,7 @@ export default function Navbar() {
                 {/* Contact pills */}
                 <div className="mt-3 flex flex-col gap-1.5">
                   <a
-                    href="tel:+91"
+                    href="tel:+919654017778"
                     className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-100/80 transition-colors duration-150 group"
                   >
                     <Phone size={13} className="text-brand-teal flex-shrink-0" />
