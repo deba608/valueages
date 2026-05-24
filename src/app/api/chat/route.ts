@@ -2,7 +2,6 @@ import { NextRequest } from "next/server";
 
 // Prevent Next.js from statically evaluating this route during build.
 export const dynamic = "force-dynamic";
-export const runtime = "edge";
 
 const SYSTEM_PROMPT = `You are the Valueages AI assistant — a knowledgeable, professional, and concise advisor representing Valueages, a premier enterprise GTM (Go-To-Market) advisory firm.
 
