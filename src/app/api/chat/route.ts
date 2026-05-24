@@ -1,6 +1,12 @@
 import Groq from "groq-sdk";
 import { NextRequest } from "next/server";
 
+// Prevent Next.js from statically evaluating this route during build.
+// The Groq SDK requires GROQ_API_KEY at runtime — not available at build time.
+export const dynamic = "force-dynamic";
+export const runtime = "edge";
+
+
 let groqInstance: Groq | null = null;
 
 function getGroqClient(): Groq {
@@ -66,15 +72,10 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-// Clean up stale entries periodically
-if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [key, value] of rateLimitMap.entries()) {
-      if (now > value.resetAt) rateLimitMap.delete(key);
-    }
-  }, 120_000);
-}
+// Note: In Cloudflare Workers (edge runtime) each invocation is isolated —
+// the rateLimitMap is per-request scoped and stale-entry cleanup via
+// setInterval is not supported. The expiry check inside isRateLimited handles
+// the reset instead.
 
 export async function POST(req: NextRequest) {
   const ip =
