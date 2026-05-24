@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Valueages — India Enterprise GTM Advisory",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: "Valueages — India Enterprise GTM Advisory",
     description:
       "Specialized go-to-market advisory helping global SaaS companies expand in India with direct CXO, BFSI, GCC, and GSI access.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

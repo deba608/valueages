@@ -16,9 +16,48 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Valueages",
+  url: "https://valueages.com",
+  logo: "https://valueages.com/Nav_logo1.svg",
+  description:
+    "Specialized go-to-market advisory helping global SaaS and product companies expand in India. Direct CXO, BFSI, GCC, and GSI access from day one.",
+  founder: {
+    "@type": "Person",
+    name: "Manas Das",
+    jobTitle: "Managing Director & GTM Lead",
+    email: "manas.das@valueages.com",
+    telephone: "+919654017778",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bhubaneswar",
+    addressRegion: "Odisha",
+    addressCountry: "IN",
+    streetAddress: "DLF Cyber City, Patia",
+  },
+  areaServed: { "@type": "Country", name: "India" },
+  serviceType: [
+    "India Market Entry",
+    "Enterprise Sales Strategy",
+    "GTM Advisory",
+    "Fractional Sales Leadership",
+    "BFSI CXO Access",
+    "GCC Programme Management",
+    "GSI Partner Alliances",
+  ],
+  sameAs: ["https://unifyapps.com"],
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <main id="main-content" className="flex-1 flex flex-col">
