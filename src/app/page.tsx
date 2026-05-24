@@ -15,6 +15,7 @@ import WhoShouldContact from "@/components/WhoShouldContact";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 
 const SITE_URL = "https://valueages.com";
 
@@ -143,6 +144,7 @@ export default function Home() {
       </main>
 
       <Footer />
+      <ChatWidget />
     </>
   );
 }

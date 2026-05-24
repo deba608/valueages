@@ -104,10 +104,10 @@ export default function Navbar() {
       ref={navbarRef}
       className={`fixed z-50 transition-all duration-500 ease-in-out ${
         isScrolledDeep
-          ? "top-3 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-4xl rounded-full py-1.5 px-6 navbar-glass shadow-lg scale-[0.98]"
+          ? "top-3 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-4xl rounded-full py-1.5 px-6 navbar-glass shadow-lg scale-[0.98] safe-area-x"
           : isScrolled
-          ? "top-4 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl py-2 px-8 navbar-glass shadow-md"
-          : "top-0 left-0 right-0 w-full py-4 px-8 bg-white/98 border-b border-slate-100 shadow-sm"
+          ? "top-4 left-4 right-4 mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-2xl py-2 px-8 navbar-glass shadow-md safe-area-x"
+          : "top-0 left-0 right-0 w-full py-4 px-8 bg-white/98 border-b border-slate-100 shadow-sm safe-top safe-area-x"
       }`}
       role="navigation"
       aria-label="Main navigation"
@@ -258,7 +258,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile links */}
-        <div className="flex-1 overflow-y-auto px-4 py-6">
+        <div className="drawer-scroll flex-1 overflow-y-auto px-4 py-6">
           <ul className="flex flex-col gap-1">
             {navLinks.map((link, idx) => {
               const isActive = activeSection === link.id;
@@ -290,7 +290,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile CTA */}
-        <div className="px-4 pb-6 pt-2 border-t border-slate-100/60">
+        <div className="px-4 pb-6 pt-2 border-t border-slate-100/60 safe-bottom">
           <a
             href="#contact"
             onClick={() => setMobileMenuOpen(false)}

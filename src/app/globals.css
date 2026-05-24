@@ -98,6 +98,23 @@ html {
   overflow-x: clip;
   scrollbar-width: thin;
   scrollbar-color: var(--color-brand-teal) transparent;
+  /* Prevent iOS Safari from auto-scaling fonts in landscape */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ── Safe area inset utilities (iPhone notch / Dynamic Island / home bar) ── */
+.safe-top    { padding-top:    env(safe-area-inset-top,    0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.safe-area-x {
+  padding-left:  env(safe-area-inset-left,  0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Mobile drawer: prevent page scroll leaking through when drawer content hits end */
+.drawer-scroll {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Eliminate 300ms tap delay on all interactive elements */
