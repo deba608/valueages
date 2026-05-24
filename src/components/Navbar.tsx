@@ -447,7 +447,7 @@ export default function Navbar() {
                     </span>
                   </a>
                   <a
-                    href="mailto:info@valueages.com"
+                    href="mailto:manas.das@valueages.com"
                     className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-100/80 transition-colors duration-150 group"
                   >
                     <Mail size={13} className="text-brand-teal flex-shrink-0" />
