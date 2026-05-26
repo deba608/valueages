@@ -4,6 +4,77 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { MessageCircle, X, Send, Bot, User, Loader2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// ---------------------------------------------------------------------------
+// Lightweight markdown renderer — handles bold, italic, code, and lists
+// ---------------------------------------------------------------------------
+function renderInline(text: string): React.ReactNode[] {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|_[^_]+_|`[^`]+`)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**"))
+      return <strong key={i} className="font-semibold">{part.slice(2, -2)}</strong>;
+    if ((part.startsWith("*") && part.endsWith("*")) || (part.startsWith("_") && part.endsWith("_")))
+      return <em key={i}>{part.slice(1, -1)}</em>;
+    if (part.startsWith("`") && part.endsWith("`"))
+      return <code key={i} className="rounded bg-slate-200 px-1 py-0.5 text-xs font-mono text-slate-700">{part.slice(1, -1)}</code>;
+    return part;
+  });
+}
+
+function MarkdownMessage({ content }: { content: string }) {
+  const lines = content.split("\n");
+  const nodes: React.ReactNode[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    if (line.trim() === "") { i++; continue; }
+
+    // Unordered list block
+    if (/^[-*•]\s/.test(line.trim())) {
+      const items: string[] = [];
+      while (i < lines.length && /^[-*•]\s/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^[-*•]\s/, ""));
+        i++;
+      }
+      nodes.push(
+        <ul key={`ul-${i}`} className="my-1 ml-3 space-y-0.5 list-none">
+          {items.map((item, j) => (
+            <li key={j} className="flex gap-1.5 items-start">
+              <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-teal" />
+              <span>{renderInline(item)}</span>
+            </li>
+          ))}
+        </ul>
+      );
+      continue;
+    }
+
+    // Ordered list block
+    if (/^\d+\.\s/.test(line.trim())) {
+      const items: string[] = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^\d+\.\s/, ""));
+        i++;
+      }
+      nodes.push(
+        <ol key={`ol-${i}`} className="my-1 ml-4 space-y-0.5 list-decimal">
+          {items.map((item, j) => (
+            <li key={j}>{renderInline(item)}</li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
+    // Normal paragraph
+    nodes.push(<p key={`p-${i}`} className="leading-relaxed">{renderInline(line)}</p>);
+    i++;
+  }
+
+  return <div className="space-y-1 text-sm">{nodes}</div>;
+}
+
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -201,21 +272,31 @@ export default function ChatWidget() {
                         : "bg-slate-50 text-slate-700 border border-slate-100 rounded-tl-sm"
                     }`}
                   >
-                    {msg.content || (msg.isStreaming ? (
-                      <span className="flex items-center gap-1 text-slate-400">
-                        <span className="inline-flex gap-0.5">
-                          {[0, 1, 2].map((i) => (
-                            <span
-                              key={i}
-                              className="h-1.5 w-1.5 rounded-full bg-slate-300 animate-bounce"
-                              style={{ animationDelay: `${i * 0.15}s` }}
-                            />
-                          ))}
+                    {msg.content ? (
+                      msg.role === "assistant" ? (
+                        <>
+                          <MarkdownMessage content={msg.content} />
+                          {msg.isStreaming && (
+                            <span className="inline-block w-0.5 h-3.5 bg-brand-teal/60 animate-pulse ml-0.5 align-middle" />
+                          )}
+                        </>
+                      ) : (
+                        msg.content
+                      )
+                    ) : (
+                      msg.isStreaming ? (
+                        <span className="flex items-center gap-1 text-slate-400">
+                          <span className="inline-flex gap-0.5">
+                            {[0, 1, 2].map((i) => (
+                              <span
+                                key={i}
+                                className="h-1.5 w-1.5 rounded-full bg-slate-300 animate-bounce"
+                                style={{ animationDelay: `${i * 0.15}s` }}
+                              />
+                            ))}
+                          </span>
                         </span>
-                      </span>
-                    ) : "")}
-                    {msg.isStreaming && msg.content && (
-                      <span className="inline-block w-0.5 h-3.5 bg-brand-teal/60 animate-pulse ml-0.5 align-middle" />
+                      ) : ""
                     )}
                   </div>
                 </div>
