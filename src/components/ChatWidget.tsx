@@ -21,28 +21,44 @@ function renderInline(text: string): React.ReactNode[] {
 }
 
 function MarkdownMessage({ content }: { content: string }) {
-  const lines = content.split("\n");
+  // Normalise literal \n escape sequences that some LLMs emit as text
+  const normalised = content.replace(/\\n/g, "\n");
+  const lines = normalised.split("\n");
   const nodes: React.ReactNode[] = [];
   let i = 0;
 
   while (i < lines.length) {
     const line = lines[i];
+    const trimmed = line.trim();
 
-    if (line.trim() === "") { i++; continue; }
+    // Blank line — skip
+    if (trimmed === "") { i++; continue; }
+
+    // Heading: ### or ## or #
+    if (/^#{1,3}\s/.test(trimmed)) {
+      const text = trimmed.replace(/^#{1,3}\s/, "");
+      nodes.push(
+        <p key={`h-${i}`} className="font-semibold text-slate-800 mt-1">
+          {renderInline(text)}
+        </p>
+      );
+      i++;
+      continue;
+    }
 
     // Unordered list block
-    if (/^[-*•]\s/.test(line.trim())) {
+    if (/^[-*•]\s/.test(trimmed)) {
       const items: string[] = [];
       while (i < lines.length && /^[-*•]\s/.test(lines[i].trim())) {
-        items.push(lines[i].trim().replace(/^[-*•]\s/, ""));
+        items.push(lines[i].trim().replace(/^[-*•]\s+/, ""));
         i++;
       }
       nodes.push(
-        <ul key={`ul-${i}`} className="my-1 ml-3 space-y-0.5 list-none">
+        <ul key={`ul-${i}`} className="my-1 ml-1 space-y-1 list-none">
           {items.map((item, j) => (
-            <li key={j} className="flex gap-1.5 items-start">
-              <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-teal" />
-              <span>{renderInline(item)}</span>
+            <li key={j} className="flex gap-2 items-start">
+              <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-teal" />
+              <span className="leading-relaxed">{renderInline(item)}</span>
             </li>
           ))}
         </ul>
@@ -51,16 +67,16 @@ function MarkdownMessage({ content }: { content: string }) {
     }
 
     // Ordered list block
-    if (/^\d+\.\s/.test(line.trim())) {
+    if (/^\d+\.\s/.test(trimmed)) {
       const items: string[] = [];
       while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) {
-        items.push(lines[i].trim().replace(/^\d+\.\s/, ""));
+        items.push(lines[i].trim().replace(/^\d+\.\s+/, ""));
         i++;
       }
       nodes.push(
-        <ol key={`ol-${i}`} className="my-1 ml-4 space-y-0.5 list-decimal">
+        <ol key={`ol-${i}`} className="my-1 ml-4 space-y-1 list-decimal">
           {items.map((item, j) => (
-            <li key={j}>{renderInline(item)}</li>
+            <li key={j} className="leading-relaxed pl-0.5">{renderInline(item)}</li>
           ))}
         </ol>
       );
@@ -68,11 +84,15 @@ function MarkdownMessage({ content }: { content: string }) {
     }
 
     // Normal paragraph
-    nodes.push(<p key={`p-${i}`} className="leading-relaxed">{renderInline(line)}</p>);
+    nodes.push(
+      <p key={`p-${i}`} className="leading-relaxed">
+        {renderInline(trimmed)}
+      </p>
+    );
     i++;
   }
 
-  return <div className="space-y-1 text-sm">{nodes}</div>;
+  return <div className="space-y-1.5 text-sm">{nodes}</div>;
 }
 
 interface Message {
