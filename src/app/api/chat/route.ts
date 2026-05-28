@@ -76,6 +76,14 @@ function isRateLimited(ip: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
+  const groqApiKey = process.env.GROQ_API_KEY;
+  if (!groqApiKey) {
+    return new Response(
+      JSON.stringify({ error: "AI is not configured. Please try again later." }),
+      { status: 503, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     req.headers.get("x-real-ip") ??
