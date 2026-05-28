@@ -1,5 +1,7 @@
-import Groq from "groq-sdk";
 import { NextRequest } from "next/server";
+
+// Prevent Next.js from statically evaluating this route during build.
+export const dynamic = "force-dynamic";
 
 const SYSTEM_PROMPT = `You are the Valueages AI assistant — a knowledgeable, professional, and concise advisor representing Valueages, a premier enterprise GTM (Go-To-Market) advisory firm.
 
@@ -27,16 +29,36 @@ Contact:
 - Phone: +91 9654017778
 - Location: DLF Cyber City, Patia, Bhubaneswar
 
+Formatting Rules (CRITICAL — always follow these):
+- Always use markdown formatting in your responses
+- Use **bold** for key terms, service names, and important points
+- Use bullet lists (- item) for features, benefits, or multiple points — each bullet on its own line
+- Use numbered lists (1. item) for steps or ordered content — each item on its own line
+- Add a blank line between sections
+- Never write long dense paragraphs — break content into short bullets or sections
+- Keep each response focused and scannable
+
 Instructions:
 - Be concise, professional, and helpful
 - Answer questions about Valueages services, India market entry, GTM strategy, and enterprise sales
 - For pricing and custom engagements, direct users to contact Manas Das directly
-- Keep responses under 150 words unless a detailed explanation is genuinely needed
+- Keep responses under 200 words
 - Never make up specific client names, revenue figures, or guarantees
 - If asked something outside your scope, politely redirect to scheduling a consultation`;
 
-// In-memory rate limiter: 10 req/min per IP
+// In-memory rate limiter: 10 req/min per IP.
+// Note: Cloudflare Workers are ephemeral — this map is per-isolate, not global.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
+type GroqStreamChunk = {
+  choices?: Array<{
+    delta?: {
+      content?: string;
+    };
+  }>;
+};
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -51,16 +73,6 @@ function isRateLimited(ip: string): boolean {
 
   entry.count++;
   return false;
-}
-
-// Clean up stale entries periodically
-if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [key, value] of rateLimitMap.entries()) {
-      if (now > value.resetAt) rateLimitMap.delete(key);
-    }
-  }, 120_000);
 }
 
 export async function POST(req: NextRequest) {
@@ -84,7 +96,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let messages: { role: "user" | "assistant"; content: string }[];
+  let messages: ChatMessage[];
 
   try {
     const body = await req.json();
@@ -107,32 +119,73 @@ export async function POST(req: NextRequest) {
     // Cap conversation history at last 10 messages to control token usage
     const recentMessages = messages.slice(-10);
 
-    const groq = new Groq({ apiKey: groqApiKey });
-    const stream = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...recentMessages,
-      ],
-      stream: true,
-      max_tokens: 512,
-      temperature: 0.7,
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+      throw new Error("GROQ_API_KEY is not configured.");
+    }
+
+    const groqResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...recentMessages,
+        ],
+        stream: true,
+        max_tokens: 512,
+        temperature: 0.7,
+      }),
     });
 
+    if (!groqResponse.ok || !groqResponse.body) {
+      throw new Error("Groq request failed.");
+    }
+
     const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
 
     const readable = new ReadableStream({
       async start(controller) {
+        const reader = groqResponse.body?.getReader();
+        if (!reader) {
+          controller.close();
+          return;
+        }
+
+        let buffer = "";
+
         try {
-          for await (const chunk of stream) {
-            const text = chunk.choices[0]?.delta?.content ?? "";
-            if (text) {
-              controller.enqueue(encoder.encode(text));
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop() ?? "";
+
+            for (const rawLine of lines) {
+              const line = rawLine.trim();
+              if (!line.startsWith("data: ")) continue;
+
+              const data = line.slice(6);
+              if (data === "[DONE]") continue;
+
+              const parsed = JSON.parse(data) as GroqStreamChunk;
+              const text = parsed.choices?.[0]?.delta?.content ?? "";
+              if (text) {
+                controller.enqueue(encoder.encode(text));
+              }
             }
           }
         } catch (err) {
           controller.error(err);
         } finally {
+          reader.releaseLock();
           controller.close();
         }
       },

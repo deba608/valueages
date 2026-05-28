@@ -20,7 +20,7 @@ const playfair = Playfair_Display({
 });
 
 const SITE_URL = "https://valueages.com";
-const OG_IMAGE = "/opengraph-image";
+const OG_IMAGE = "/opengraph-image.svg";
 
 export const viewport: Viewport = {
   themeColor: "#109B82",

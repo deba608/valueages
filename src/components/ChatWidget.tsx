@@ -4,6 +4,97 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { MessageCircle, X, Send, Bot, User, Loader2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// ---------------------------------------------------------------------------
+// Lightweight markdown renderer — handles bold, italic, code, and lists
+// ---------------------------------------------------------------------------
+function renderInline(text: string): React.ReactNode[] {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|_[^_]+_|`[^`]+`)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**"))
+      return <strong key={i} className="font-semibold">{part.slice(2, -2)}</strong>;
+    if ((part.startsWith("*") && part.endsWith("*")) || (part.startsWith("_") && part.endsWith("_")))
+      return <em key={i}>{part.slice(1, -1)}</em>;
+    if (part.startsWith("`") && part.endsWith("`"))
+      return <code key={i} className="rounded bg-slate-200 px-1 py-0.5 text-xs font-mono text-slate-700">{part.slice(1, -1)}</code>;
+    return part;
+  });
+}
+
+function MarkdownMessage({ content }: { content: string }) {
+  // Normalise literal \n escape sequences that some LLMs emit as text
+  const normalised = content.replace(/\\n/g, "\n");
+  const lines = normalised.split("\n");
+  const nodes: React.ReactNode[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    // Blank line — skip
+    if (trimmed === "") { i++; continue; }
+
+    // Heading: ### or ## or #
+    if (/^#{1,3}\s/.test(trimmed)) {
+      const text = trimmed.replace(/^#{1,3}\s/, "");
+      nodes.push(
+        <p key={`h-${i}`} className="font-semibold text-slate-800 mt-1">
+          {renderInline(text)}
+        </p>
+      );
+      i++;
+      continue;
+    }
+
+    // Unordered list block
+    if (/^[-*•]\s/.test(trimmed)) {
+      const items: string[] = [];
+      while (i < lines.length && /^[-*•]\s/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^[-*•]\s+/, ""));
+        i++;
+      }
+      nodes.push(
+        <ul key={`ul-${i}`} className="my-1 ml-1 space-y-1 list-none">
+          {items.map((item, j) => (
+            <li key={j} className="flex gap-2 items-start">
+              <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-teal" />
+              <span className="leading-relaxed">{renderInline(item)}</span>
+            </li>
+          ))}
+        </ul>
+      );
+      continue;
+    }
+
+    // Ordered list block
+    if (/^\d+\.\s/.test(trimmed)) {
+      const items: string[] = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^\d+\.\s+/, ""));
+        i++;
+      }
+      nodes.push(
+        <ol key={`ol-${i}`} className="my-1 ml-4 space-y-1 list-decimal">
+          {items.map((item, j) => (
+            <li key={j} className="leading-relaxed pl-0.5">{renderInline(item)}</li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
+    // Normal paragraph
+    nodes.push(
+      <p key={`p-${i}`} className="leading-relaxed">
+        {renderInline(trimmed)}
+      </p>
+    );
+    i++;
+  }
+
+  return <div className="space-y-1.5 text-sm">{nodes}</div>;
+}
+
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -165,6 +256,7 @@ export default function ChatWidget() {
                 </div>
               </div>
               <button
+                type="button"
                 onClick={handleClose}
                 aria-label="Close chat"
                 className="flex h-8 w-8 items-center justify-center rounded-full text-white/80 hover:bg-white/20 hover:text-white transition-colors duration-200 active:scale-95"
@@ -200,21 +292,31 @@ export default function ChatWidget() {
                         : "bg-slate-50 text-slate-700 border border-slate-100 rounded-tl-sm"
                     }`}
                   >
-                    {msg.content || (msg.isStreaming ? (
-                      <span className="flex items-center gap-1 text-slate-400">
-                        <span className="inline-flex gap-0.5">
-                          {[0, 1, 2].map((i) => (
-                            <span
-                              key={i}
-                              className="h-1.5 w-1.5 rounded-full bg-slate-300 animate-bounce"
-                              style={{ animationDelay: `${i * 0.15}s` }}
-                            />
-                          ))}
+                    {msg.content ? (
+                      msg.role === "assistant" ? (
+                        <>
+                          <MarkdownMessage content={msg.content} />
+                          {msg.isStreaming && (
+                            <span className="inline-block w-0.5 h-3.5 bg-brand-teal/60 animate-pulse ml-0.5 align-middle" />
+                          )}
+                        </>
+                      ) : (
+                        msg.content
+                      )
+                    ) : (
+                      msg.isStreaming ? (
+                        <span className="flex items-center gap-1 text-slate-400">
+                          <span className="inline-flex gap-0.5">
+                            {[0, 1, 2].map((i) => (
+                              <span
+                                key={i}
+                                className="h-1.5 w-1.5 rounded-full bg-slate-300 animate-bounce"
+                                style={{ animationDelay: `${i * 0.15}s` }}
+                              />
+                            ))}
+                          </span>
                         </span>
-                      </span>
-                    ) : "")}
-                    {msg.isStreaming && msg.content && (
-                      <span className="inline-block w-0.5 h-3.5 bg-brand-teal/60 animate-pulse ml-0.5 align-middle" />
+                      ) : ""
                     )}
                   </div>
                 </div>
@@ -246,6 +348,7 @@ export default function ChatWidget() {
                   className="flex-1 resize-none rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-brand-teal/50 focus:bg-white focus:ring-2 focus:ring-brand-teal/15 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed min-h-[42px] max-h-[100px]"
                 />
                 <button
+                  type="button"
                   onClick={sendMessage}
                   disabled={!input.trim() || isLoading}
                   aria-label="Send message"
@@ -268,6 +371,7 @@ export default function ChatWidget() {
 
       {/* Floating Trigger Button */}
       <motion.button
+        type="button"
         onClick={() => setIsOpen((v) => !v)}
         aria-label={isOpen ? "Close chat" : "Open AI chat assistant"}
         aria-expanded={isOpen}
