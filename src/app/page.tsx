@@ -13,9 +13,11 @@ import Services from "@/components/Services";
 import ClientWins from "@/components/ClientWins";
 import WhoShouldContact from "@/components/WhoShouldContact";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
+import { faqs } from "@/lib/faqs";
 
 const SITE_URL = "https://valueages.com";
 
@@ -48,7 +50,7 @@ const jsonLd = {
       "@id": `${SITE_URL}/#professional-service`,
       name: "Valueages",
       url: SITE_URL,
-      image: `${SITE_URL}/opengraph-image.svg`,
+      image: `${SITE_URL}/opengraph-image`,
       logo: `${SITE_URL}/Nav_logo1.svg`,
       description:
         "India enterprise GTM advisory for global SaaS and product companies, including CXO access, BFSI relationships, GCC programs, and GSI alliances.",
@@ -83,6 +85,18 @@ const jsonLd = {
         target: `${SITE_URL}/#contact`,
         name: "Contact Valueages",
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
     },
   ],
 };
@@ -139,7 +153,10 @@ export default function Home() {
         {/* 14. Valueages advantage indicators */}
         <WhyChooseUs />
 
-        {/* 14. Contact & lead capture */}
+        {/* 15. Frequently asked questions (FAQPage rich result) */}
+        <FAQ />
+
+        {/* 16. Contact & lead capture */}
         <Contact />
       </main>
 

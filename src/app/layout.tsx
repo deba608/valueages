@@ -59,6 +59,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+  icons: {
+    icon: [
+      { url: "/Nav_logo1.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/Nav_logo1.svg",
+    apple: "/apple-icon",
+  },
   openGraph: {
     title: "Valueages | India Enterprise GTM Advisory",
     description:

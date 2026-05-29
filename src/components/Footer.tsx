@@ -11,6 +11,7 @@ const quickLinks = [
   { label: "UnifyApps Partnership",href: "#partnership" },
   { label: "Enterprise Wins",      href: "#clients"     },
   { label: "Why Valueages",        href: "#why-us"      },
+  { label: "FAQ",                  href: "#faq"         },
 ];
 
 const focusAreas = [
