@@ -45,6 +45,7 @@ export default function Hero() {
         {/* Headline — BlurText word-by-word animation */}
         <div className="mb-8 mx-auto max-w-5xl">
           <BlurText
+            as="h1"
             text="Turn India enterprise access into a disciplined revenue motion."
             delay={65}
             animateBy="words"

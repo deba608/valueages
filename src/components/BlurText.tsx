@@ -16,10 +16,13 @@ const buildKeyframes = (
   return keyframes;
 };
 
+type BlurTextTag = "p" | "h1" | "h2" | "h3" | "span" | "div";
+
 interface BlurTextProps {
   text?: string;
   delay?: number;
   className?: string;
+  as?: BlurTextTag;
   animateBy?: "words" | "letters";
   direction?: "top" | "bottom";
   threshold?: number;
@@ -35,6 +38,7 @@ const BlurText = ({
   text = "",
   delay = 200,
   className = "",
+  as = "p",
   animateBy = "words",
   direction = "top",
   threshold = 0.1,
@@ -47,7 +51,8 @@ const BlurText = ({
 }: BlurTextProps) => {
   const elements = animateBy === "words" ? text.split(" ") : text.split("");
   const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<HTMLElement>(null);
+  const Wrapper = motion[as];
 
   useEffect(() => {
     if (!ref.current) return;
@@ -94,7 +99,11 @@ const BlurText = ({
   );
 
   return (
-    <p ref={ref} className={`${className} flex flex-wrap`} style={{ display: "flex", flexWrap: "wrap" }}>
+    <Wrapper
+      ref={ref as React.Ref<HTMLElement & HTMLParagraphElement>}
+      className={`${className} flex flex-wrap`}
+      style={{ display: "flex", flexWrap: "wrap" }}
+    >
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
@@ -121,7 +130,7 @@ const BlurText = ({
           </motion.span>
         );
       })}
-    </p>
+    </Wrapper>
   );
 };
 

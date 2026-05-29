@@ -20,7 +20,6 @@ const playfair = Playfair_Display({
 });
 
 const SITE_URL = "https://valueages.com";
-const OG_IMAGE = "/opengraph-image.svg";
 
 export const viewport: Viewport = {
   themeColor: "#109B82",
@@ -68,31 +67,17 @@ export const metadata: Metadata = {
     siteName: "Valueages",
     type: "website",
     locale: "en_IN",
-    images: [
-      {
-        url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Valueages India Enterprise GTM Advisory",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Valueages | India Enterprise GTM Advisory",
     description:
       "India market entry and enterprise GTM advisory for SaaS companies with direct CXO, BFSI, GCC, and GSI access.",
-    images: [OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
-  },
-  icons: {
-    icon: "/Nav_logo1.svg",
-    apple: "/Nav_logo1.svg",
-    shortcut: "/Nav_logo1.svg",
   },
 };
 
