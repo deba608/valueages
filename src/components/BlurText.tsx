@@ -23,6 +23,7 @@ interface BlurTextProps {
   delay?: number;
   className?: string;
   as?: BlurTextTag;
+  id?: string;
   animateBy?: "words" | "letters";
   direction?: "top" | "bottom";
   threshold?: number;
@@ -39,6 +40,7 @@ const BlurText = ({
   delay = 200,
   className = "",
   as = "p",
+  id,
   animateBy = "words",
   direction = "top",
   threshold = 0.1,
@@ -101,6 +103,7 @@ const BlurText = ({
   return (
     <Wrapper
       ref={ref as React.Ref<HTMLElement & HTMLParagraphElement>}
+      id={id}
       className={`${className} flex flex-wrap`}
       style={{ display: "flex", flexWrap: "wrap" }}
     >

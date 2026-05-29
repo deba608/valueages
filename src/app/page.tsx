@@ -30,11 +30,7 @@ const jsonLd = {
       name: "Valueages",
       url: SITE_URL,
       logo: `${SITE_URL}/Nav_logo1.svg`,
-      founder: {
-        "@type": "Person",
-        name: "Manas Das",
-        jobTitle: "Managing Director & GTM Lead",
-      },
+      founder: { "@id": `${SITE_URL}/#founder` },
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "business inquiries",
@@ -44,6 +40,23 @@ const jsonLd = {
         availableLanguage: ["en"],
       },
       sameAs: ["https://unifyapps.com"],
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#founder`,
+      name: "Manas Das",
+      jobTitle: "Founder & Managing Director",
+      worksFor: { "@id": `${SITE_URL}/#organization` },
+      description: "Enterprise sales leader and GTM advisor with 22+ years of experience across ServiceNow, OutSystems, Salesforce, and UnifyApps.",
+      knowsAbout: [
+        "Enterprise SaaS GTM Strategy",
+        "India Market Entry Strategy",
+        "Enterprise Sales Operations",
+        "BFSI CXO Account Development",
+        "Global Capability Centers (GCC)",
+        "Global System Integrators (GSI) Alliances",
+        "Value Selling & MEDDPICC Methodology"
+      ]
     },
     {
       "@type": "ProfessionalService",
@@ -62,7 +75,16 @@ const jsonLd = {
         addressRegion: "Odisha",
         addressCountry: "IN",
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "20.3533",
+        longitude: "85.8278",
+      },
       areaServed: { "@type": "Country", name: "India" },
+      audience: {
+        "@type": "Audience",
+        audienceType: "B2B SaaS and Enterprise Software Companies Expanding to India"
+      },
       serviceType: [
         "India market entry advisory",
         "Enterprise sales strategy",

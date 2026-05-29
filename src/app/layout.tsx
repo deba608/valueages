@@ -72,6 +72,14 @@ export const metadata: Metadata = {
       "Enterprise GTM advisory for global SaaS and product companies expanding into India through CXO access, BFSI relationships, GCC programs, and GSI alliances.",
     url: SITE_URL,
     siteName: "Valueages",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Valueages — India Enterprise GTM Advisory",
+      },
+    ],
     type: "website",
     locale: "en_IN",
   },
@@ -80,6 +88,7 @@ export const metadata: Metadata = {
     title: "Valueages | India Enterprise GTM Advisory",
     description:
       "India market entry and enterprise GTM advisory for SaaS companies with direct CXO, BFSI, GCC, and GSI access.",
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,

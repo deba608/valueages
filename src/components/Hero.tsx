@@ -16,7 +16,7 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-dvh overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28 flex items-center"
-      aria-label="Introduction"
+      aria-labelledby="hero-title"
     >
       {/* Background layers */}
       <div
@@ -46,6 +46,7 @@ export default function Hero() {
         <div className="mb-8 mx-auto max-w-5xl">
           <BlurText
             as="h1"
+            id="hero-title"
             text="Turn India enterprise access into a disciplined revenue motion."
             delay={65}
             animateBy="words"
